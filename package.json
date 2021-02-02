@@ -1,18 +1,21 @@
 {
-  "name": "nuxtjs",
-  "version": "1.0.0",
-  "description": "My astonishing Nuxt.js project",
-  "author": "msweeneydev",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt generate",
-    "start": "nuxt start"
-  },
-  "dependencies": {
-    "nuxt": "^2.0.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.9"
-  }
+	"name": "chatguessr-client",
+	"version": "1.0.0",
+	"description": "ChatGuessr client",
+	"author": "T.ZHF",
+	"private": true,
+	"scripts": {
+		"dev": "nuxt",
+		"build": "nuxt generate",
+		"start": "nuxt start"
+	},
+	"dependencies": {
+		"@nuxtjs/axios": "^5.12.5",
+		"nuxt": "^2.0.0",
+		"nuxt-highlightjs": "^1.0.1",
+		"v-aspect-ratio": "^2.0.1"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.9"
+	}
 }

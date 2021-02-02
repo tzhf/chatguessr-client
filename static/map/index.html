@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+		<title>Chatguessr LocPickr</title>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+			crossorigin=""
+		/>
+		<script
+			src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+			crossorigin=""
+		></script>
+
+		<style>
+			body {
+				margin: 0;
+			}
+			#map {
+				width: 100%;
+				height: 100vh;
+			}
+			.leaflet-control-layers {
+				font-family: Tahoma, Geneva, sans-serif;
+				background-color: rgba(0, 0, 0, 0.6);
+				color: white;
+				font-size: 1.2em;
+			}
+			.gm-style-cc {
+				display: none;
+			}
+			.leaflet-popup-content-wrapper,
+			.leaflet-popup-tip {
+				background-color: rgba(0, 0, 0, 0.6);
+			}
+			.leaflet-popup-content-wrapper {
+				color: #fff;
+				text-align: center;
+			}
+			.leaflet-container {
+				background-color: #2e2e2e;
+			}
+			.copy {
+				font-size: 14px;
+				font-weight: 700;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+
+		<script type="text/javascript">
+			// Get bot Param
+			const urlParams = new URLSearchParams(window.location.search);
+			const bot = urlParams.get("bot");
+
+			// Base maps
+			const maps = {
+				roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
+					minZoom: 2,
+					maxZoom: 21,
+					subdomains: ["mt0", "mt1", "mt2", "mt3"],
+					type: "roadmap",
+				}),
+
+				hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}", {
+					minZoom: 2,
+					maxZoom: 20,
+					subdomains: ["mt0", "mt1", "mt2", "mt3"],
+					type: "hybrid",
+				}),
+
+				terrain: L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
+					minZoom: 2,
+					maxZoom: 20,
+					subdomains: ["mt0", "mt1", "mt2", "mt3"],
+					type: "terrain",
+				}),
+
+				openTopoMap: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+					minZoom: 2,
+					maxZoom: 19,
+					type: "openTopoMap",
+				}),
+
+				esriTopographic: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
+					minZoom: 2,
+					maxZoom: 19,
+					type: "esriTopographic",
+				}),
+			};
+
+			// Init Map
+			const mapOptions = {
+				attributionControl: false,
+				center: [0, 0],
+				zoom: 2,
+			};
+
+			const map = L.map("map", mapOptions);
+			getMapLayer().addTo(map);
+
+			function getMapLayer() {
+				const cBaseMap = getCookie("mapLayer");
+				if (cBaseMap != "") {
+					const layer = maps[cBaseMap];
+					if (!layer) {
+						return maps["roadmap"];
+					} else {
+						return layer;
+					}
+				} else {
+					return maps["roadmap"];
+				}
+			}
+
+			// Layer controls
+			L.control.layers({ ...maps }, {}, { collapsed: false }).addTo(map);
+
+			map.on("baselayerchange", onBaseLayerChange);
+
+			function onBaseLayerChange() {
+				const id = event.currentTarget.layerId;
+				const layer = this._layers[id];
+				const baseMap = layer.options.type;
+				setCookie("mapLayer", baseMap, 30);
+			}
+
+			// Popup window
+			const popup = L.popup().setLatLng([0, 0]);
+
+			if (!bot) {
+				popup.setContent(`Please fill your bot in the url parameters`).openOn(map);
+			} else {
+				popup.setContent(`Click on the map to make your guess`).openOn(map);
+			}
+
+			map.on("click", (e) => {
+				if (!bot) {
+					L.popup()
+						.setLatLng(e.latlng)
+						.setContent(`Please fill your bot in the url parameters`)
+						.openOn(map);
+				} else {
+					const coords = map.wrapLatLng(e.latlng);
+					const content = `/w ${bot} !g ${coords.lat}, ${coords.lng}`;
+					L.popup()
+						.setLatLng(e.latlng)
+						.setContent(`${content}<br><span class="copy">Copied to clipboard</span><br>`)
+						.openOn(map);
+					copyToClipboard(content);
+				}
+			});
+
+			// Copy to clipboard
+			function copyToClipboard(str) {
+				const el = document.createElement("textarea");
+				el.value = str;
+				document.body.appendChild(el);
+				el.select();
+				document.execCommand("copy");
+				document.body.removeChild(el);
+			}
+
+			// Cookies
+			function setCookie(name, value, exdays) {
+				const d = new Date();
+				d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+				const expires = "expires=" + d.toUTCString();
+				document.cookie = name + "=" + value + ";" + expires + ";path=/";
+			}
+
+			function getCookie(name) {
+				const cname = name + "=";
+				let decodedCookie = decodeURIComponent(document.cookie);
+				let ca = decodedCookie.split(";");
+				for (let i = 0; i < ca.length; i++) {
+					let c = ca[i];
+					while (c.charAt(0) == " ") {
+						c = c.substring(1);
+					}
+					if (c.indexOf(cname) == 0) {
+						return c.substring(cname.length, c.length);
+					}
+				}
+				return "";
+			}
+		</script>
+	</body>
+</html>

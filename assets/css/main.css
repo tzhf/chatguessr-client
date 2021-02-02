@@ -1,0 +1,72 @@
+@import "https://fonts.googleapis.com/css?family=Comfortaa:300,700";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css";
+
+@import "./colors.css";
+@import "./buttons.css";
+@import "./spacing.css";
+@import "./typography.css";
+
+*,
+::before,
+::after {
+	box-sizing: border-box;
+	margin: 0;
+}
+img {
+	vertical-align: middle;
+}
+
+html {
+	font-family: "Comfortaa", sans-serif;
+	font-size: 14px;
+	letter-spacing: 0.03rem;
+	color: #fff;
+	background: var(--bg-color);
+}
+
+body::-webkit-scrollbar {
+	width: 0.5rem;
+}
+body::-webkit-scrollbar-track {
+	background: rgb(87, 87, 87);
+}
+body::-webkit-scrollbar-thumb {
+	background: var(--clr-primary);
+}
+::selection {
+	background-color: var(--clr-primary);
+	color: #000;
+}
+
+a {
+	outline: none;
+	padding: 2px 0;
+	color: var(--clr-primary);
+	background: linear-gradient(to bottom, var(--clr-primary) 0%, var(--clr-primary) 100%);
+	background-position: 0 85%;
+	background-repeat: repeat-x;
+	background-size: 1px 1px;
+	text-decoration: none;
+	transition: all 250ms;
+}
+a:hover,
+a:focus {
+	color: #000;
+	background-size: 1px 100px;
+}
+
+.container {
+	padding: 0.5rem;
+}
+
+.card,
+.notif {
+	background: rgba(180, 180, 180, 0.1);
+	border-radius: 5px;
+	box-shadow: 1px 0px 5px rgb(0, 0, 0, 0.15);
+	padding: 0.5rem;
+}
+
+.notif {
+	margin: 0 auto;
+}

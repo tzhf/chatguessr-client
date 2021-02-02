@@ -1,0 +1,22 @@
+:root {
+	--clr-primary: #59ffd8;
+	--clr-secondary: #a159ff;
+	--clr-danger: #ff7f50;
+	--bg-color: #252525;
+}
+
+.clr-primary {
+	color: var(--clr-primary);
+}
+.clr-secondary {
+	color: var(--clr-secondary);
+}
+.bg-primary {
+	background-color: var(--clr-primary);
+}
+.bg-secondary {
+	background-color: var(--clr-secondary);
+}
+.bg-danger {
+	background-color: var(--clr-danger);
+}
