@@ -1,0 +1,10 @@
+TODOS:
+
+	☐ Bigger font on the main page. For example `Using a secondary bot account...` is hard to read
+	☐ Live Streamers >> Server unreachable. 
+		(Are you using some .env? If so that should be moved to the backend API)
+		Unless NUXT is server rendered?
+	☐ Make link to GeoGuessr target _blank?
+	☐ Make link to Donate target _blank?
+
+
