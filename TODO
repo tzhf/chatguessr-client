@@ -9,5 +9,6 @@ TODOS:
 	☐ Add the "automated" map to client (What route?) /automap?
 	☐ Add link to the map page on the home page
 	☐ Handle a way to redirect traffic comming to `https://chatguessr.com/?bot=<bot_name>` To send it to the map page
-
+	☐ Add an attributions page for the libraries used on the project?
+	
 	
