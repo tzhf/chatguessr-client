@@ -1,5 +1,6 @@
 <template>
 	<section class="centered">
+		<Logo/>
 		<Loader v-if="loading" />
 		<div v-else class="card m-5 text-center">
 			<div v-if="error">
@@ -16,7 +17,6 @@
 					</p>
 				</div>
 				<code v-highlight="game.resume" class="ruby mt-3" /></code>
-				
 			</div>
 		</div>
 	</section>
@@ -28,12 +28,28 @@ code {
 	font-size: 1.2rem;
 	white-space: pre;
 }
+.logo_wrapper {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 99;
+}
+.logo_wrapper h1 {
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: 300;
+	line-height: 0.7;
+	margin-left: -0.5rem;
+	font-size: 2.5rem;
+	letter-spacing: -3px;
+	text-shadow: 0 0 3px #000;
+	color: #fff;
+}
 </style>
 
 <script>
 
 export default {
-	name: "Game",
 	layout: "centered",
 	data() {
 		return {

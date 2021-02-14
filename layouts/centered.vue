@@ -1,6 +1,8 @@
 <template>
 	<div class="wrapper">
-		<Nuxt />
+		<client-only>
+			<Nuxt />
+		</client-only>
 	</div>
 </template>
 

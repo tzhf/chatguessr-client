@@ -1,7 +1,7 @@
 const { directive } = require("v-aspect-ratio/dist/v-aspect-ratio.ssr.common.js");
 
 export default {
-	ssr: false,
+	ssr: true,
 
 	/*
 	 ** Nuxt Loader
@@ -38,7 +38,7 @@ export default {
 	/*
 	 ** Plugins to load before mounting the App
 	 */
-	plugins: [],
+	plugins: ["~/plugins/downloadExcel.js"],
 
 	/*
 	 ** Nuxt.js modules
@@ -75,6 +75,7 @@ export default {
 		splitChunks: {
 			layouts: true,
 		},
+		transpile: ["downloadExcel"],
 		/*
 		 ** You can extend webpack config here
 		 */

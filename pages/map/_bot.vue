@@ -1,67 +1,34 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
-		<title>Chatguessr LocPickr</title>
-		<link
-			rel="stylesheet"
-			href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-			crossorigin=""
-		/>
-		<script
-			src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-			crossorigin=""
-		></script>
-
-		<style>
-			body {
-				margin: 0;
-			}
-			#map {
-				width: 100%;
-				height: 100vh;
-			}
-			.leaflet-control-layers {
-				font-family: Tahoma, Geneva, sans-serif;
-				background-color: rgba(0, 0, 0, 0.6);
-				color: white;
-				font-size: 1.2em;
-			}
-			.gm-style-cc {
-				display: none;
-			}
-			.leaflet-popup-content-wrapper,
-			.leaflet-popup-tip {
-				background-color: rgba(0, 0, 0, 0.6);
-			}
-			.leaflet-popup-content-wrapper {
-				color: #fff;
-				text-align: center;
-			}
-			.leaflet-container {
-				background-color: #2e2e2e;
-			}
-			.copy {
-				font-size: 14px;
-				font-weight: 700;
-			}
-		</style>
-	</head>
-	<body>
+<template>
+	<div>
+		<Logo :subtitle="bot" />
 		<div id="map"></div>
+	</div>
+</template>
 
-		<script type="text/javascript">
-			// Get bot Param
-			const urlParams = new URLSearchParams(window.location.search);
-			const bot = urlParams.get("bot");
-
-			// Base maps
-			const maps = {
+<script>
+export default {
+	data() {
+		return {
+			bot: "",
+		};
+	},
+	mounted() {
+		if (process.client) {
+			const params = Object.keys(this.$route.query);
+			if (params.includes("bot")) {
+				this.bot = this.$route.query.bot;
+			} else {
+				this.bot = this.$route.params.bot;
+			}
+			const $Scriptjs = require("scriptjs");
+			$Scriptjs("https://unpkg.com/leaflet@1.7.1/dist/leaflet.js", () => {
+				this.initMap();
+			});
+		}
+	},
+	methods: {
+		initMap: function() {
+			const layers = {
 				roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
 					minZoom: 2,
 					maxZoom: 21,
@@ -101,6 +68,7 @@
 				attributionControl: false,
 				center: [0, 0],
 				zoom: 2,
+				zoomControl: false,
 			};
 
 			const map = L.map("map", mapOptions);
@@ -109,19 +77,19 @@
 			function getMapLayer() {
 				const cBaseMap = getCookie("mapLayer");
 				if (cBaseMap != "") {
-					const layer = maps[cBaseMap];
+					const layer = layers[cBaseMap];
 					if (!layer) {
-						return maps["roadmap"];
+						return layers["roadmap"];
 					} else {
 						return layer;
 					}
 				} else {
-					return maps["roadmap"];
+					return layers["roadmap"];
 				}
 			}
 
 			// Layer controls
-			L.control.layers({ ...maps }, {}, { collapsed: false }).addTo(map);
+			L.control.layers({ ...layers }, {}, { position: "bottomright", collapsed: false }).addTo(map);
 
 			map.on("baselayerchange", onBaseLayerChange);
 
@@ -135,21 +103,21 @@
 			// Popup window
 			const popup = L.popup().setLatLng([0, 0]);
 
-			if (!bot) {
+			if (!this.bot) {
 				popup.setContent(`Please fill your bot in the url parameters`).openOn(map);
 			} else {
 				popup.setContent(`Click on the map to make your guess`).openOn(map);
 			}
 
 			map.on("click", (e) => {
-				if (!bot) {
+				if (!this.bot) {
 					L.popup()
 						.setLatLng(e.latlng)
 						.setContent(`Please fill your bot in the url parameters`)
 						.openOn(map);
 				} else {
 					const coords = map.wrapLatLng(e.latlng);
-					const content = `/w ${bot} !g ${coords.lat}, ${coords.lng}`;
+					const content = `/w ${this.bot} !g ${coords.lat}, ${coords.lng}`;
 					L.popup()
 						.setLatLng(e.latlng)
 						.setContent(`${content}<br><span class="copy">Copied to clipboard</span><br>`)
@@ -162,8 +130,36 @@
 			function copyToClipboard(str) {
 				const el = document.createElement("textarea");
 				el.value = str;
+				el.setAttribute("readonly", "");
+				el.style = { position: "absolute", left: "-9999px" };
 				document.body.appendChild(el);
-				el.select();
+
+				if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+					// save current contentEditable/readOnly status
+					const editable = el.contentEditable;
+					const readOnly = el.readOnly;
+
+					// convert to editable with readonly to stop iOS keyboard opening
+					el.contentEditable = true;
+					el.readOnly = true;
+
+					// create a selectable range
+					const range = document.createRange();
+					range.selectNodeContents(el);
+
+					// select the range
+					const selection = window.getSelection();
+					selection.removeAllRanges();
+					selection.addRange(range);
+					el.setSelectionRange(0, 999999);
+
+					// restore contentEditable/readOnly to original state
+					el.contentEditable = editable;
+					el.readOnly = readOnly;
+				} else {
+					el.select();
+				}
+
 				document.execCommand("copy");
 				document.body.removeChild(el);
 			}
@@ -178,8 +174,8 @@
 
 			function getCookie(name) {
 				const cname = name + "=";
-				let decodedCookie = decodeURIComponent(document.cookie);
-				let ca = decodedCookie.split(";");
+				const decodedCookie = decodeURIComponent(document.cookie);
+				const ca = decodedCookie.split(";");
 				for (let i = 0; i < ca.length; i++) {
 					let c = ca[i];
 					while (c.charAt(0) == " ") {
@@ -191,6 +187,41 @@
 				}
 				return "";
 			}
-		</script>
-	</body>
-</html>
+		},
+	},
+};
+</script>
+
+<style>
+@import url("https://unpkg.com/leaflet@1.7.1/dist/leaflet.css");
+* {
+	margin: 0;
+}
+#map {
+	z-index: 0;
+	height: 100vh;
+}
+.leaflet-control-layers {
+	background-color: rgba(0, 0, 0, 0.6) !important;
+	color: rgb(255, 255, 255);
+	font-size: 1.2em;
+}
+.gm-style-cc {
+	display: none;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+.leaflet-popup-content-wrapper {
+	color: #fff;
+	text-align: center;
+}
+.leaflet-container {
+	background-color: #2e2e2e;
+}
+.copy {
+	font-size: 14px;
+	font-weight: 700;
+}
+</style>

@@ -11,9 +11,12 @@
 	},
 	"dependencies": {
 		"@nuxtjs/axios": "^5.12.5",
+		"leaflet": "^1.7.1",
 		"nuxt": "^2.0.0",
 		"nuxt-highlightjs": "^1.0.1",
-		"v-aspect-ratio": "^2.0.1"
+		"scriptjs": "^2.5.9",
+		"v-aspect-ratio": "^2.0.1",
+		"vue-json-excel": "^0.3.0"
 	},
 	"devDependencies": {
 		"nodemon": "^1.18.9"

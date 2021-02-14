@@ -53,6 +53,7 @@
 				</ol>
 				<div class="card mt-3">
 					<h4>Commands :</h4>
+					<p><span class="badge bg-primary">!cg</span> : Get the map link</p>
 					<p><span class="badge bg-primary">!me</span> : Get your stats</p>
 					<p><span class="badge bg-primary">!best</span> : Get the best stats of the channel</p>
 					<p>
@@ -69,6 +70,20 @@
 		</section>
 	</div>
 </template>
+
+<script>
+export default {
+	layout: "home",
+	created() {
+		if (!process.server) {
+			const params = Object.keys(this.$route.query);
+			if (params.includes("bot")) {
+				this.$router.push(`map/${this.$route.query.bot}`);
+			}
+		}
+	},
+};
+</script>
 
 <style>
 pre {
