@@ -11,5 +11,12 @@ TODOS:
 	☐ Add the "automated" map to client (What route?) /automap?
 		-> is it fixed ? last time sessions only lasted few hours
 	☐ Add link to the map page on the home page
+<<<<<<< HEAD
 	✓ Handle a way to redirect traffic comming to `https://chatguessr.com/?bot=<bot_name>` To send it to the map page
 		-> bot param is no longer necessary e.g: https://chatguessr.com/map/streamer
+=======
+	☐ Handle a way to redirect traffic comming to `https://chatguessr.com/?bot=<bot_name>` To send it to the map page
+	☐ Add an attributions page for the libraries used on the project?
+	
+	
+>>>>>>> 0a4e5e5be404c0fe3ca63f6f944f8325b52fcbcc
