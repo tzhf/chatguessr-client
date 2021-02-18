@@ -31,6 +31,12 @@
 .mt-3 {
 	margin-top: 0.75rem;
 }
+.mt-4 {
+	margin-top: 1rem;
+}
+.mt-5 {
+	margin-top: 1.25rem;
+}
 .mx-2 {
 	margin: 0.5rem 0 0.5rem 0;
 }

@@ -15,8 +15,8 @@
 			<section class="card m-2 text-center">
 				<h2 class="download__title">Download</h2>
 				<small>version 1.0.7</small>
-				<div class="flex mx-2">
-					<button class="btn btn-sep bg-primary icon-win">Windows</button>
+				<div class="mx-2">
+					<button @click="winDownload" class="btn btn-sep bg-primary icon-win">Windows</button>
 					<button class="btn btn-sep disabled icon-mac">Mac</button>
 					<button class="btn btn-sep disabled icon-linux">Linux</button>
 				</div>
@@ -24,13 +24,10 @@
 				<div class="card text-left">
 					<h4 class="text-center">1.0.7 Release notes</h4>
 					<ol style="padding-inline-start: 15px; font-size:.9rem">
-						<li>
-							<pre>!cg</pre>
-							<small>(editable)</small> command added
-						</li>
+						<li><span class="badge bg-primary">!cg</span> command added</li>
 						<li>Hastebin removed. Game summaries are now hosted directly on this website</li>
-						<li>Unusually long processing times between rounds are now fixed</li>
-						<li>US States flags added</li>
+						<li>Unusual long processing times between rounds are now fixed</li>
+						<li>US states flags added</li>
 						<li>Small bug fixes</li>
 					</ol>
 				</div>
@@ -57,6 +54,16 @@
 		</div>
 	</aside>
 </template>
+
+<script>
+export default {
+	methods: {
+		winDownload() {
+			window.open("https://drive.google.com/u/0/uc?export=download&id=1eTR4FakYG1MeUlDPuNmDyBwRRebaWI6t", "_blank");
+		},
+	},
+};
+</script>
 
 <style scoped>
 aside {

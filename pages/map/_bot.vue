@@ -7,6 +7,11 @@
 
 <script>
 export default {
+	head() {
+		return {
+			title: `ChatGuessr locpicker${this.bot ? ` - ${this.bot}` : ""}`,
+		};
+	},
 	data() {
 		return {
 			bot: "",
@@ -88,8 +93,9 @@ export default {
 				}
 			}
 
-			// Layer controls
-			L.control.layers({ ...layers }, {}, { position: "bottomright", collapsed: false }).addTo(map);
+			// Layer/zoom controls
+			L.control.layers({ ...layers }, {}, { position: "topright", collapsed: false }).addTo(map);
+			L.control.zoom({ position: "bottomright" }).addTo(map);
 
 			map.on("baselayerchange", onBaseLayerChange);
 
@@ -201,11 +207,37 @@ export default {
 	z-index: 0;
 	height: 100vh;
 }
+
+@media only screen and (max-width: 400px) {
+	.leaflet-top {
+		margin-top: 55px;
+	}
+}
 .leaflet-control-layers {
 	background-color: rgba(0, 0, 0, 0.6) !important;
 	color: rgb(255, 255, 255);
 	font-size: 1.2em;
 }
+
+.leaflet-bar a {
+	background: rgba(22, 22, 22, 0.568);
+	color: rgb(255, 255, 255);
+}
+.leaflet-bar a:hover {
+	background: rgba(22, 22, 22, 0.726);
+	color: rgb(255, 255, 255);
+}
+.leaflet-bar a.leaflet-disabled,
+.leaflet-bar a.leaflet-disabled:hover {
+	background: rgba(22, 22, 22, 0.801);
+	color: rgb(170, 170, 170);
+}
+
+.leaflet-touch .leaflet-control,
+.leaflet-touch .leaflet-bar {
+	border: 0;
+}
+
 .gm-style-cc {
 	display: none;
 }

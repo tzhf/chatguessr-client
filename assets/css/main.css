@@ -66,7 +66,25 @@ a:focus {
 	box-shadow: 1px 0px 5px rgb(0, 0, 0, 0.15);
 	padding: 0.5rem;
 }
-
 .notif {
 	margin: 0 auto;
+}
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+	grid-gap: 0.5rem;
+}
+
+@media only screen and (min-width: 600px) {
+	.cards {
+		grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+	}
+}
+
+.badge {
+	color: #2a2f30;
+	font-weight: 700;
+	padding: 0.1rem 0.3rem;
+	border-radius: 0.2rem;
 }

@@ -14,14 +14,14 @@
 	padding: 0.5rem;
 }
 
-main {
-	background: #333333;
-}
-
 @media only screen and (min-width: 600px) {
 	.wrapper {
 		display: grid;
 		grid-template-columns: 1fr 4fr;
 	}
+}
+
+main {
+	background: #333333;
 }
 </style>

@@ -6,8 +6,8 @@
 				<ol>
 					<li>Download & install ChatGuessr</li>
 					<li>
-						Press
-						<pre>ctrl+p</pre>
+						Open the settings
+						<pre>(ctrl+p)</pre>
 					</li>
 					<li>Go to <strong>Twitch connect</strong></li>
 					<li>Fill in your Twitch channel name</li>
@@ -19,13 +19,13 @@
 						</small>
 					</li>
 					<li>
-						Get your oAuth token <a href="https://twitchapps.com/tmi/">here</a><br />
+						Get your oAuth token <a href="https://twitchapps.com/tmi" target="_blank">here</a><br />
 						<small>Make sure you are authenticated with the account you plan to use as the bot when you generate the token.</small>
 					</li>
 					<li>Click <strong>Save</strong></li>
 					<small
 						>...The bot should now be talking in your chat. Your chatguessr link will be generated. (e.g.:
-						<a href="https://chatguessr.com/map/?bot=&lt;yourBot&gt;">chatguessr.com/map/?bot=&lt;yourBot&gt;</a>)</small
+						<a href="https://chatguessr.com/map/&lt;yourBot&gt;" target="_blank">chatguessr.com/map/&lt;yourBot&gt;</a>)</small
 					>
 				</ol>
 				<div class="card mt-3">
@@ -58,7 +58,7 @@
 					<p><span class="badge bg-primary">!best</span> : Get the best stats of the channel</p>
 					<p>
 						<span class="badge bg-primary">!flag &lt;country&gt; | random | none</span> : Set a flag<br />
-						<small>(country name in english or country code).</small>
+						<small>(country name in english or country code. List of available flags <nuxt-link to="/flags">here</nuxt-link>).</small>
 					</p>
 					<p><span class="badge bg-danger">!clear</span> : Clear your stats</p>
 				</div>
@@ -73,53 +73,21 @@
 
 <script>
 export default {
-	layout: "home",
+	layout: "main",
 	created() {
-		if (!process.server) {
-			const params = Object.keys(this.$route.query);
-			if (params.includes("bot")) {
-				this.$router.push(`map/${this.$route.query.bot}`);
-			}
+		const params = Object.keys(this.$route.query);
+		if (params.includes("bot")) {
+			this.$router.push(`map/${this.$route.query.bot}`);
 		}
 	},
 };
 </script>
 
-<style>
-pre {
-	background: #000;
-	display: inline-block;
-}
-
+<style scoped>
 ol {
 	padding-left: 2rem;
 }
 ol li {
 	padding: 0.2rem;
-}
-
-.badge {
-	color: #2a2f30;
-	font-weight: 700;
-	padding: 0.1rem 0.3rem;
-	border-radius: 0.2rem;
-}
-
-.flex {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-}
-
-.cards {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-	grid-gap: 0.5rem;
-}
-
-@media only screen and (min-width: 600px) {
-	.cards {
-		grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
-	}
 }
 </style>

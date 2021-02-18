@@ -18,18 +18,18 @@
 .btn:active {
 	transform: scale(0.98);
 }
-.btn:after {
+.btn-sep:after {
 	content: "";
 	position: absolute;
 }
-.btn:before {
+.btn-sep:before {
 	font-weight: 300;
 	font-family: "FontAwesome";
 	position: absolute;
 	height: 100%;
 	left: 0;
 	top: 0;
-	line-height: 1.4;
+	line-height: 1.6;
 	font-size: 1.5rem;
 	width: 40px;
 }

@@ -1,11 +1,7 @@
 const { directive } = require("v-aspect-ratio/dist/v-aspect-ratio.ssr.common.js");
 
 export default {
-	ssr: true,
-
-	/*
-	 ** Nuxt Loader
-	 */
+	ssr: false,
 	loading: false,
 
 	/*
@@ -13,16 +9,68 @@ export default {
 	 */
 	head: {
 		title: "ChatGuessr",
+		link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
 		meta: [
 			{ charset: "utf-8" },
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
+
+			// Facebook Meta Tags
+			{ hid: "og:type", property: "og:type", content: "website" },
 			{
-				hid: "description",
-				name: "description",
-				content: "Twitch chatbot for GeoGuessr",
+				hid: "og:url",
+				property: "og:url",
+				content: "https://chatguessr.com",
+			},
+			{
+				hid: "og:title",
+				property: "og:title",
+				content: "ChatGuessr",
+			},
+			{
+				hid: "og:description",
+				property: "og:description",
+				content: "A Twitch chatbot for Geoguessr",
+			},
+			{
+				hid: "og:image",
+				property: "og:image",
+				content: "https://chatguessr.com/cg-media.png",
+			},
+			{ property: "og:image:width", content: "1200" },
+			{ property: "og:image:height", content: "627" },
+
+			// Twitter Meta Tags
+			{
+				hid: "twitter:card",
+				property: "twitter:card",
+				content: "summary_large_image",
+			},
+			{
+				hid: "twitter:domain",
+				property: "twitter:domain",
+				content: "chatguessr.com",
+			},
+			{
+				hid: "twitter:url",
+				property: "twitter:url",
+				content: "https://chatguessr.com",
+			},
+			{
+				hid: "twitter:title",
+				property: "twitter:title",
+				content: "ChatGuessr",
+			},
+			{
+				hid: "twitter:description",
+				property: "twitter:description",
+				content: "A Twitch chatbot for Geoguessr",
+			},
+			{
+				hid: "twitter:image",
+				property: "twitter:image",
+				content: "https://chatguessr.com/cg-media.png",
 			},
 		],
-		link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
 	},
 
 	/*
@@ -75,7 +123,6 @@ export default {
 		splitChunks: {
 			layouts: true,
 		},
-		transpile: ["downloadExcel"],
 		/*
 		 ** You can extend webpack config here
 		 */
