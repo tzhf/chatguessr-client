@@ -82,12 +82,3 @@ export default {
 	},
 };
 </script>
-
-<style scoped>
-ol {
-	padding-left: 2rem;
-}
-ol li {
-	padding: 0.2rem;
-}
-</style>

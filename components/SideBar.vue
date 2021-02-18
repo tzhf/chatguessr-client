@@ -15,7 +15,7 @@
 			<section class="card m-2 text-center">
 				<h2 class="download__title">Download</h2>
 				<small>version 1.0.7</small>
-				<div class="mx-2">
+				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bg-primary icon-win">Windows</button>
 					<button class="btn btn-sep disabled icon-mac">Mac</button>
 					<button class="btn btn-sep disabled icon-linux">Linux</button>
@@ -23,12 +23,17 @@
 
 				<div class="card text-left">
 					<h4 class="text-center">1.0.7 Release notes</h4>
+					<div class="badge bg-danger mb-2">early 1.0.7 users, if your game summary links are no longer generated, make sure to download 1.0.7 again.</div>
 					<ol style="padding-inline-start: 15px; font-size:.9rem">
-						<li><span class="badge bg-primary">!cg</span> command added</li>
-						<li>Hastebin removed. Game summaries are now hosted directly on this website</li>
-						<li>Unusual long processing times between rounds are now fixed</li>
-						<li>US states flags added</li>
-						<li>Small bug fixes</li>
+						<li><span class="badge bg-primary">!cg</span> command added.</li>
+						<li>Hastebin removed. Game summaries are now hosted directly on this website.</li>
+						<li>Unusual long processing times between rounds are now fixed.</li>
+						<li>US states flags added.</li>
+						<li>
+							Known issue fixed: <span class="badge bg-primary">!me</span> and <span class="badge bg-primary">!flag</span>commands are now working for the
+							streamer.
+						</li>
+						<li>Small bug fixes.</li>
 					</ol>
 				</div>
 			</section>
@@ -97,9 +102,5 @@ h4 {
 }
 .download__title {
 	margin-bottom: -0.1rem;
-}
-
-ul {
-	padding-inline-start: 15px !important;
 }
 </style>

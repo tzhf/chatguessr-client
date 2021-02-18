@@ -55,8 +55,24 @@ a:focus {
 	background-size: 1px 100px;
 }
 
+ol {
+	padding-left: 2rem;
+}
+ul {
+	padding-inline-start: 15px !important;
+}
+ol li {
+	padding: 0.2rem 0;
+}
+
 .container {
 	padding: 0.5rem;
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .card,

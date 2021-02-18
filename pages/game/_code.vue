@@ -44,12 +44,6 @@ code {
 	font-size: 1.2rem;
 	white-space: pre;
 }
-.flex {
-	display: flex;
-	justify-content: center;
-	flex-direction: row;
-}
-
 </style>
 
 <script>

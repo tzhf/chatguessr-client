@@ -14,10 +14,10 @@
 	padding: 0.5rem;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 700px) {
 	.wrapper {
 		display: grid;
-		grid-template-columns: 1fr 4fr;
+		grid-template-columns: minmax(240px, 1fr) 4fr;
 	}
 }
 
