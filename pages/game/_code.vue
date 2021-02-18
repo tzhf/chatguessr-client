@@ -19,10 +19,10 @@
 				<code v-highlight="this.resume" class="ruby mt-3" /></code>
 				<h4 class="mt-3">Export as :</h4>
 				<div class="flex">
-					<download-excel class="btn bg-primary" :data="game.players" name="Game summary.xls">
+					<download-excel class="btn bg-primary" :header="`Game Summary - ${game.streamer} - ${game.map}`" :data="game.players" :name="`Game Summary - ${game.streamer} - ${game.map}.xls`">
 						XLS
 					</download-excel>
-					<download-excel class="btn bg-primary" :data="game.players" type="csv" :escapeCsv="false" name="Game summary.csv">
+					<download-excel class="btn bg-primary" :data="game.players" :name="`Game Summary - ${game.streamer} - ${game.map}.csv`" type="csv" :escapeCsv="false">
 						CSV
 					</download-excel>
 				</div>
