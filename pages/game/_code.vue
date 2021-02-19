@@ -64,7 +64,9 @@ export default {
 		};
 	},
 	created() {
-		this.getGame();
+		if (this.$nuxt.layoutName === 'centered') {
+			this.getGame();
+		}
 	},
 	methods: {
 		async getGame() {

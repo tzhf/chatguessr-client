@@ -25,7 +25,7 @@
 					<li>Click <strong>Save</strong></li>
 					<small
 						>...The bot should now be talking in your chat. Your chatguessr link will be generated. (e.g.:
-						<a href="https://chatguessr.com/map/&lt;yourBot&gt;" target="_blank">chatguessr.com/map/&lt;yourBot&gt;</a>)</small
+						<a href="https://chatguessr.com/map/yourBot" target="_blank">chatguessr.com/map/&lt;yourBot&gt;</a>)</small
 					>
 				</ol>
 				<div class="card mt-3">

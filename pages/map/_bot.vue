@@ -18,18 +18,16 @@ export default {
 		};
 	},
 	mounted() {
-		if (process.client) {
-			const params = Object.keys(this.$route.query);
-			if (params.includes("bot")) {
-				this.bot = this.$route.query.bot;
-			} else {
-				this.bot = this.$route.params.bot;
-			}
-			const $Scriptjs = require("scriptjs");
-			$Scriptjs("https://unpkg.com/leaflet@1.7.1/dist/leaflet.js", () => {
-				this.initMap();
-			});
+		const params = Object.keys(this.$route.query);
+		if (params.includes("bot")) {
+			this.bot = this.$route.query.bot;
+		} else {
+			this.bot = this.$route.params.bot;
 		}
+		const $Scriptjs = require("scriptjs");
+		$Scriptjs("https://unpkg.com/leaflet@1.7.1/dist/leaflet.js", () => {
+			this.initMap();
+		});
 	},
 	methods: {
 		initMap: function() {
