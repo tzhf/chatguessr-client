@@ -14,28 +14,16 @@
 
 			<section class="card m-2 text-center">
 				<h2 class="download__title">Download</h2>
-				<small>version 1.0.7</small>
+				<small>version 1.0.7b</small>
 				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bg-primary icon-win">Windows</button>
-					<button class="btn btn-sep disabled icon-mac">Mac</button>
-					<button class="btn btn-sep disabled icon-linux">Linux</button>
 				</div>
-
-				<div class="card text-left">
-					<h4 class="text-center">1.0.7 Release notes</h4>
-					<div class="badge bg-danger mb-2">early 1.0.7 users, if your game summary links are no longer generated, make sure to download 1.0.7 again.</div>
-					<ol style="padding-inline-start: 15px; font-size:.9rem">
-						<li><span class="badge bg-primary">!cg</span> command added.</li>
-						<li>Hastebin removed. Game summaries are now hosted directly on this website.</li>
-						<li>Unusual long processing times between rounds are now fixed.</li>
-						<li>US states flags added.</li>
-						<li>
-							Known issue fixed: <span class="badge bg-primary">!me</span> and <span class="badge bg-primary">!flag</span>commands are now working for the
-							streamer.
-						</li>
-						<li>Small bug fixes.</li>
-					</ol>
+				<h5>1.0.7b Release notes</h5>
+				<div class="badge bg-danger mb-2 text-center">
+					<h4>Quick Chatguessr fix</h4>
+					<p>Chatguessr broke down due to the recent geoguessr update, this new version should fix this.</p>
 				</div>
+				<p>Uninstalling chatguessr will clear all your stats. To update just install the last version above the old one.</p>
 			</section>
 			<section class="card m-2 text-center">
 				<h2>Help us</h2>
@@ -64,7 +52,7 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://drive.google.com/u/0/uc?export=download&id=1eTR4FakYG1MeUlDPuNmDyBwRRebaWI6t", "_blank");
+			window.open("https://drive.google.com/file/d/1OU3snloPrZv4IfiMs6a4BCsStax4Lw7v/view?usp=sharing", "_blank");
 		},
 	},
 };
@@ -85,6 +73,13 @@ h1 {
 }
 h4 {
 	font-weight: 300;
+}
+.badge {
+	font-weight: 300;
+}
+.highlight {
+	font-weight: 700;
+	text-align: center;
 }
 .sticky {
 	top: 0;

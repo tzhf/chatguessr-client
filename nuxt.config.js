@@ -91,15 +91,7 @@ export default {
 	/*
 	 ** Nuxt.js modules
 	 */
-	modules: [
-		"@nuxtjs/axios",
-		[
-			"nuxt-highlightjs",
-			{
-				style: "gruvbox-dark",
-			},
-		],
-	],
+	modules: ["@nuxtjs/axios"],
 
 	env: {
 		BASE_URL: process.env.BASE_URL,
