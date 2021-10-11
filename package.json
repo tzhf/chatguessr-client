@@ -11,7 +11,6 @@
 	},
 	"dependencies": {
 		"@nuxtjs/axios": "^5.13.6",
-		"leaflet": "^1.7.1",
 		"nuxt": "^2.15.8",
 		"scriptjs": "^2.5.9",
 		"v-aspect-ratio": "^2.0.1",

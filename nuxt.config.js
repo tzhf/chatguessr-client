@@ -2,6 +2,7 @@ const { directive } = require("v-aspect-ratio/dist/v-aspect-ratio.ssr.common.js"
 
 export default {
 	// ssr: true,
+	target: "static",
 	loading: false,
 
 	/*
