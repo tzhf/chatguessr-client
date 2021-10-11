@@ -9,51 +9,64 @@
 			</div>
 			<div v-else>
 				<h1>Game summary</h1>
-				<h2 class="highlight">{{ game.map }}</h2>
-				<a :href="`https://www.twitch.tv/${game.streamer}`" target="_blank">{{ game.streamer }}</a>
-				<div class="card mt-3 text-left">
-					<p v-for="(location, index) in game.locations">
-						Round {{ index + 1 }} :
-						<a
-							:href="
-								`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${location.lat},${location.lng}&heading=${location.heading}&pitch=${location.pitch}`
-							"
-							target="_blank"
-							>{{ location.lat }}, {{ location.lng }}</a
-						>
-					</p>
-				</div>
-				<!-- <code v-highlight="this.resume" class="ruby mt-3" /></code> -->
+				<p>
+					<a :href="`https://www.twitch.tv/${game.streamer}`" target="_blank">{{ game.streamer }}</a>
+				</p>
 
-				<table class="mt-2" width="100%">
-					<tr v-for="(player, index) in game.players">
-						<td>
-							<span>{{ index + 1 }}</span
-							>.
-						</td>
-						<td><span v-if="player.flag" :class="'flag-icon flag-icon-' + player.flag"></span></td>
-						<td>{{ player.username }}</td>
-						<td>
-							<span>{{ player.score }}</span>
-						</td>
-						<td>
-							[<span>{{ player.rounds }}</span
-							>]
-						</td>
-					</tr>
-				</table>
+				<div class="card mt-3">
+					<h2 class="highlight">{{ game.map }}</h2>
+					<p>
+						<small>{{ gameMode }}</small>
+					</p>
+					<div class="card mt-3 text-left">
+						<p v-for="(location, index) in game.locations">
+							Round {{ index + 1 }} :
+							<a
+								:href="
+									`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${location.lat},${location.lng}&heading=${location.heading}&pitch=${location.pitch}`
+								"
+								target="_blank"
+								>{{ location.lat }}, {{ location.lng }}</a
+							>
+						</p>
+					</div>
+
+					<table class="mt-2" width="100%">
+						<tr v-for="(player, index) in game.players">
+							<td>
+								<span>{{ index + 1 }}</span
+								>.
+							</td>
+							<td><span v-if="player.flag" :class="'flag-icon flag-icon-' + player.flag"></span></td>
+							<td>{{ player.username }}</td>
+							<td>
+								<span>{{ player.score }}</span>
+							</td>
+							<td>
+								[<span>{{ player.rounds }}</span
+								>]
+							</td>
+						</tr>
+					</table>
+				</div>
 
 				<h4 class="mt-3">Export as :</h4>
 				<div class="flex">
 					<download-excel
 						class="btn bg-primary"
-						:header="`Game Summary - ${game.streamer} - ${game.map}`"
+						:header="`Game Summary - ${game.streamer} - ${game.map} - ${gameMode}`"
 						:data="game.players"
-						:name="`Game Summary - ${game.streamer} - ${game.map}.xls`"
+						:name="`Game Summary - ${game.streamer} - ${game.map} - ${gameMode}.xls`"
 					>
 						XLS
 					</download-excel>
-					<download-excel class="btn bg-primary" :data="game.players" :name="`Game Summary - ${game.streamer} - ${game.map}.csv`" type="csv" :escapeCsv="false">
+					<download-excel
+						class="btn bg-primary"
+						:data="game.players"
+						:name="`Game Summary - ${game.streamer} - ${game.map} - ${gameMode}.csv`"
+						type="csv"
+						:escapeCsv="false"
+					>
 						CSV
 					</download-excel>
 				</div>
@@ -99,15 +112,17 @@ export default {
 		return {
 			code: this.$route.params.code,
 			game: {},
+			gameMode: "",
 			error: false,
 			loading: false,
 		};
 	},
 	created() {
-		if (this.$nuxt.layoutName === "centered") {
-			this.getGame();
-		}
+		// if (this.$nuxt.layoutName === "centered") {
+		this.getGame();
+		// }
 	},
+
 	methods: {
 		async getGame() {
 			if (!this.code) return (this.error = "Please provide a game code");
@@ -117,6 +132,15 @@ export default {
 				.get(`${process.env.API_URL}/game/${this.code}`)
 				.then((res) => {
 					this.game = res.data;
+
+					if (this.game.mode) {
+						const arr = [];
+						if (this.game.mode.noMove) arr.push("No move");
+						if (this.game.mode.noPan) arr.push("No pan");
+						if (this.game.mode.noZoom) arr.push("No zoom");
+						this.gameMode = arr.join(", ");
+					}
+
 					this.loading = false;
 				})
 				.catch((e) => {

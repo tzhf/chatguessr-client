@@ -31,7 +31,7 @@ h1 {
 	vertical-align: middle;
 	font-weight: 300;
 	line-height: 0.7;
-	margin-left: -0.5rem;
+	margin-left: -0.3rem;
 	font-size: 2.2rem;
 	letter-spacing: -3px;
 	text-shadow: 0 0 3px #000;
