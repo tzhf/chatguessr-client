@@ -21,14 +21,13 @@
 </template>
 
 <script>
-const { countryCodes, USStatesCodes } = require("./flags-icons.js");
+import { countryCodes, USStatesCodes } from "@/assets/flags/flags-icons.js";
 
 export default {
 	layout: "main",
-
 	head() {
 		return {
-			title: "ChatGuessr - Flags",
+			title: `ChatGuessr - Flags`,
 		};
 	},
 	data() {
@@ -41,7 +40,7 @@ export default {
 </script>
 
 <style scoped>
-@import "./flag-icon.min.css";
+@import "@/assets/flags/flag-icon.min.css";
 
 .grid {
 	display: grid;

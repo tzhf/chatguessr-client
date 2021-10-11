@@ -76,7 +76,7 @@
 </template>
 
 <style scoped>
-@import "../flags/flag-icon.min.css";
+@import "@/assets/flags/flag-icon.min.css";
 
 table {
 	text-align: left;
