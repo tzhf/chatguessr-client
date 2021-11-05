@@ -32,21 +32,21 @@ export default {
 	methods: {
 		initMap: function() {
 			const layers = {
-				roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
+				roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 21,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
 					type: "roadmap",
 				}),
 
-				hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}", {
+				hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 20,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
 					type: "hybrid",
 				}),
 
-				terrain: L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", {
+				terrain: L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 20,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
