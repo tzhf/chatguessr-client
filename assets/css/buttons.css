@@ -3,20 +3,19 @@
 	border: 0;
 	outline: 0;
 	position: relative;
-	color: #000;
+	color: rgb(255, 255, 255);
 	padding: 10px;
 	font-weight: 700;
-	/* width: 100%; */
-	/* max-width: 250px; */
 	margin: 2px;
 	cursor: pointer;
+	background: none;
 	transition: transform 100ms ease-in;
 }
 .btn:hover {
-	transform: scale(0.95);
+	background: rgba(255, 255, 255, 0.05);
 }
 .btn:active {
-	transform: scale(0.9);
+	background: rgba(255, 255, 255, 0.07);
 }
 
 .btn-sep {
@@ -26,7 +25,8 @@
 .btn-sep:before {
 	font-weight: 300;
 	font-family: "FontAwesome";
-	background: rgba(0, 0, 0, 0.2);
+	background: var(--clr-primary);
+	color: black;
 	position: absolute;
 	height: 100%;
 	left: 0;

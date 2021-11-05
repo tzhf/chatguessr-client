@@ -14,16 +14,17 @@
 
 			<section class="card m-2 text-center">
 				<h2 class="download__title">Download</h2>
-				<small>version 1.0.7b</small>
+				<small>version 1.0.8</small>
 				<div class="flex mx-2">
-					<button @click="winDownload" class="btn btn-sep bg-primary icon-win">Windows</button>
+					<button @click="winDownload" class="btn btn-sep bordered-success icon-win">Windows</button>
 				</div>
-				<h5>1.0.7b Release notes</h5>
-				<div class="badge bg-danger mb-2 text-center">
-					<h4>Quick Chatguessr fix</h4>
-					<p>Chatguessr broke down due to the recent geoguessr update, this new version should fix this.</p>
+				<h5>1.0.8 Release notes</h5>
+				<div class="card mb-2 text-left">
+					<ol>
+						<li>Auto-updater added. No need to manually download the last version anymore.</li>
+						<li>Hiding new compass</li>
+					</ol>
 				</div>
-				<p>Uninstalling chatguessr will clear all your stats. To update just install the last version above the old one.</p>
 			</section>
 			<section class="card m-2 text-center">
 				<h2>Help us</h2>
@@ -33,7 +34,7 @@
 				</p>
 				<form action="https://www.paypal.com/donate" method="post" target="_blank">
 					<input type="hidden" name="hosted_button_id" value="HLHT6B9ZF8DXC" />
-					<button name="submit" class="btn bg-primary mt-2">Donate</button>
+					<button name="submit" class="btn bordered-success mt-2">Donate</button>
 				</form>
 			</section>
 
@@ -52,7 +53,7 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://drive.google.com/file/d/1OU3snloPrZv4IfiMs6a4BCsStax4Lw7v/view?usp=sharing", "_blank");
+			window.open("https://drive.google.com/file/d/1F21Jr2MmpG0Ob9Bdeyi7fx-HONjFa7FM/view?usp=sharing", "_blank");
 		},
 	},
 };

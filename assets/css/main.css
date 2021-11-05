@@ -17,11 +17,12 @@ img {
 }
 
 html {
+	background: var(--bg-color);
 	font-family: "Comfortaa", sans-serif;
 	font-size: 14px;
-	letter-spacing: 0.03rem;
 	color: #fff;
-	background: var(--bg-color);
+	letter-spacing: 0.03rem;
+	-webkit-font-smoothing: antialiased;
 }
 
 body::-webkit-scrollbar {
@@ -103,4 +104,8 @@ ol li {
 	font-weight: 700;
 	padding: 0.1rem 0.3rem;
 	border-radius: 0.2rem;
+}
+
+.bordered-success {
+	border: 1px solid var(--clr-primary);
 }

@@ -53,7 +53,7 @@
 				<h4 class="mt-3">Export as :</h4>
 				<div class="flex">
 					<download-excel
-						class="btn bg-primary"
+						class="btn bordered-success"
 						:header="`Game Summary - ${game.streamer} - ${game.map} - ${gameMode}`"
 						:data="game.players"
 						:name="`Game Summary - ${game.streamer} - ${game.map} - ${gameMode}.xls`"
@@ -61,7 +61,7 @@
 						XLS
 					</download-excel>
 					<download-excel
-						class="btn bg-primary"
+						class="btn bordered-success"
 						:data="game.players"
 						:name="`Game Summary - ${game.streamer} - ${game.map} - ${gameMode}.csv`"
 						type="csv"
@@ -118,9 +118,9 @@ export default {
 		};
 	},
 	created() {
-		// if (this.$nuxt.layoutName === "centered") {
-		this.getGame();
-		// }
+		if (this.$nuxt.layoutName === "centered") {
+			this.getGame();
+		}
 	},
 
 	methods: {
