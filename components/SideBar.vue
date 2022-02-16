@@ -26,6 +26,15 @@
 					</ol>
 				</div>
 			</section>
+
+			<section class="card m-2 text-center">
+				<h2>Developer ?</h2>
+				<p>
+					ChatGuessr is open-source, feel free to suggest new features or submit your pull request to our
+					<a href="https://github.com/tzhf/chatguessr">Github repository</a>
+				</p>
+			</section>
+
 			<section class="card m-2 text-center">
 				<h2>Help us</h2>
 				<p>

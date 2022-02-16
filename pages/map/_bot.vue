@@ -233,7 +233,7 @@ export default {
 
 .leaflet-touch .leaflet-control,
 .leaflet-touch .leaflet-bar {
-	border: 0;
+	border: 1px solid var(--clr-primary);
 }
 
 .gm-style-cc {
