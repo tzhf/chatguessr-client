@@ -14,15 +14,15 @@
 
 			<section class="card m-2 text-center">
 				<h2 class="download__title">Download</h2>
-				<small>version 1.0.8</small>
+				<small>version 1.0.9</small>
 				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bordered-success icon-win">Windows</button>
 				</div>
-				<h5>1.0.8 Release notes</h5>
+				<h5>1.0.9 Release notes</h5>
 				<div class="card mb-2 text-left">
 					<ol>
-						<li>Auto-updater added. No need to manually download the last version anymore.</li>
-						<li>Hiding new compass</li>
+						<li>Satellite mode</li>
+						<li>Few bugfixes</li>
 					</ol>
 				</div>
 			</section>
@@ -62,7 +62,7 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://drive.google.com/file/d/1F21Jr2MmpG0Ob9Bdeyi7fx-HONjFa7FM/view?usp=sharing", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v1.0.9/Chatguessr-Setup-1.0.9.exe", "_blank");
 		},
 	},
 };
