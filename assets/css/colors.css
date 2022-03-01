@@ -1,6 +1,7 @@
 :root {
 	--clr-primary: #59ffd8;
 	--clr-secondary: #a159ff;
+	--clr-notice: #fbfd70;
 	--clr-danger: #ff8e65;
 	--bg-color: #252525;
 }
@@ -16,6 +17,9 @@
 }
 .bg-secondary {
 	background-color: var(--clr-secondary);
+}
+.bg-notice {
+	background-color: var(--clr-notice);
 }
 .bg-danger {
 	background-color: var(--clr-danger);

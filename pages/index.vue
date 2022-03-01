@@ -6,7 +6,7 @@
 				<ol>
 					<li>Download & install ChatGuessr</li>
 					<li>
-						Open the settings
+						Open the settings ⚙️ or
 						<pre>(ctrl+p)</pre>
 					</li>
 					<li>Go to <strong>Twitch connect</strong></li>
@@ -37,20 +37,43 @@
 			<div class="card">
 				<h3 class="text-center">You are a viewer</h3>
 				<p>All you need is a verified Twitch account, no geoguessr account required.</p>
-				<ol>
-					<li>Get the map link from the streamer (usually <span class="badge bg-primary">!cg</span>)</li>
-					<li>
-						Make your guess on the map<br />
-						<small>The command is automatically copied to your clipboard</small>
-					</li>
-					<li>
-						Paste
-						<pre>(ctrl+v)</pre>
-						the whole command in chat <br />
-						<small>e.g. /w streamer !g 3.172037, 113.041666</small>
-					</li>
-					<small>...Your guess will be displayed on the scoreboard</small>
-				</ol>
+
+				<div class="container cards">
+					<div class="card">
+						<p class="text-center"><span class="badge bg-notice">NEW !</span></p>
+						<ol>
+							<li>Get the map link from the streamer (usually <span class="badge bg-primary">!cg</span>)</li>
+							<li>Login with your Twitch account</li>
+							<li>Make your guess on the map<br /></li>
+							<li>Press guess... That's it !</li>
+							<p><small>...Your guess will be displayed on the scoreboard</small></p>
+							<div class="card">
+								<small
+									>For some reasons some accounts are "restricted" and cannot use whispers outside of Twitch.<br />
+									In this case just go back to chat and guess the classic way, the command will still be copied to your clipboard.</small
+								>
+							</div>
+						</ol>
+					</div>
+					<div class="card">
+						<p class="text-center"><span class="badge bg-primary">The classic way</span></p>
+						<ol>
+							<li>Get the map link from the streamer (usually <span class="badge bg-primary">!cg</span>)</li>
+							<li>
+								Make your guess on the map<br />
+								<small>The command is automatically copied to your clipboard</small>
+							</li>
+							<li>
+								Paste
+								<pre>(ctrl+v)</pre>
+								the whole command in chat without editing <br />
+								<small>e.g. /w streamer !g 3.172037, 113.041666</small>
+							</li>
+							<small>...Your guess will be displayed on the scoreboard</small>
+						</ol>
+					</div>
+				</div>
+
 				<div class="card mt-3">
 					<h4>Commands :</h4>
 					<p><span class="badge bg-primary">!cg</span> : Get the map link</p>
