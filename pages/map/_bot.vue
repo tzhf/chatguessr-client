@@ -10,7 +10,8 @@
 			<button v-else class="btn twitchLoginBtn" @click="handleTwitchLogin()"><img src="~/assets/twitch-icon.svg" /> Login</button>
 		</div>
 		<div id="map"></div>
-		<div v-if="bot && isLoggedIn && twitchJSConnected" class="flex guessBtn__wrapper">
+		<div class="flex guessBtn__wrapper">
+			<!-- v-if="bot && isLoggedIn && twitchJSConnected" -->
 			<button class="btn cooldown guessBtn" :disabled="disabled" title="(SPACE)" alt="Guess Button" @click="handleGuess()">GUESS</button>
 		</div>
 	</div>
@@ -327,7 +328,10 @@ export default {
 
 @media screen and (max-width: 800px) {
 	.leaflet-bottom {
-		bottom: 4rem;
+		bottom: 4.5rem;
+	}
+	.guessBtn__wrapper {
+		width: 100% !important;
 	}
 }
 .leaflet-bar a {
@@ -404,16 +408,17 @@ export default {
 }
 
 .guessBtn__wrapper {
-	position: fixed;
-	width: 100%;
+	left: 50%;
+	transform: translate(-50%);
+	position: absolute;
+	width: 60%;
 	bottom: 0.5rem;
 }
 .guessBtn {
 	color: #000;
 	font-size: 1.2rem;
 	background: var(--clr-primary);
-	width: 95%;
-	max-width: 450px;
+	width: 100%;
 	padding: 1rem;
 }
 
