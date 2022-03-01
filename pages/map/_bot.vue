@@ -10,8 +10,7 @@
 			<button v-else class="btn twitchLoginBtn" @click="handleTwitchLogin()"><img src="~/assets/twitch-icon.svg" /> Login</button>
 		</div>
 		<div id="map"></div>
-		<div class="flex guessBtn__wrapper">
-			<!-- v-if="bot && isLoggedIn && twitchJSConnected" -->
+		<div v-if="bot && isLoggedIn && twitchJSConnected" class="flex guessBtn__wrapper">
 			<button class="btn cooldown guessBtn" :disabled="disabled" title="(SPACE)" alt="Guess Button" @click="handleGuess()">GUESS</button>
 		</div>
 	</div>
