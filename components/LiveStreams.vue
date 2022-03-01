@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
 	data() {
 		return {
@@ -27,7 +29,7 @@ export default {
 	methods: {
 		async getStreams() {
 			this.loading = true;
-			this.$axios
+			axios
 				.get("https://chatguessr-api.vercel.app/streams")
 				.then((res) => {
 					this.streams = res.data;

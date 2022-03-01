@@ -1,5 +1,5 @@
 <template>
-	<div class="logo_wrapper">
+	<div class="logo__wrapper">
 		<nuxt-link to="/"
 			><Spinner width="40" />
 			<h1><span class="highlight">C</span>hat<span class="highlight">G</span>uessr</h1>
@@ -18,12 +18,6 @@ export default {
 a {
 	all: unset;
 	cursor: pointer;
-}
-.logo_wrapper {
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	z-index: 99;
 }
 
 h1 {
@@ -46,5 +40,10 @@ p {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.logo__wrapper {
+	white-space: nowrap;
+	/* overflow: hidden; */
 }
 </style>

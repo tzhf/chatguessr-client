@@ -28,14 +28,6 @@
 			</section>
 
 			<section class="card m-2 text-center">
-				<h2>Developer ?</h2>
-				<p>
-					ChatGuessr is open-source, feel free to suggest new features or submit your pull requests to our
-					<a target="_blank" href="https://github.com/tzhf/chatguessr">Github repository</a>
-				</p>
-			</section>
-
-			<section class="card m-2 text-center">
 				<h2>Follow us on Twitter</h2>
 
 				<a id="twitterIcon" href="https://www.twitter.com/chatguessr" target="_blank"
@@ -66,11 +58,16 @@
 			</section>
 
 			<section class="card m-2 text-center">
-				<h2>Help us</h2>
+				<h2>Developer ?</h2>
 				<p>
-					ChatGuessr is free, however API and hosting costs are increasing each month.<br />
-					Your help is greatly appreciated and encourages us to maintain and improve the application.
+					ChatGuessr is open-source, feel free to suggest new features or submit your pull requests to our
+					<a target="_blank" href="https://github.com/tzhf/chatguessr">Github repository</a>
 				</p>
+			</section>
+
+			<section class="card m-2 text-center">
+				<h2>Help us</h2>
+				<p>ChatGuessr is free, any help is greatly appreciated and encourages us to maintain and improve the application.</p>
 				<form action="https://www.paypal.com/donate" method="post" target="_blank">
 					<input type="hidden" name="hosted_button_id" value="HLHT6B9ZF8DXC" />
 					<button name="submit" class="btn bordered-success mt-2">Donate</button>

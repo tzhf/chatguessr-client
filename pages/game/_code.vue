@@ -1,6 +1,8 @@
 <template>
 	<section class="centered">
-		<Logo />
+		<div class="logo_wrapper">
+			<Logo />
+		</div>
 		<Loader v-if="loading" />
 		<div v-else class="card m-5 text-center">
 			<div v-if="error">
@@ -101,6 +103,8 @@ td span {
 </style>
 
 <script>
+const axios = require("axios");
+
 export default {
 	layout: "centered",
 	head() {
@@ -128,7 +132,7 @@ export default {
 			if (!this.code) return (this.error = "Please provide a game code");
 
 			this.loading = true;
-			this.$axios
+			axios
 				.get(`${process.env.API_URL}/game/${this.code}`)
 				.then((res) => {
 					this.game = res.data;

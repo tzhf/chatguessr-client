@@ -73,6 +73,7 @@ ol li {
 .flex {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
 }
 
@@ -92,6 +93,12 @@ ol li {
 	grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
 	grid-gap: 0.5rem;
 }
+.logo_wrapper {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 99;
+}
 
 @media only screen and (min-width: 600px) {
 	.cards {
@@ -108,4 +115,14 @@ ol li {
 
 .bordered-success {
 	border: 1px solid var(--clr-primary);
+}
+
+.fixed {
+	position: fixed;
+}
+.top {
+	top: 0;
+}
+.right {
+	right: 0;
 }

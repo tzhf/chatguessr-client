@@ -1,8 +1,8 @@
 const { directive } = require("v-aspect-ratio/dist/v-aspect-ratio.ssr.common.js");
 
 export default {
-	// ssr: true,
-	target: "static",
+	ssr: true,
+	// target: "static",
 	loading: false,
 
 	/*
@@ -78,6 +78,9 @@ export default {
 			},
 		],
 	},
+	serverMiddleware: {
+		"/api": "~/api",
+	},
 
 	/*
 	 ** Global CSS
@@ -97,13 +100,18 @@ export default {
 	/*
 	 ** Nuxt.js modules
 	 */
-	modules: ["@nuxtjs/axios"],
+	modules: ["@nuxtjs/toast"],
+
+	toast: {
+		position: "bottom-center",
+	},
 
 	env: {
 		BASE_URL: process.env.BASE_URL,
 		API_URL: process.env.API_URL,
 		TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
-		TWITCH_OAUTH: process.env.TWITCH_OAUTH,
+		TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET,
+		PASSPHRASE: process.env.PASSPHRASE,
 	},
 
 	render: {
