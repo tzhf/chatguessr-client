@@ -378,7 +378,7 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	background: rgba(0, 0, 0, 0.1);
+	/* background: rgba(0, 0, 0, 0.1); */
 	z-index: 99;
 }
 .twitch__section {
