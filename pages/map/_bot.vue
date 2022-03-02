@@ -99,7 +99,7 @@ export default {
 		tmiConnect: function (token, username) {
 			const options = {
 				options: {
-					debug: true,
+					// debug: true,
 				},
 				connection: {
 					secure: true,
