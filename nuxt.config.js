@@ -95,7 +95,7 @@ export default {
 	/*
 	 ** Plugins to load before mounting the App
 	 */
-	plugins: ["~/plugins/downloadExcel.js"],
+	plugins: ["~/plugins/downloadExcel.js", "~/plugins/tmi.min.js"],
 
 	/*
 	 ** Nuxt.js modules

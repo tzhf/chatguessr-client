@@ -42,11 +42,11 @@ export default {
 					hid: "leaflet",
 					src: "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
 				},
-				{
-					hid: "twitchJs",
-					src: "https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js",
-					defer: true,
-				},
+				// {
+				// 	hid: "twitchJs",
+				// 	src: "https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js",
+				// 	defer: true,
+				// },
 			],
 		};
 	},
@@ -65,7 +65,8 @@ export default {
 			.then((res) => {
 				this.isLoggedIn = true;
 				this.userData = res.data;
-				this.twitchJSConnect(res.data.access_token, res.data.login);
+				this.tmiConnect(res.data.access_token, res.data.login);
+				// this.twitchJSConnect(res.data.access_token, res.data.login);
 			})
 			// IF ERROR TRY TO REFRESH TOKEN
 			.catch(async (e) => {
@@ -77,7 +78,8 @@ export default {
 							.then((res) => {
 								this.isLoggedIn = true;
 								this.userData = res.data;
-								this.twitchJSConnect(res.data.access_token, res.data.login);
+								this.tmiConnect(res.data.access_token, res.data.login);
+								// this.twitchJSConnect(res.data.access_token, res.data.login);
 							})
 							.catch((e) => {});
 					})
@@ -94,19 +96,69 @@ export default {
 		});
 	},
 	methods: {
-		twitchJSConnect: function (token, username) {
-			this.chat = new window.TwitchJs({ token, username }).chat;
+		tmiConnect: function (token, username) {
+			const options = {
+				options: {
+					debug: true,
+				},
+				connection: {
+					secure: true,
+					reconnect: true,
+				},
+				identity: {
+					username: username,
+					password: `oauth:${token}`,
+				},
+				channels: [this.bot],
+			};
+
+			this.chat = new tmi.client(options);
+
+			// Connect the client to the server..
 			this.chat
 				.connect()
-				.then((globalUserState) => {
+				.then(() => {
 					this.twitchJSConnected = true;
-					this.$toast.success(`Connected as ${globalUserState.tags.displayName}`, { duration: 4000 });
+					this.$toast.success(`Connected as ${this.userData.display_name}`, { duration: 4000 });
 				})
 				.catch((e) => {
-					this.$toast.error("Failed to connect to chat", { duration: 5000 });
+					this.$toast.error(e, { duration: 5000 });
+				});
+
+			this.chat.on("notice", (channel, msgid, message) => {
+				console.log("🚀 ~ this.chat.on ~ msgid", msgid);
+				if (msgid === "whisper_restricted") {
+					message = `Sorry... seems like your account is "restricted" from sending whispers outside of the Twitch Platform.<br/>Make sure your account is verified, but there's probably nothing you can do about it.<br/>We are investigating this issue.<br>For now paste your guess as usual.`;
+				}
+				this.$toast.error(message, { duration: 12000 });
+			});
+		},
+		handleGuess: function () {
+			if (this.disabled) return;
+
+			this.chat
+				.whisper(this.bot, `!g ${this.coords.lat}, ${this.coords.lng}`)
+				.then((res) => {
+					this.triggerCoolDown();
+					this.$toast.success(`Guess successfully sent to ${this.bot} !`, { duration: 3000 });
+				})
+				.catch((e) => {
 					console.log("🚀 ~ error", e);
 				});
 		},
+		// twitchJSConnect: function (token, username) {
+		// 	this.chat = new window.TwitchJs({ token, username }).chat;
+		// 	this.chat
+		// 		.connect()
+		// 		.then((globalUserState) => {
+		// 			this.twitchJSConnected = true;
+		// 			this.$toast.success(`Connected as ${globalUserState.tags.displayName}`, { duration: 4000 });
+		// 		})
+		// 		.catch((e) => {
+		// 			this.$toast.error("Failed to connect to chat", { duration: 5000 });
+		// 			console.log("🚀 ~ error", e);
+		// 		});
+		// },
 		handleTwitchLogin: function () {
 			window.location.href = "/api/auth/twitch/login";
 		},
@@ -223,20 +275,6 @@ export default {
 					L.popup().setLatLng(e.latlng).setContent(`${command}<br><span class="copy">Copied to clipboard</span><br>`).openOn(this.map);
 				}
 			});
-		},
-		handleGuess: function () {
-			if (this.disabled) return;
-
-			this.chat
-				.whisper(this.bot, `!g ${this.coords.lat}, ${this.coords.lng}`)
-				.then((res) => {
-					this.triggerCoolDown();
-					this.$toast.success(`Guess successfully sent to ${this.bot} !`, { duration: 3000 });
-				})
-				.catch((e) => {
-					console.log("🚀 ~ error", e);
-					this.$toast.error("Something went wrong", { duration: 4000 });
-				});
 		},
 		triggerCoolDown: function () {
 			new Promise((resolve, reject) => {
