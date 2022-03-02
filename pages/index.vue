@@ -47,14 +47,14 @@
 							<li>Make your guess on the map<br /></li>
 							<li>Press guess... That's it !</li>
 							<p><small>...Your guess will be displayed on the scoreboard</small></p>
-							<div class="card">
-								<small
-									>For some reasons some accounts are "restricted" and cannot use whispers outside of Twitch. <br />
-									Make sure your account is verified, but there's probably nothing you can do about it. We are investigating this issue.<br />
-									In this case just go back to chat and guess the classic way, the command will still be copied to your clipboard.</small
-								>
-							</div>
 						</ol>
+						<div class="card">
+							<small>
+								For some reasons some accounts are "restricted" and cannot use whispers outside of Twitch. <br />
+								Make sure your account is verified, but there's probably nothing you can do about it. We are investigating this issue.<br />
+								In this case just go back to chat and guess the classic way, the command will still be copied to your clipboard.
+							</small>
+						</div>
 					</div>
 					<div class="card">
 						<p class="text-center"><span class="badge bg-primary">The classic way</span></p>
