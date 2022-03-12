@@ -179,13 +179,6 @@ export default {
 					type: "roadmap",
 				}),
 
-				hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&hl=en", {
-					minZoom: 2,
-					maxZoom: 20,
-					subdomains: ["mt0", "mt1", "mt2", "mt3"],
-					type: "hybrid",
-				}),
-
 				terrain: L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 20,
@@ -193,17 +186,31 @@ export default {
 					type: "terrain",
 				}),
 
-				openTopoMap: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+				hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
-					maxZoom: 19,
-					type: "openTopoMap",
+					maxZoom: 20,
+					subdomains: ["mt0", "mt1", "mt2", "mt3"],
+					type: "hybrid",
 				}),
 
-				esriTopographic: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
+				satellite: L.tileLayer("https://{s}.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}", {
 					minZoom: 2,
-					maxZoom: 19,
-					type: "esriTopographic",
+					maxZoom: 20,
+					subdomains: ["mt0", "mt1", "mt2", "mt3"],
+					type: "satellite",
 				}),
+
+				// openTopoMap: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+				// 	minZoom: 2,
+				// 	maxZoom: 19,
+				// 	type: "openTopoMap",
+				// }),
+
+				// esriTopographic: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
+				// 	minZoom: 2,
+				// 	maxZoom: 19,
+				// 	type: "esriTopographic",
+				// }),
 			};
 
 			// Init Map
