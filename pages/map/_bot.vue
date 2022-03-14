@@ -172,45 +172,45 @@ export default {
 		initMap: function () {
 			const self = this;
 			const layers = {
-				roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=en", {
+				Roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 21,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
 					type: "roadmap",
 				}),
 
-				terrain: L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}&hl=en", {
+				Terrain: L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 20,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
 					type: "terrain",
 				}),
 
-				hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&hl=en", {
+				Hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 20,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
 					type: "hybrid",
 				}),
 
-				satellite: L.tileLayer("https://{s}.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}", {
+				Satellite: L.tileLayer("https://{s}.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}", {
 					minZoom: 2,
 					maxZoom: 20,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
 					type: "satellite",
 				}),
 
-				// openTopoMap: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-				// 	minZoom: 2,
-				// 	maxZoom: 19,
-				// 	type: "openTopoMap",
-				// }),
+				OpenTopoMap: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+					minZoom: 2,
+					maxZoom: 19,
+					type: "openTopoMap",
+				}),
 
-				// esriTopographic: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
-				// 	minZoom: 2,
-				// 	maxZoom: 19,
-				// 	type: "esriTopographic",
-				// }),
+				EsriTopographic: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
+					minZoom: 2,
+					maxZoom: 19,
+					type: "esriTopographic",
+				}),
 			};
 
 			// Init Map
@@ -229,12 +229,12 @@ export default {
 				if (cBaseMap != "") {
 					const layer = layers[cBaseMap];
 					if (!layer) {
-						return layers["roadmap"];
+						return layers["Roadmap"];
 					} else {
 						return layer;
 					}
 				} else {
-					return layers["roadmap"];
+					return layers["Roadmap"];
 				}
 			}
 
