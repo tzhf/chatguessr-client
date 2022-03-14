@@ -176,40 +176,40 @@ export default {
 					minZoom: 2,
 					maxZoom: 21,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
-					type: "roadmap",
+					type: "Roadmap",
 				}),
 
 				Terrain: L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 20,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
-					type: "terrain",
+					type: "Terrain",
 				}),
 
 				Hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
 					maxZoom: 20,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
-					type: "hybrid",
+					type: "Hybrid",
 				}),
 
 				Satellite: L.tileLayer("https://{s}.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}", {
 					minZoom: 2,
 					maxZoom: 20,
 					subdomains: ["mt0", "mt1", "mt2", "mt3"],
-					type: "satellite",
+					type: "Satellite",
 				}),
 
 				OpenTopoMap: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
 					minZoom: 2,
 					maxZoom: 19,
-					type: "openTopoMap",
+					type: "OpenTopoMap",
 				}),
 
 				EsriTopographic: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
 					minZoom: 2,
 					maxZoom: 19,
-					type: "esriTopographic",
+					type: "EsriTopographic",
 				}),
 			};
 
@@ -225,7 +225,7 @@ export default {
 			getMapLayer().addTo(this.map);
 
 			function getMapLayer() {
-				const cBaseMap = self.getCookie("mapLayer");
+				const cBaseMap = localStorage.getItem("mapLayer");
 				if (cBaseMap != "") {
 					const layer = layers[cBaseMap];
 					if (!layer) {
@@ -248,7 +248,7 @@ export default {
 				const id = event.currentTarget.layerId;
 				const layer = this._layers[id];
 				const baseMap = layer.options.type;
-				self.setCookie("mapLayer", baseMap, 30);
+				localStorage.setItem("mapLayer", baseMap);
 			}
 
 			if (this.bot) {
@@ -329,28 +329,6 @@ export default {
 
 			document.execCommand("copy");
 			document.body.removeChild(el);
-		},
-		// COOKIES
-		getCookie: function (name) {
-			const cname = name + "=";
-			const decodedCookie = decodeURIComponent(document.cookie);
-			const ca = decodedCookie.split(";");
-			for (let i = 0; i < ca.length; i++) {
-				let c = ca[i];
-				while (c.charAt(0) == " ") {
-					c = c.substring(1);
-				}
-				if (c.indexOf(cname) == 0) {
-					return c.substring(cname.length, c.length);
-				}
-			}
-			return "";
-		},
-		setCookie: function (name, value, exdays) {
-			const d = new Date();
-			d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-			const expires = "expires=" + d.toUTCString();
-			document.cookie = name + "=" + value + ";" + expires + ";path=/";
 		},
 	},
 };
