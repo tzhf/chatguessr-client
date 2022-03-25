@@ -105,8 +105,11 @@ export default {
 					this.$toast.success(`Guess successfully sent to ${this.bot}`, { duration: 4000 });
 				})
 				.catch((e) => {
-					this.$toast.error(`Something went wrong ${e}`, { duration: 4000 });
-					console.log(e);
+					if (e.response.data.message === "BOT_DISCONNECTED") {
+						this.$toast.error(`Streamer disconnected or not using the last CG version`, { duration: 6000 });
+					} else {
+						this.$toast.error(`Something went wrong ${e}`, { duration: 4000 });
+					}
 				});
 		},
 		handleTwitchLogin: async function () {
