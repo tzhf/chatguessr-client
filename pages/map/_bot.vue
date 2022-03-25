@@ -1,16 +1,23 @@
 <template>
-	<div>
+	<div :style="{ '--border-color': hexColor }">
 		<div class="fixed top header">
 			<Logo :subtitle="bot" />
-			<div v-if="isLoggedIn" class="flex twitch__section">
-				<img :src="userData.profile_image_url" alt="Avatar" class="avatar" />
-				<h4>{{ userData.display_name }}</h4>
-				<button v-if="isLoggedIn" class="btn twitchLoginBtn" @click="handleTwitchLogout()">Logout</button>
+
+			<div v-if="user" class="flex twitch__section">
+				<color-picker
+					:style="{ '--avatar': `url(${user.avatar_url})` }"
+					v-bind="color"
+					@input="onColorInput"
+					@change="onColorChange"
+					:initially-collapsed="true"
+				></color-picker>
+				<h4>{{ user.slug }}</h4>
+				<button class="btn twitchLoginBtn" @click="handleTwitchLogout()">Logout</button>
 			</div>
 			<button v-else class="btn twitchLoginBtn" @click="handleTwitchLogin()"><img src="~/assets/twitch-icon.svg" /> Login</button>
 		</div>
 		<div id="map"></div>
-		<div v-if="bot && isLoggedIn && twitchJSConnected" class="flex guessBtn__wrapper">
+		<div v-if="bot && user" class="flex guessBtn__wrapper">
 			<button class="btn cooldown guessBtn" :disabled="disabled" title="(SPACE)" alt="Guess Button" @click="handleGuess()">GUESS</button>
 		</div>
 	</div>
@@ -18,159 +25,104 @@
 
 <script>
 import axios from "axios";
+import { supabase } from "~/supabase";
+import ColorPicker from "@radial-color-picker/vue-color-picker";
 
 export default {
+	components: {
+		ColorPicker,
+	},
 	data() {
 		return {
 			bot: "",
-			map: {},
+			user: null,
+			map: null,
 			customMarker: {},
-			userData: {},
-			isLoggedIn: false,
-			twitchJSConnected: false,
-			chat: {},
 			coords: { lat: 0, lng: 0 },
 			disabled: false,
+			color: {
+				hue: 166,
+				saturation: 100,
+				luminosity: 70,
+			},
 		};
+	},
+	computed: {
+		hexColor: function () {
+			return this.hslToHex(this.color);
+		},
 	},
 	head() {
 		return {
-			title: `ChatGuessr ${this.bot ? ` - ${this.bot} map` : ""}`,
-			link: [{ rel: "stylesheet", href: "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" }],
+			title: `ChatGuessr - Map${this.bot ? ` - ${this.bot}` : ""}`,
 			script: [
 				{
 					hid: "leaflet",
 					src: "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
+					callback: () => this.initMap(),
 				},
-				// {
-				// 	hid: "twitchJs",
-				// 	src: "https://unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js",
-				// 	defer: true,
-				// },
 			],
 		};
 	},
+	created() {
+		const user = supabase.auth.user();
+		this.user = user?.user_metadata;
 
-	async mounted() {
-		// CHECK BOT IN PARAMS
 		const params = Object.keys(this.$route.query);
 		if (params.includes("bot")) {
 			this.bot = this.$route.query.bot;
 		} else {
 			this.bot = this.$route.params.bot;
 		}
+	},
+	mounted() {
+		sessionStorage.setItem("currentBot", this.bot || "");
 
-		await axios
-			.get("/api/auth/twitch/user")
-			.then((res) => {
-				this.isLoggedIn = true;
-				this.userData = res.data;
-				this.tmiConnect(res.data.access_token, res.data.login);
-				// this.twitchJSConnect(res.data.access_token, res.data.login);
-			})
-			// IF ERROR TRY TO REFRESH TOKEN
-			.catch(async (e) => {
-				await axios
-					.get("/api/auth/twitch/refreshtoken")
-					.then(async () => {
-						await axios
-							.get("/api/auth/twitch/user")
-							.then((res) => {
-								this.isLoggedIn = true;
-								this.userData = res.data;
-								this.tmiConnect(res.data.access_token, res.data.login);
-								// this.twitchJSConnect(res.data.access_token, res.data.login);
-							})
-							.catch((e) => {});
-					})
-					.catch((e) => {});
-			});
+		this.color = JSON.parse(localStorage.getItem("color")) || this.color;
 
-		this.initMap();
+		if (this.user) this.$toast.info(`Make sure the streamer is using the last CG version`, { duration: 6000 });
 
 		document.addEventListener("keydown", (e) => {
 			if (e.code === "Space") {
 				e.preventDefault();
+				if (!this.user) return;
 				this.handleGuess();
 			}
 		});
 	},
 	methods: {
-		tmiConnect: function (token, username) {
-			const options = {
-				options: {
-					// debug: true,
-				},
-				connection: {
-					secure: true,
-					reconnect: true,
-				},
-				identity: {
-					username: username,
-					password: `oauth:${token}`,
-				},
-				channels: [this.bot],
-			};
-
-			this.chat = new tmi.client(options);
-
-			// Connect the client to the server..
-			this.chat
-				.connect()
-				.then(() => {
-					this.twitchJSConnected = true;
-					this.$toast.success(`Connected as ${this.userData.display_name}`, { duration: 4000 });
-				})
-				.catch((e) => {
-					this.$toast.error(e, { duration: 5000 });
-				});
-
-			this.chat.on("notice", (channel, msgid, message) => {
-				console.log("🚀 ~ this.chat.on ~ msgid", msgid);
-				if (msgid === "whisper_restricted") {
-					message = `Sorry... seems like your account is "restricted" from sending whispers outside of the Twitch Platform.<br/>Make sure your account is verified, but there's probably nothing you can do about it.<br/>We are investigating this issue.<br>For now paste your guess as usual.`;
-				}
-				this.$toast.error(message, { duration: 12000 });
-			});
-		},
 		handleGuess: function () {
 			if (this.disabled) return;
-
-			this.chat
-				.whisper(this.bot, `!g ${this.coords.lat}, ${this.coords.lng}`)
-				.then((res) => {
+			axios
+				.post(`${process.env.SOCKET_URL}/guess`, {
+					session: supabase.auth.session(),
+					bot: this.bot,
+					guess: `!g ${this.coords.lat}, ${this.coords.lng}`,
+					color: this.hexColor,
+				})
+				.then(() => {
 					this.triggerCoolDown();
-					this.$toast.success(`Guess successfully sent to ${this.bot} !`, { duration: 3000 });
+					this.$toast.success(`Guess successfully sent to ${this.bot}`, { duration: 4000 });
 				})
 				.catch((e) => {
-					console.log("🚀 ~ error", e);
+					this.$toast.error(`Something went wrong ${e}`, { duration: 4000 });
+					console.log(e);
 				});
 		},
-		// twitchJSConnect: function (token, username) {
-		// 	this.chat = new window.TwitchJs({ token, username }).chat;
-		// 	this.chat
-		// 		.connect()
-		// 		.then((globalUserState) => {
-		// 			this.twitchJSConnected = true;
-		// 			this.$toast.success(`Connected as ${globalUserState.tags.displayName}`, { duration: 4000 });
-		// 		})
-		// 		.catch((e) => {
-		// 			this.$toast.error("Failed to connect to chat", { duration: 5000 });
-		// 			console.log("🚀 ~ error", e);
-		// 		});
-		// },
-		handleTwitchLogin: function () {
-			window.location.href = "/api/auth/twitch/login";
+		handleTwitchLogin: async function () {
+			await supabase.auth.signIn({ provider: "twitch" }, { redirectTo: `${process.env.BASE_URL}/auth/redirect` });
 		},
-		handleTwitchLogout: function () {
-			axios.post("/api/auth/twitch/logout").then(() => {
-				this.isLoggedIn = false;
+		handleTwitchLogout: async function () {
+			const { error } = await supabase.auth.signOut();
+			if (error) {
+				this.$toast.error(`Something went wrong: {error}`, { duration: 4000 });
+			} else {
+				this.user = null;
 				this.map.removeLayer(this.customMarker);
 				this.$toast.success("Successfully logged out", { duration: 4000 });
-			});
+			}
 		},
 		initMap: function () {
-			const self = this;
 			const layers = {
 				Roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
@@ -213,7 +165,6 @@ export default {
 				}),
 			};
 
-			// Init Map
 			const mapOptions = {
 				attributionControl: false,
 				center: [0, 0],
@@ -252,9 +203,9 @@ export default {
 			}
 
 			if (this.bot) {
-				if (this.isLoggedIn) {
+				if (this.user) {
 					const markerAvatar = L.icon({
-						iconUrl: this.userData.profile_image_url,
+						iconUrl: this.user.avatar_url,
 						iconSize: [30, 30],
 						iconAnchor: [15, 15],
 						popupAnchor: [0, -15],
@@ -276,15 +227,18 @@ export default {
 				const command = `/w ${this.bot} !g ${this.coords.lat}, ${this.coords.lng}`;
 				this.copyToClipboard(command);
 
-				if (this.isLoggedIn) {
+				if (this.user) {
 					this.customMarker.setLatLng(e.latlng);
 				} else {
-					L.popup().setLatLng(e.latlng).setContent(`${command}<br><span class="copy">Copied to clipboard</span><br>`).openOn(this.map);
+					L.popup()
+						.setLatLng(e.latlng)
+						.setContent(`${command}<br><span class="copy">Copied to clipboard</span><br><small>Paste (ctrl+v) without editing</small>`)
+						.openOn(this.map);
 				}
 			});
 		},
 		triggerCoolDown: function () {
-			new Promise((resolve, reject) => {
+			new Promise((resolve) => {
 				this.disabled = true;
 				setTimeout(() => {
 					resolve();
@@ -300,26 +254,23 @@ export default {
 			el.setAttribute("readonly", "");
 			el.style = { position: "absolute", left: "-9999px" };
 			document.body.appendChild(el);
+
 			// FOR MAC OS USERS
 			if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
 				// save current contentEditable/readOnly status
 				const editable = el.contentEditable;
 				const readOnly = el.readOnly;
-
 				// convert to editable with readonly to stop iOS keyboard opening
 				el.contentEditable = true;
 				el.readOnly = true;
-
 				// create a selectable range
 				const range = document.createRange();
 				range.selectNodeContents(el);
-
 				// select the range
 				const selection = window.getSelection();
 				selection.removeAllRanges();
 				selection.addRange(range);
 				el.setSelectionRange(0, 999999);
-
 				// restore contentEditable/readOnly to original state
 				el.contentEditable = editable;
 				el.readOnly = readOnly;
@@ -330,14 +281,33 @@ export default {
 			document.execCommand("copy");
 			document.body.removeChild(el);
 		},
+		onColorInput(hue) {
+			this.color.hue = hue;
+		},
+		onColorChange() {
+			localStorage.setItem("color", JSON.stringify(this.color));
+		},
+		hslToHex: function (color) {
+			let { hue, saturation, luminosity } = color;
+			luminosity /= 100;
+			const a = (saturation * Math.min(luminosity, 1 - luminosity)) / 100;
+			const f = (n) => {
+				const k = (n + hue / 30) % 12;
+				const color = luminosity - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+				return Math.round(255 * color)
+					.toString(16)
+					.padStart(2, "0");
+			};
+			return `#${f(0)}${f(8)}${f(4)}`;
+		},
 	},
 };
 </script>
 
 <style>
-* {
-	margin: 0;
-}
+@import url("https://unpkg.com/leaflet@1.7.1/dist/leaflet.css");
+@import "@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css";
+
 #map {
 	z-index: 0;
 	height: 100vh;
@@ -384,6 +354,12 @@ export default {
 	color: #fff;
 	text-align: center;
 }
+.leaflet-popup-content {
+	margin: 7px 18px;
+}
+.leaflet-container a.leaflet-popup-close-button {
+	color: var(--clr-primary);
+}
 .leaflet-container {
 	background-color: #2e2e2e;
 }
@@ -401,7 +377,7 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	/* background: rgba(0, 0, 0, 0.1); */
+	/* gap: 1rem; */
 	z-index: 99;
 }
 .twitch__section {
@@ -409,11 +385,15 @@ export default {
 	justify-content: space-around;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	grid-gap: 0.7rem;
+	/* grid-gap: 0.7rem; */
+}
+.twitch__section h4 {
+	text-shadow: 0 0 3px #000;
 }
 .twitchLoginBtn {
 	height: 45px;
 	background: #815fc0;
+	margin-left: 1rem;
 }
 .avatar {
 	vertical-align: middle;
@@ -422,7 +402,7 @@ export default {
 }
 .avatar,
 .leaflet-marker-icon {
-	border: 2px solid var(--clr-primary);
+	border: 2px solid var(--border-color);
 	border-radius: 50%;
 }
 .leaflet-marker-icon {
@@ -430,10 +410,10 @@ export default {
 }
 
 .guessBtn__wrapper {
+	position: absolute;
+	width: 40%;
 	left: 50%;
 	transform: translate(-50%);
-	position: absolute;
-	width: 60%;
 	bottom: 0.5rem;
 }
 .guessBtn {
@@ -469,6 +449,36 @@ button.cooldown:disabled:after {
 	background: #1a334d;
 	-webkit-animation: cooldown 5s linear;
 	animation: cooldown 5s linear;
+}
+
+.toasted-container.bottom-center {
+	bottom: 4.5rem;
+}
+
+/* Color Picker */
+.rcp {
+	width: 60px;
+	height: 60px;
+	margin: 2px;
+}
+.rcp__well {
+	background-image: var(--avatar);
+	background-size: contain;
+	width: 65%;
+	height: 65%;
+	top: 18%;
+	left: 18%;
+	border: none;
+	outline: 2px solid var(--border-color);
+}
+.rcp__well:hover {
+	box-shadow: 0 0 3px 3px #333;
+}
+.rcp__knob {
+	width: 20%;
+	height: 20%;
+	top: -1.5%;
+	cursor: pointer;
 }
 
 @-webkit-keyframes cooldown {

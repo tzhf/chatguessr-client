@@ -1,6 +1,6 @@
 <template>
 	<section class="centered">
-		<div class="logo_wrapper">
+		<div class="fixed top left">
 			<Logo />
 		</div>
 		<Loader v-if="loading" />
@@ -24,9 +24,7 @@
 						<p v-for="(location, index) in game.locations">
 							Round {{ index + 1 }} :
 							<a
-								:href="
-									`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${location.lat},${location.lng}&heading=${location.heading}&pitch=${location.pitch}`
-								"
+								:href="`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${location.lat},${location.lng}&heading=${location.heading}&pitch=${location.pitch}`"
 								target="_blank"
 								>{{ location.lat }}, {{ location.lng }}</a
 							>

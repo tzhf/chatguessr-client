@@ -1,7 +1,7 @@
 <template>
 	<div class="logo__wrapper">
 		<nuxt-link to="/"
-			><Spinner width="40" />
+			><Spinner width="35" />
 			<h1><span class="highlight">C</span>hat<span class="highlight">G</span>uessr</h1>
 		</nuxt-link>
 		<p>{{ subtitle }}</p>
@@ -43,7 +43,9 @@ p {
 }
 
 .logo__wrapper {
+	position: relative;
+	top: 0.5rem;
+	left: 0.5rem;
 	white-space: nowrap;
-	/* overflow: hidden; */
 }
 </style>

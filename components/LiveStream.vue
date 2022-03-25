@@ -41,7 +41,7 @@ export default {
 	props: ["stream"],
 	data() {
 		return {
-			clientUrl: process.env.BASE_URL,
+			clientUrl: "chatguessr.com",
 		};
 	},
 	directives: {

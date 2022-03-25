@@ -78,10 +78,6 @@ export default {
 			},
 		],
 	},
-	serverMiddleware: {
-		"/api": "~/api",
-	},
-
 	/*
 	 ** Global CSS
 	 */
@@ -95,7 +91,7 @@ export default {
 	/*
 	 ** Plugins to load before mounting the App
 	 */
-	plugins: ["~/plugins/downloadExcel.js", "~/plugins/tmi.min.js"],
+	plugins: ["~/plugins/downloadExcel.js"],
 
 	/*
 	 ** Nuxt.js modules
@@ -109,9 +105,9 @@ export default {
 	env: {
 		BASE_URL: process.env.BASE_URL,
 		API_URL: process.env.API_URL,
-		TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
-		TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET,
-		PASSPHRASE: process.env.PASSPHRASE,
+		SOCKET_URL: process.env.SOCKET_URL,
+		SUPABASE_URL: process.env.SUPABASE_URL,
+		SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
 	},
 
 	render: {

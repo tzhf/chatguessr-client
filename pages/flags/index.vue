@@ -17,11 +17,19 @@
 				{{ state.names }}
 			</div>
 		</div>
+		<h3 class="mt-5 text-center">Non Territorial Flags</h3>
+		<div class="grid">
+			<div class="card m-1" v-for="flag in nonTerritorialFlags">
+				<span :class="'flag-icon flag-icon-' + flag.code"></span>
+				<pre>{{ flag.code }}</pre>
+				{{ flag.names }}
+			</div>
+		</div>
 	</section>
 </template>
 
 <script>
-import { countryCodes, USStatesCodes } from "@/assets/flags/flags-icons.js";
+import { countryCodes, USStatesCodes, NonTerritorialFlags } from "@/assets/flags/flags-icons.js";
 
 export default {
 	layout: "main",
@@ -34,6 +42,7 @@ export default {
 		return {
 			countries: countryCodes,
 			states: USStatesCodes,
+			nonTerritorialFlags: NonTerritorialFlags,
 		};
 	},
 };

@@ -30,7 +30,7 @@ export default {
 		async getStreams() {
 			this.loading = true;
 			axios
-				.get("https://chatguessr-api.vercel.app/streams")
+				.get(`${process.env.API_URL}/streams`)
 				.then((res) => {
 					this.streams = res.data;
 					this.loading = false;

@@ -1,5 +1,5 @@
 <template>
-	<img alt="Chatguessr logo" :style="cssVars" src="../assets/geoicon.png" />
+	<img alt="Chatguessr logo" :style="cssVars" src="~/assets/cgicon.svg" />
 </template>
 
 <script>
