@@ -43,7 +43,7 @@ export default {
 			color: {
 				hue: 166,
 				saturation: 100,
-				luminosity: 70,
+				luminosity: 60,
 			},
 		};
 	},
@@ -79,8 +79,6 @@ export default {
 		sessionStorage.setItem("currentBot", this.bot || "");
 
 		this.color = JSON.parse(localStorage.getItem("color")) || this.color;
-
-		if (this.user) this.$toast.info(`Make sure the streamer is using the last CG version`, { duration: 6000 });
 
 		document.addEventListener("keydown", (e) => {
 			if (e.code === "Space") {
@@ -388,7 +386,6 @@ export default {
 	justify-content: space-around;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	/* grid-gap: 0.7rem; */
 }
 .twitch__section h4 {
 	text-shadow: 0 0 3px #000;

@@ -7,9 +7,9 @@
 					<div><span class="highlight">G</span>uessr</div>
 				</h1>
 			</nuxt-link>
-			<h5 class="heading__text">Twitch chatbot for <a href="https://www.geoguessr.com" target="_blank">GeoGuessr</a></h5>
+			<h5 class="heading__text">The original <a href="https://www.geoguessr.com" target="_blank">GeoGuessr</a> Twitch Chatbot</h5>
 			<div class="container">
-				<p>Involve your chat to guess along where you are.</p>
+				<p>Play GeoGuessr on Stream with Twitch Chat.</p>
 			</div>
 
 			<section class="card m-2 text-center">
