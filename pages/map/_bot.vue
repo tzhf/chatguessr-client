@@ -104,7 +104,7 @@ export default {
 				})
 				.catch((e) => {
 					if (e.response.data.message === "BOT_DISCONNECTED") {
-						this.$toast.error(`Streamer disconnected or not using the last CG version`, { duration: 6000 });
+						this.$toast.error(`Streamer disconnected or not using the latest CG version`, { duration: 6000 });
 					} else {
 						this.$toast.error(`Something went wrong ${e}`, { duration: 4000 });
 					}

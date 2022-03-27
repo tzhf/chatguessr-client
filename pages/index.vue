@@ -51,7 +51,7 @@
 
 			<div class="card">
 				<h3 class="text-center">You are a viewer</h3>
-				<p>All you need is a verified Twitch account, no geoguessr account required.</p>
+				<p>All you need is a Twitch account, no GeoGuessr account required.</p>
 
 				<div class="card mb-2">
 					<div class="card mb-2">
