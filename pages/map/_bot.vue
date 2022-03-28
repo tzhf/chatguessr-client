@@ -91,6 +91,7 @@ export default {
 	methods: {
 		handleGuess: function () {
 			if (this.disabled) return;
+			this.triggerCoolDown();
 			axios
 				.post(`${process.env.SOCKET_URL}/guess`, {
 					session: supabase.auth.session(),
@@ -99,7 +100,6 @@ export default {
 					color: this.hexColor,
 				})
 				.then(() => {
-					this.triggerCoolDown();
 					this.$toast.success(`Guess successfully sent to ${this.bot}`, { duration: 4000 });
 				})
 				.catch((e) => {
