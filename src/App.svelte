@@ -1,15 +1,18 @@
 <script>
 	import Router from "./Router.svelte";
-	import NavBar from "./components/NavBar.svelte";
 </script>
 
-<main>
-	<NavBar />
+<div id="main">
 	<Router />
-</main>
+</div>
 
 <style>
-	main {
-		text-align: center;
+	#main {
+		display: flex;
+		flex-direction: column;
+		min-height: 100%;
+		max-width: min(1400px, 96vw);
+		margin: 0 auto;
+		padding-top: 0.25rem;
 	}
 </style>

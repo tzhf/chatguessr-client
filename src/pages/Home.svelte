@@ -1,13 +1,16 @@
 <script>
-	let world = "Mundo";
+	import Sidebar from "../components/Sidebar.svelte";
 </script>
 
-<h1>¡Hola {world}!</h1>
+<div id="home">
+	<Sidebar />
+</div>
 
 <style>
-	h1 {
-		color: royalblue;
-		text-transform: uppercase;
-		font-size: 4em;
+	#home {
+		flex: 1;
+		display: grid;
+		grid-template-columns: minmax(280px, 1fr) 4fr;
+		background-color: #101020;
 	}
 </style>

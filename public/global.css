@@ -1,14 +1,16 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;	
+	box-sizing: border-box;
 }
 
 html, body {
 	width: 100vw;
 	height: 100vh;
+	font-family: Comfortaa, sans-serif;
+	color: aliceblue;
 }
 
-body{
-	background-color: #202025;
+body {
+	background-color: #000010;
 }
