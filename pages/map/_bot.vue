@@ -419,7 +419,8 @@ export default {
 .guessBtn {
 	color: #000;
 	font-size: 1.2rem;
-	background: var(--clr-primary);
+	border-radius: 9px;
+	background: #42dfba;
 	width: 100%;
 	padding: 1rem;
 }
