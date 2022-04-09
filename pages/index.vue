@@ -13,17 +13,10 @@
 							</li>
 							<li>Go to <strong>Twitch connect</strong></li>
 							<li>Fill in your Twitch channel name</li>
-							<li>
-								Fill in your bot account <small><strong>(optional)</strong></small
-								><br />
-								<small>
-									If you don't plan to use a bot account, just fill in your channel name again. However, this is recommended to avoid your main account
-									being spammed of whispers.
-								</small>
-							</li>
+							<li>Fill in your bot account name. Using a bot account to receive whispers is recommended.</li>
 							<li>
 								Get your oAuth token <a href="https://twitchapps.com/tmi" target="_blank">here</a><br />
-								<small>If you're using a bot account, make sure to use this account when you generate the token.</small>
+								Make sure you use your bot account when you generate the token.
 							</li>
 							<li>Click <strong>Save</strong></li>
 							<small
