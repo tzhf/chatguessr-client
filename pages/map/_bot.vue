@@ -92,9 +92,11 @@ export default {
 		handleGuess: function () {
 			if (this.disabled) return;
 			this.triggerCoolDown();
+			const { access_token } = supabase.auth.session();
+
 			axios
 				.post(`${process.env.SOCKET_URL}/guess`, {
-					session: supabase.auth.session(),
+					access_token,
 					bot: this.bot,
 					guess: `!g ${this.coords.lat}, ${this.coords.lng}`,
 					color: this.hexColor,
