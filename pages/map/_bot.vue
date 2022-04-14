@@ -76,7 +76,7 @@ export default {
 		}
 	},
 	mounted() {
-		sessionStorage.setItem("currentBot", this.bot || "");
+		localStorage.setItem("currentBot", this.bot || "");
 
 		this.color = JSON.parse(localStorage.getItem("color")) || this.color;
 
