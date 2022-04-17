@@ -128,3 +128,7 @@ hr {
 .right {
 	right: 0;
 }
+
+summary {
+	cursor: pointer;
+}
