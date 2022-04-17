@@ -3,7 +3,7 @@
 		<div class="card">
 			<h2 class="text-center">ChatGuessr v2.0.1 security release</h2>
 			<p>
-				We've been notified of a security vulnerability in two recent ChatGuessr versions, <strong>v1.1.0-alpha.0</strong> and <strong>v2.0.0</strong>.
+				We've become aware of a security vulnerability in two recent ChatGuessr versions, <strong>v1.1.0-alpha.0</strong> and <strong>v2.0.0</strong>.
 				The vulnerability was announced publicly on 9 April, and we found out about it at the same time as many of you, so we needed some time to assess the impact and develop a solution.
 			</p>
 			<p>These versions exposed your "OAuth Token" to the ChatGuessr developers, which could in the worst case give moderation access to your channel.</p>
