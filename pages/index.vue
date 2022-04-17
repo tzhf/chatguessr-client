@@ -6,23 +6,21 @@
 					<h3 class="text-center">You are a streamer</h3>
 					<div class="card">
 						<ol>
-							<li>Download & install ChatGuessr</li>
+							<li>Download &amp; install ChatGuessr</li>
 							<li>
-								Open the settings ⚙️ or
-								<pre>(ctrl+p)</pre>
+								Log in using your Twitch <strong>bot account</strong>.<br>
+								<small>Using a bot account is recommended for security and to prevent your main account's whispers from filling up</small>
 							</li>
+							<li>Open the settings by clicking ⚙️ or  typing <pre>(ctrl+p)</pre></li>
 							<li>Go to <strong>Twitch connect</strong></li>
 							<li>Fill in your Twitch channel name</li>
-							<li>Fill in your bot account name. Using a bot account to receive whispers is recommended.</li>
 							<li>
-								Get your oAuth token <a href="https://twitchapps.com/tmi" target="_blank">here</a><br />
-								Make sure you use your bot account when you generate the token.
+								Click <strong>Save</strong><br>
+								<small>
+									...The bot should now be talking in your chat. Your chatguessr link will be generated.
+									(e.g.: <a href="https://chatguessr.com/map/yourBot" target="_blank">chatguessr.com/map/&lt;yourBot&gt;</a>)
+								</small>
 							</li>
-							<li>Click <strong>Save</strong></li>
-							<small
-								>...The bot should now be talking in your chat. Your chatguessr link will be generated. (e.g.:
-								<a href="https://chatguessr.com/map/yourBot" target="_blank">chatguessr.com/map/&lt;yourBot&gt;</a>)</small
-							>
 						</ol>
 					</div>
 				</div>
@@ -48,13 +46,6 @@
 
 				<div class="card mb-2">
 					<div class="card mb-2">
-						<p class="text-center"><span class="badge bg-notice">NEW !</span></p>
-						<div class="badge bg-primary mb-2">
-							<small
-								>Once you're logged in we are no longer using Twitch whispers to handle the guesses. This feature should now be working for
-								everyone.</small
-							>
-						</div>
 						<ol>
 							<li>Get the map link from the streamer (usually <span class="badge bg-primary">!cg</span>)</li>
 							<li>Login with your Twitch account</li>
