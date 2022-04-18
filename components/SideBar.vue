@@ -14,7 +14,7 @@
 
 			<section class="card m-2 text-center">
 				<h2>Download</h2>
-				<h5>version 2.0.1</h5>
+				<h5>version 2.0.2</h5>
 				<div class="m-2 text-left">
 					<span class="badge bg-danger">This is a security release.</span>
 					Please see <a href="/security">the security announcement</a> for details.
@@ -88,16 +88,16 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.1/ChatGuessr-2.0.1.Setup.exe", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.2/ChatGuessr-2.0.2.Setup.exe", "_blank");
 		},
 		winDownloadOld() {
 			window.open("https://github.com/tzhf/chatguessr/releases/download/v1.0.9/Chatguessr-Setup-1.0.9.exe", "_blank");
 		},
 		macOSDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.1/ChatGuessr-darwin-x64-2.0.1.zip", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.2/ChatGuessr-darwin-x64-2.0.2.zip", "_blank");
 		},
 		linuxDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.1/chatguessr_2.0.1_amd64.deb", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.2/chatguessr_2.0.2_amd64.deb", "_blank");
 		},
 	},
 };
