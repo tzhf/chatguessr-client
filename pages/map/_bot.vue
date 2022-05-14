@@ -419,7 +419,8 @@ export default {
 	width: 40%;
 	left: 50%;
 	transform: translate(-50%);
-	bottom: 0.5rem;
+	bottom: 0;
+	padding: 0.5rem;
 }
 .guessBtn {
 	color: #000;
