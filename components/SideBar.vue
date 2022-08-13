@@ -15,10 +15,6 @@
 			<section class="card m-2 text-center">
 				<h2>Download</h2>
 				<h5>version 2.0.2</h5>
-				<div class="m-2 text-left">
-					<span class="badge bg-danger">This is a security release.</span>
-					Please see <a href="/security">the security announcement</a> for details.
-				</div>
 				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bordered-success icon-win">Windows</button>
 					<button @click="macOSDownload" class="btn btn-sep bordered-success icon-mac">macOS</button>
@@ -28,7 +24,7 @@
 				<h5 class="mt-3">Release notes</h5>
 				<div class="card mb-2">
 					<ol class="text-left">
-						<li>Rework authentication to fix a security hole. You will have to log in again</li>
+						<li>Rework authentication to fix a security hole. You will have to log in again. Please see <a href="/security">the security announcement</a> for details.</li>
 						<li>Fix a few streaks mis-counts, notably Lesotho</li>
 					</ol>
 				</div>
