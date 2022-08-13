@@ -26,6 +26,7 @@
 <script>
 import axios from "axios";
 import { supabase } from "~/supabase";
+import copyToClipboard from "copy-to-clipboard";
 import ColorPicker from "@radial-color-picker/vue-color-picker";
 
 export default {
@@ -228,7 +229,7 @@ export default {
 
 				this.coords = this.map.wrapLatLng(e.latlng);
 				const command = `/w ${this.bot} !g ${this.coords.lat}, ${this.coords.lng}`;
-				this.copyToClipboard(command);
+				copyToClipboard(command);
 
 				if (this.user) {
 					this.customMarker.setLatLng(e.latlng);
@@ -249,40 +250,6 @@ export default {
 			}).then(() => {
 				this.disabled = false;
 			});
-		},
-		// Copy to clipboard
-		copyToClipboard: function (str) {
-			const el = document.createElement("textarea");
-			el.value = str;
-			el.setAttribute("readonly", "");
-			el.style = { position: "absolute", left: "-9999px" };
-			document.body.appendChild(el);
-
-			// FOR MAC OS USERS
-			if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-				// save current contentEditable/readOnly status
-				const editable = el.contentEditable;
-				const readOnly = el.readOnly;
-				// convert to editable with readonly to stop iOS keyboard opening
-				el.contentEditable = true;
-				el.readOnly = true;
-				// create a selectable range
-				const range = document.createRange();
-				range.selectNodeContents(el);
-				// select the range
-				const selection = window.getSelection();
-				selection.removeAllRanges();
-				selection.addRange(range);
-				el.setSelectionRange(0, 999999);
-				// restore contentEditable/readOnly to original state
-				el.contentEditable = editable;
-				el.readOnly = readOnly;
-			} else {
-				el.select();
-			}
-
-			document.execCommand("copy");
-			document.body.removeChild(el);
 		},
 		onColorInput(hue) {
 			this.color.hue = hue;
