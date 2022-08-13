@@ -1,34 +1,24 @@
 <template>
 	<section class="container">
 		<h2 class="text-center">Available flags</h2>
+		<p class="mb-3 text-center">Click a flag to copy the command.</p>
 		<p class="mb-3 text-center"><span class="badge bg-primary">!flag &lt;country code or country name&gt; | random | none</span></p>
 		<div class="grid">
-			<div class="card m-1" v-for="country in countries">
-				<span :class="'flag-icon flag-icon-' + country.code"></span>
-				<pre>{{ country.code }}</pre>
-				{{ country.names }}
-			</div>
+			<Flag :key="country.code" :flag="country" v-for="country in countries" />
 		</div>
 		<h3 class="mt-5 text-center">US States</h3>
 		<div class="grid">
-			<div class="card m-1" v-for="state in states">
-				<span :class="'flag-icon flag-icon-' + state.code"></span>
-				<pre>{{ state.code }}</pre>
-				{{ state.names }}
-			</div>
+			<Flag :key="state.code" :flag="state" v-for="state in states" />
 		</div>
 		<h3 class="mt-5 text-center">Non Territorial Flags</h3>
 		<div class="grid">
-			<div class="card m-1" v-for="flag in nonTerritorialFlags">
-				<span :class="'flag-icon flag-icon-' + flag.code"></span>
-				<pre>{{ flag.code }}</pre>
-				{{ flag.names }}
-			</div>
+			<Flag :key="flag.code" :flag="flag" v-for="flag in nonTerritorialFlags" />
 		</div>
 	</section>
 </template>
 
 <script>
+import Flag from "@/components/Flag.vue";
 import { countryCodes, USStatesCodes, NonTerritorialFlags } from "@/assets/flags/flags-icons.js";
 
 export default {
@@ -49,8 +39,6 @@ export default {
 </script>
 
 <style scoped>
-@import "@/assets/flags/flag-icon.min.css";
-
 .grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
