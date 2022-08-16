@@ -15,6 +15,7 @@
 		"@supabase/supabase-js": "^1.31.0",
 		"axios": "^0.26.0",
 		"copy-to-clipboard": "^3.3.2",
+		"leaflet": "^1.8.0",
 		"nuxt": "^2.15.8",
 		"v-aspect-ratio": "^2.0.1",
 		"vue-json-excel": "^0.3.0",

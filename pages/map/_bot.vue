@@ -56,13 +56,6 @@ export default {
 	head() {
 		return {
 			title: `ChatGuessr - Map${this.bot ? ` - ${this.bot}` : ""}`,
-			script: [
-				{
-					hid: "leaflet",
-					src: "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
-					callback: () => this.initMap(),
-				},
-			],
 		};
 	},
 	created() {
@@ -80,6 +73,10 @@ export default {
 		localStorage.setItem("currentBot", this.bot || "");
 
 		this.color = JSON.parse(localStorage.getItem("color")) || this.color;
+
+		import("leaflet").then((leaflet) => {
+			this.initMap(leaflet);
+		});
 
 		document.addEventListener("keydown", (e) => {
 			if (e.code === "Space") {
@@ -126,7 +123,7 @@ export default {
 				this.$toast.success("Successfully logged out", { duration: 4000 });
 			}
 		},
-		initMap: function () {
+		initMap: function (L) {
 			const layers = {
 				Roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=en", {
 					minZoom: 2,
@@ -276,7 +273,7 @@ export default {
 </script>
 
 <style>
-@import url("https://unpkg.com/leaflet@1.7.1/dist/leaflet.css");
+@import "leaflet/dist/leaflet.css";
 @import "@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css";
 
 #map {
