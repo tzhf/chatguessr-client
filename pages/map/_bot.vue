@@ -171,7 +171,6 @@ export default {
 				center: [0, 0],
 				zoom: 2,
 				zoomControl: false,
-				wheelPxPerZoomLevel: 120,
 			};
 
 			this.map = L.map("map", mapOptions);
