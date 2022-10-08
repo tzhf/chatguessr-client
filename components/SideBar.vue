@@ -14,7 +14,7 @@
 
 			<section class="card m-2 text-center">
 				<h2>Download</h2>
-				<h5>version 2.0.2</h5>
+				<h5>version 2.1.0</h5>
 				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bordered-success icon-win">Windows</button>
 					<button @click="macOSDownload" class="btn btn-sep bordered-success icon-mac">macOS</button>
@@ -24,8 +24,9 @@
 				<h5 class="mt-3">Release notes</h5>
 				<div class="card mb-2">
 					<ol class="text-left">
-						<li>Rework authentication to fix a security hole. You will have to log in again. Please see <a href="/security">the security announcement</a> for details.</li>
-						<li>Fix a few streaks mis-counts, notably Lesotho</li>
+						<li>Guesses within 25m are now a 5K regardless of map size, just like in GeoGuessr</li>
+						<li>Added more settings for CG bot messages</li>
+						<li>"No compass" also hides the new compass</li>
 					</ol>
 				</div>
 				<hr />
@@ -84,16 +85,16 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.2/ChatGuessr-2.0.2.Setup.exe", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.1.0/ChatGuessr-2.1.0.Setup.exe", "_blank");
 		},
 		winDownloadOld() {
 			window.open("https://github.com/tzhf/chatguessr/releases/download/v1.0.9/Chatguessr-Setup-1.0.9.exe", "_blank");
 		},
 		macOSDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.2/ChatGuessr-darwin-x64-2.0.2.zip", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.1.0/ChatGuessr-darwin-x64-2.1.0.zip", "_blank");
 		},
 		linuxDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.0.2/chatguessr_2.0.2_amd64.deb", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.1.0/chatguessr_2.1.0_amd64.deb", "_blank");
 		},
 	},
 };
