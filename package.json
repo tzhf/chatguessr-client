@@ -1,6 +1,7 @@
 {
 	"name": "chatguessr-client",
 	"version": "1.0.0",
+	"engines": { "node": "16.x" },
 	"description": "ChatGuessr client",
 	"author": "T.ZHF",
 	"private": true,
