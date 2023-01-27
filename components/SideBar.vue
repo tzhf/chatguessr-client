@@ -14,7 +14,7 @@
 
 			<section class="card m-2 text-center">
 				<h2>Download</h2>
-				<h5>version 2.2.1</h5>
+				<h5>version 2.2.2</h5>
 				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bordered-success icon-win">Windows</button>
 					<button @click="macOSDownload" class="btn btn-sep bordered-success icon-mac">macOS</button>
@@ -24,6 +24,7 @@
 				<h5 class="mt-3">Release notes</h5>
 				<div class="card mb-2">
 					<ol class="text-left">
+						<li>Blink mode added</li>
 						<li>Bugfixes for new GeoGuessr design</li>
 						<li>Display guess time on scoreboard for 5Ks</li>
 						<li>Fix time sorting in multi-guess mode</li>
@@ -80,13 +81,13 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.1/ChatGuessr-2.2.1.Setup.exe", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.2/ChatGuessr-2.2.2.Setup.exe", "_blank");
 		},
 		macOSDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.1/ChatGuessr-darwin-x64-2.2.1.zip", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.2/ChatGuessr-darwin-x64-2.2.2.zip", "_blank");
 		},
 		linuxDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.1/chatguessr_2.2.1_amd64.deb", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.2/chatguessr_2.2.2_amd64.deb", "_blank");
 		},
 	},
 };
