@@ -4,21 +4,18 @@
 			<Logo :subtitle="bot" />
 
 			<div v-if="user" class="flex twitch__section">
-				<color-picker
-					:style="{ '--avatar': `url(${user.avatar_url})` }"
-					v-bind="color"
-					@input="onColorInput"
-					@change="onColorChange"
-					:initially-collapsed="true"
-				></color-picker>
+				<color-picker :style="{ '--avatar': `url(${user.avatar_url})` }" v-bind="color" @input="onColorInput"
+					@change="onColorChange" :initially-collapsed="true"></color-picker>
 				<h4>{{ user.slug }}</h4>
 				<button class="btn twitchLoginBtn" @click="handleTwitchLogout()">Logout</button>
 			</div>
-			<button v-else class="btn twitchLoginBtn" @click="handleTwitchLogin()"><img src="~/assets/twitch-icon.svg" /> Login</button>
+			<button v-else class="btn twitchLoginBtn" @click="handleTwitchLogin()"><img
+					src="~/assets/twitch-icon.svg" /> Login</button>
 		</div>
 		<div id="map"></div>
 		<div v-if="bot && user" class="flex guessBtn__wrapper">
-			<button class="btn cooldown guessBtn" :disabled="disabled" title="(SPACE)" alt="Guess Button" @click="handleGuess()">GUESS</button>
+			<button v-if="hasClickedMap" class="btn cooldown guessBtn" :disabled="disabled" title="(SPACE)"
+				alt="Guess Button" @click="handleGuess()">GUESS</button>
 		</div>
 	</div>
 </template>
@@ -41,6 +38,7 @@ export default {
 			customMarker: {},
 			coords: { lat: 0, lng: 0 },
 			disabled: false,
+			hasClickedMap: false,
 			color: {
 				hue: 166,
 				saturation: 100,
@@ -89,6 +87,7 @@ export default {
 	methods: {
 		handleGuess: function () {
 			if (this.disabled) return;
+			if (!this.hasClickedMap) return;
 			this.triggerCoolDown();
 			const { access_token } = supabase.auth.session();
 
@@ -223,8 +222,9 @@ export default {
 			this.map.on("click", (e) => {
 				if (!this.bot) return;
 				this.disabled = false;
+				this.hasClickedMap = true,
 
-				this.coords = this.map.wrapLatLng(e.latlng);
+					this.coords = this.map.wrapLatLng(e.latlng);
 				const command = `/w ${this.bot} !g ${this.coords.lat}, ${this.coords.lng}`;
 				copyToClipboard(command);
 
@@ -279,6 +279,7 @@ export default {
 	z-index: 0;
 	height: 100vh;
 }
+
 .leaflet-control-layers {
 	background-color: rgba(0, 0, 0, 0.6) !important;
 	color: rgb(255, 255, 255);
@@ -289,56 +290,70 @@ export default {
 	.leaflet-bottom {
 		bottom: 4.5rem;
 	}
+
 	.guessBtn__wrapper {
 		width: 100% !important;
 	}
 }
+
 .leaflet-bar a {
 	background: rgba(22, 22, 22, 0.568);
 	color: rgb(255, 255, 255);
 }
+
 .leaflet-bar a:hover {
 	background: rgba(22, 22, 22, 0.726);
 	color: rgb(255, 255, 255);
 }
+
 .leaflet-bar a.leaflet-disabled,
 .leaflet-bar a.leaflet-disabled:hover {
 	background: rgba(22, 22, 22, 0.801);
 	color: rgb(170, 170, 170);
 }
+
 .leaflet-touch .leaflet-control,
 .leaflet-touch .leaflet-bar {
 	border: 1px solid var(--clr-primary);
 }
+
 .gm-style-cc {
 	display: none;
 }
+
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
 	background-color: rgba(0, 0, 0, 0.6);
 }
+
 .leaflet-popup-content-wrapper {
 	color: #fff;
 	text-align: center;
 }
+
 .leaflet-popup-content {
 	margin: 7px 18px;
 }
+
 .leaflet-container a.leaflet-popup-close-button {
 	color: var(--clr-primary);
 }
+
 .leaflet-container {
 	background-color: #2e2e2e;
 }
+
 .copy {
 	font-size: 14px;
 	font-weight: 700;
 }
+
 .toasted.toasted-primary.success {
 	color: #000;
 	font-weight: 700;
 	background: var(--clr-primary) !important;
 }
+
 .header {
 	width: 100%;
 	display: flex;
@@ -347,33 +362,40 @@ export default {
 	z-index: 99;
 	pointer-events: none;
 }
-.header > * {
+
+.header>* {
 	pointer-events: initial;
 }
+
 .twitch__section {
 	margin-left: auto;
 	justify-content: space-around;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 .twitch__section h4 {
 	text-shadow: 0 0 3px #000;
 }
+
 .twitchLoginBtn {
 	height: 45px;
 	background: #815fc0;
 	margin-left: 1rem;
 }
+
 .avatar {
 	vertical-align: middle;
 	width: 40px;
 	height: 40px;
 }
+
 .avatar,
 .leaflet-marker-icon {
 	border: 2px solid var(--border-color);
 	border-radius: 50%;
 }
+
 .leaflet-marker-icon {
 	cursor: grab;
 }
@@ -386,6 +408,7 @@ export default {
 	bottom: 0;
 	padding: 0.5rem;
 }
+
 .guessBtn {
 	color: #000;
 	font-size: 1.2rem;
@@ -404,6 +427,7 @@ button.cooldown:active,
 button.cooldown:focus {
 	outline: none;
 }
+
 button.cooldown:disabled {
 	background: rgba(0, 0, 0, 0.3);
 	cursor: not-allowed;
@@ -432,6 +456,7 @@ button.cooldown:disabled:after {
 	height: 60px;
 	margin: 2px;
 }
+
 .rcp__well {
 	background-image: var(--avatar);
 	background-size: contain;
@@ -442,9 +467,11 @@ button.cooldown:disabled:after {
 	border: none;
 	outline: 2px solid var(--border-color);
 }
+
 .rcp__well:hover {
 	box-shadow: 0 0 3px 3px #333;
 }
+
 .rcp__knob {
 	width: 20%;
 	height: 20%;
@@ -456,6 +483,7 @@ button.cooldown:disabled:after {
 	0% {
 		width: 100%;
 	}
+
 	100% {
 		width: 0;
 	}
@@ -465,6 +493,7 @@ button.cooldown:disabled:after {
 	0% {
 		width: 100%;
 	}
+
 	100% {
 		width: 0;
 	}
