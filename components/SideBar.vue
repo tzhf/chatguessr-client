@@ -14,7 +14,7 @@
 
 			<section class="card m-2 text-center">
 				<h2>Download</h2>
-				<h5>version 2.2.4</h5>
+				<h5>version 2.2.5</h5>
 				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bordered-success icon-win">Windows</button>
 					<button @click="macOSDownload" class="btn btn-sep bordered-success icon-mac">macOS</button>
@@ -81,13 +81,13 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.4/ChatGuessr-2.2.4.Setup.exe", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.5/ChatGuessr-2.2.5.Setup.exe", "_blank");
 		},
 		macOSDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.4/ChatGuessr-darwin-x64-2.2.4.zip", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.5/ChatGuessr-darwin-x64-2.2.5.zip", "_blank");
 		},
 		linuxDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.4/chatguessr_2.2.4_amd64.deb", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.5/chatguessr_2.2.5_amd64.deb", "_blank");
 		},
 	},
 };
