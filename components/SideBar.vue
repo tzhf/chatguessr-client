@@ -14,20 +14,20 @@
 
 			<section class="card m-2 text-center">
 				<h2>Download</h2>
-				<h5>version 2.2.3</h5>
+				<h5>version 2.2.4</h5>
 				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bordered-success icon-win">Windows</button>
 					<button @click="macOSDownload" class="btn btn-sep bordered-success icon-mac">macOS</button>
 					<button @click="linuxDownload" class="btn btn-sep bordered-success icon-linux">Linux <small>(.deb)</small></button>
 				</div>
 				<small>Note: automatic updates only work for Windows</small>
-				<h5 class="mt-3">Release notes</h5>
+				<h5 class="mt-3">Recent changes</h5>
 				<div class="card mb-2">
 					<ol class="text-left">
 						<li>Blink mode added</li>
 						<li>Bugfixes for new GeoGuessr design</li>
-						<li>Display guess time on scoreboard for 5Ks</li>
-						<li>Fix time sorting in multi-guess mode</li>
+						<li>Show guess time on scoreboard for 5Ks</li>
+						<li>Show previous streak on wrong country guesses</li>
 					</ol>
 				</div>
 			</section>
@@ -81,13 +81,13 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.3/ChatGuessr-2.2.3.Setup.exe", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.4/ChatGuessr-2.2.4.Setup.exe", "_blank");
 		},
 		macOSDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.3/ChatGuessr-darwin-x64-2.2.3.zip", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.4/ChatGuessr-darwin-x64-2.2.4.zip", "_blank");
 		},
 		linuxDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.3/chatguessr_2.2.3_amd64.deb", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.4/chatguessr_2.2.4_amd64.deb", "_blank");
 		},
 	},
 };
