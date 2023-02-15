@@ -286,6 +286,10 @@ export default {
 	font-size: 1.2em;
 }
 
+.leaflet-bottom {
+	position: fixed;
+}
+
 @media screen and (max-width: 800px) {
 	.leaflet-bottom {
 		bottom: 4.5rem;
