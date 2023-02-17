@@ -1,8 +1,8 @@
 <template>
 	<section class="container">
 		<h2 class="text-center">Available flags</h2>
-		<p class="mb-3 text-center">Click a flag to copy the command.</p>
 		<p class="mb-3 text-center"><span class="badge bg-primary">!flag &lt;country code or country name&gt; | random | none</span></p>
+		<p class="mb-3 text-center">Click a flag to copy the command.</p>
 		<div class="grid">
 			<Flag :key="country.code" :flag="country" v-for="country in countries" />
 		</div>
