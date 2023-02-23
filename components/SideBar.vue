@@ -15,7 +15,7 @@
 
 			<section class="card m-2 text-center">
 				<h2>Download</h2>
-				<h5>version 2.2.6</h5>
+				<h5>version 2.2.7</h5>
 				<div class="flex mx-2">
 					<button @click="winDownload" class="btn btn-sep bordered-success icon-win">Windows</button>
 					<button @click="macOSDownload" class="btn btn-sep bordered-success icon-mac">macOS</button>
@@ -26,10 +26,10 @@
 				<h5 class="mt-3">Recent changes</h5>
 				<div class="card mb-2">
 					<ol class="text-left">
-						<li><span class="badge bg-primary">!randomplonk</span> command added </li>
+						<li>Bugfixes for new GeoGuessr design</li>
+						<li><span class="badge bg-primary">!randomplonk</span> now always hits land</li>
 						<li><span class="badge bg-primary">!flags</span> command added </li>
 						<li>Blink mode added</li>
-						<li>Bugfixes for new GeoGuessr design</li>
 						<li>Show guess time on scoreboard for 5Ks</li>
 						<li>Show previous streak on wrong country guesses</li>
 					</ol>
@@ -86,13 +86,13 @@
 export default {
 	methods: {
 		winDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.6/ChatGuessr-2.2.6.Setup.exe", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.7/ChatGuessr-2.2.7.Setup.exe", "_blank");
 		},
 		macOSDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.6/ChatGuessr-darwin-x64-2.2.6.zip", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.7/ChatGuessr-darwin-x64-2.2.7.zip", "_blank");
 		},
 		linuxDownload() {
-			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.6/chatguessr_2.2.6_amd64.deb", "_blank");
+			window.open("https://github.com/tzhf/chatguessr/releases/download/v2.2.7/chatguessr_2.276_amd64.deb", "_blank");
 		},
 	},
 };
