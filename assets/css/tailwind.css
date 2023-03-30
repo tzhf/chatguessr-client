@@ -1,0 +1,114 @@
+@import "https://fonts.googleapis.com/css?family=Comfortaa:300,700";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --toastify-color-success: #42dfba !important;
+}
+
+html,
+body,
+#__nuxt {
+    height: 100%;
+}
+
+html {
+    font-family: "Comfortaa", sans-serif;
+    @apply bg-zinc-900;
+    @apply text-base;
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 0.7rem;
+}
+::-webkit-scrollbar-track {
+    background: rgb(87, 87, 87);
+}
+::-webkit-scrollbar-thumb {
+    @apply bg-primary;
+}
+
+a {
+    @apply text-primary hover:text-emerald-400;
+}
+
+ul {
+    @apply list-disc;
+}
+
+ol {
+    @apply list-decimal ml-6;
+}
+
+pre {
+    @apply inline-block bg-black border px-[0.2rem] border-primary border-opacity-70 rounded-md;
+}
+hr {
+    @apply border-primary mx-10;
+}
+
+.border-top {
+    border-top: 0.3rem solid;
+    border-image-source: linear-gradient(
+        to right,
+        #a159ff,
+        #9966ff,
+        #9272fe,
+        #8d7cfb,
+        #8a85f8,
+        #6597ff,
+        #3ea7ff,
+        #18b4ff,
+        #00caff,
+        #00defc,
+        #00f0ec,
+        #59f3b3
+    );
+    border-image-slice: 1;
+}
+
+.bordered {
+    @apply border border-zinc-600;
+}
+
+.btn {
+    @apply p-2 rounded-md transition-all duration-200 shadow-lg hover:brightness-105 active:brightness-110;
+}
+.btn-bordered {
+    @apply border border-primary;
+}
+.btn-twitch {
+    @apply h-11 px-3 font-bold bg-[#815fc0];
+}
+
+.card {
+    @apply bg-zinc-400 bg-opacity-10 p-2 rounded-lg;
+}
+
+.badge {
+    @apply font-bold py-0.5 px-1 text-black rounded-sm;
+}
+
+.text-shadow {
+    text-shadow: 0 0 3px #000;
+}
+
+.Toastify__toast-container {
+    width: fit-content !important;
+}
+.Toastify__toast-container--bottom-center {
+    bottom: 4rem !important;
+}
+.Toastify__toast-icon {
+    width: 30px !important;
+}
+
+.tippy-box[data-theme~="custom"] {
+    @apply bg-primary text-black font-bold;
+}
+.tippy-box[data-theme~="custom"][data-placement^="top"] > .tippy-arrow::before {
+    @apply border-t-primary;
+}

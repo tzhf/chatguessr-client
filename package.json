@@ -1,28 +1,32 @@
 {
-	"name": "chatguessr-client",
-	"version": "1.0.0",
-	"engines": { "node": "16.x" },
-	"description": "ChatGuessr client",
-	"author": "T.ZHF",
-	"private": true,
-	"scripts": {
-		"dev": "nuxt",
-		"build": "nuxt generate",
-		"start": "nuxt start"
-	},
-	"dependencies": {
-		"@nuxtjs/toast": "^3.3.1",
-		"@radial-color-picker/vue-color-picker": "^4.0.0",
-		"@supabase/supabase-js": "^1.31.0",
-		"axios": "^0.26.0",
-		"copy-to-clipboard": "^3.3.2",
-		"leaflet": "^1.8.0",
-		"nuxt": "^2.15.8",
-		"v-aspect-ratio": "^2.0.1",
-		"vue-json-excel": "^0.3.0",
-		"vue-tippy": "^4.16.0"
-	},
-	"devDependencies": {
-		"nodemon": "^2.0.13"
-	}
+    "name": "chatguessr-client",
+    "description": "ChatGuessr client",
+    "author": "T.ZHF",
+    "private": true,
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "devDependencies": {
+        "@nuxtjs/tailwindcss": "^6.4.1",
+        "@types/leaflet": "^1.9.1",
+        "nuxt": "^3.2.0"
+    },
+    "dependencies": {
+        "@radial-color-picker/vue-color-picker": "^5.0.1",
+        "@supabase/supabase-js": "^2.12.1",
+        "@twurple/api": "^6.0.9",
+        "@twurple/auth": "^6.0.9",
+        "copy-to-clipboard": "^3.3.3",
+        "human-readable-random-string": "^0.0.2",
+        "leaflet": "^1.9.3",
+        "leaflet.geodesic": "^2.6.1",
+        "vue-json-excel3": "^0.0.5",
+        "vue-tippy": "^6.0.0",
+        "vue3-colorpicker": "^2.1.2",
+        "vue3-toastify": "^0.1.1"
+    }
 }

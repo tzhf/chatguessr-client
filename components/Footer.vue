@@ -1,0 +1,51 @@
+<template>
+    <div>
+        <hr class="mt-10">
+        <footer class="grid md:grid-cols-4 gap-10 text-center p-5">
+            <section class="flex flex-col items-center">
+                <p class="text-2xl font-bold mb-2">Follow us on Twitter</p>
+                <a id="twitterIcon" href="https://www.twitter.com/chatguessr" target="_blank">
+                    <svg data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                        width="50px" height="50px">
+                        <path fill="currentColor"
+                            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" />
+                    </svg>
+                </a>
+            </section>
+
+            <section>
+                <p class="text-2xl font-bold mb-2">Donate</p>
+                <p>Any help is greatly appreciated and encourages us to maintain and improve the
+                    application.</p>
+                <button @click="openPaypal" class="btn btn-bordered mt-2">Donate</button>
+
+            </section>
+
+            <section class="flex flex-col items-center">
+                <p class="text-2xl font-bold mb-2">Developer ?</p>
+                <p>ChatGuessr is open-source, feel free to suggest new features or submit your pull requests to our Github
+                    repository.</p>
+                <a id="githubIcon" href="https://github.com/tzhf/chatguessr" target="_blank">
+                    <svg data-icon="github" role="img" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 50 50" width="50px" height="50px">
+                        <path
+                            d="M17.791,46.836C18.502,46.53,19,45.823,19,45v-5.4c0-0.197,0.016-0.402,0.041-0.61C19.027,38.994,19.014,38.997,19,39 c0,0-3,0-3.6,0c-1.5,0-2.8-0.6-3.4-1.8c-0.7-1.3-1-3.5-2.8-4.7C8.9,32.3,9.1,32,9.7,32c0.6,0.1,1.9,0.9,2.7,2c0.9,1.1,1.8,2,3.4,2 c2.487,0,3.82-0.125,4.622-0.555C21.356,34.056,22.649,33,24,33v-0.025c-5.668-0.182-9.289-2.066-10.975-4.975 c-3.665,0.042-6.856,0.405-8.677,0.707c-0.058-0.327-0.108-0.656-0.151-0.987c1.797-0.296,4.843-0.647,8.345-0.714 c-0.112-0.276-0.209-0.559-0.291-0.849c-3.511-0.178-6.541-0.039-8.187,0.097c-0.02-0.332-0.047-0.663-0.051-0.999 c1.649-0.135,4.597-0.27,8.018-0.111c-0.079-0.5-0.13-1.011-0.13-1.543c0-1.7,0.6-3.5,1.7-5c-0.5-1.7-1.2-5.3,0.2-6.6 c2.7,0,4.6,1.3,5.5,2.1C21,13.4,22.9,13,25,13s4,0.4,5.6,1.1c0.9-0.8,2.8-2.1,5.5-2.1c1.5,1.4,0.7,5,0.2,6.6c1.1,1.5,1.7,3.2,1.6,5 c0,0.484-0.045,0.951-0.11,1.409c3.499-0.172,6.527-0.034,8.204,0.102c-0.002,0.337-0.033,0.666-0.051,0.999 c-1.671-0.138-4.775-0.28-8.359-0.089c-0.089,0.336-0.197,0.663-0.325,0.98c3.546,0.046,6.665,0.389,8.548,0.689 c-0.043,0.332-0.093,0.661-0.151,0.987c-1.912-0.306-5.171-0.664-8.879-0.682C35.112,30.873,31.557,32.75,26,32.969V33 c2.6,0,5,3.9,5,6.6V45c0,0.823,0.498,1.53,1.209,1.836C41.37,43.804,48,35.164,48,25C48,12.318,37.683,2,25,2S2,12.318,2,25 C2,35.164,8.63,43.804,17.791,46.836z" />
+                    </svg>
+                </a>
+            </section>
+
+            <section>
+                <p class="text-2xl font-bold mb-2">Contact</p>
+                <p>
+                    For any inquiries:<br />
+                    <a href="mailto:chatguessr@gmail.com">chatguessr@gmail.com</a>
+                </p>
+            </section>
+        </footer>
+    </div>
+</template>
+<script setup>
+const openPaypal = () => {
+    window.open('https://paypal.me/chatguessr', "_blank")
+}
+</script>
