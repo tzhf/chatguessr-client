@@ -53,7 +53,7 @@
                 <Header />
                 <div class="text-center my-3 px-2 whitespace-nowrap">
                     <h2 class="text-xl font-bold">GAME SUMMARY ({{ game.players.length }})</h2>
-                    <h3 class="text-xl overflow-hidden text-ellipsis">AI Generated World</h3>
+                    <h3 class="text-xl overflow-hidden text-ellipsis">{{ game.map }}</h3>
                     <a :href="`https://www.twitch.tv/${game.streamer}`" target="_blank">{{ game.streamer }}</a>
                     <div class="flex justify-center gap-1 mt-1 text-sm">
                         <span v-if="game.mode.noMove" class="badge bg-primary">No Move</span>
