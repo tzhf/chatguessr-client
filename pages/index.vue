@@ -34,8 +34,8 @@
                         </li>
                     </ol>
 
-                    <div class="card mt-4">
-                        <h4 class="mb-2">Can't login via Facebook or Google ?</h4>
+                    <div class="card mt-5 p-3">
+                        <h4 class="font-bold mb-2">Can't login via Facebook or Google ?</h4>
                         <small>
                             <p>
                                 ChatGuessr doesn't handle social logins for now, you have to use the native Geoguessr
@@ -53,6 +53,17 @@
                                 new
                                 password.</p>
                         </small>
+                    </div>
+
+                    <div class="card mt-2 px-5">
+                        <h4 class="font-bold mb-2">Windows Defender</h4>
+                        <small>
+                            <p class="mb-2">On install you may get a message stating: "Windows Defender SmartScreen
+                                prevented an
+                                unrecognizable app from starting. Running this app might put your PC at risk."</p>
+                            <p class="mb-2">You can safely ignore this message and continue with your installation :</p>
+                        </small>
+                        <img src="@/windefender.png" alt="Windows Defender">
                     </div>
                 </div>
             </div>
