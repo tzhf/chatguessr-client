@@ -63,7 +63,7 @@
                                 unrecognizable app from starting. Running this app might put your PC at risk."</p>
                             <p class="mb-2">You can safely ignore this message and continue with your installation :</p>
                         </small>
-                        <img src="@/windefender.png" alt="Windows Defender">
+                        <img src="https://chatguessr.com/windefender.png" alt="Windows Defender">
                     </div>
                 </div>
             </div>
