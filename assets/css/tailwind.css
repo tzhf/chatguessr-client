@@ -21,11 +21,14 @@ html {
     color: #fff;
 }
 
+html,
+.moz-scroller {
+    scrollbar-color: rgb(66, 223, 186) rgb(46, 54, 69);
+    scrollbar-width: thin;
+}
 ::-webkit-scrollbar {
     width: 0.7rem;
-}
-::-webkit-scrollbar-track {
-    background: rgb(87, 87, 87);
+    background-color: rgb(87, 87, 87);
 }
 ::-webkit-scrollbar-thumb {
     @apply bg-primary;

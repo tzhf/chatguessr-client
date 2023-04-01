@@ -50,7 +50,7 @@
 
         <div v-else-if="game" class="h-full flex flex-col md:flex-row">
             <div class="md:min-w-[350px] flex flex-col px-1">
-                <Header />
+                <Header class="mb-5" />
                 <div class="text-center my-3 px-2 whitespace-nowrap">
                     <h2 class="text-xl font-bold">GAME SUMMARY ({{ game.players.length }})</h2>
                     <h3 class="text-xl overflow-hidden text-ellipsis">{{ game.map }}</h3>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="md:overflow-x-hidden px-2">
+                <div class="md:overflow-x-hidden moz-scroller px-2">
                     <ul class="flex flex-col gap-[3px]">
                         <PlayerResultCard v-for="player, index in game.players" :player="player" :index="index"
                             @click="drawPlayerGuesses(player)" />
