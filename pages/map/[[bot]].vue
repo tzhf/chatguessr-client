@@ -51,8 +51,8 @@ onMounted(async () => {
         toast.error("Please fill your bot in the url parameters", { autoClose: false })
     }
 
-    document.addEventListener("keydown", (e) => {
-        if (e.code === "Space") {
+    document.addEventListener("keyup", (e) => {
+        if (e.key === ' ' || e.code === "Space" || e.keyCode === 32) {
             e.preventDefault();
             handleGuess();
         }
@@ -61,6 +61,8 @@ onMounted(async () => {
 
 const handleGuess = async () => {
     if (!user.value || !map.value?.coords || guessDisabled.value) return;
+
+    triggerCoolDown();
 
     const session = await client.auth.getSession();
 
@@ -83,7 +85,6 @@ const handleGuess = async () => {
     else {
         toast.success(`Guess successfully sent to <b>${bot}</b>`, { dangerouslyHTMLString: true, icon: CGIcon });
     }
-    triggerCoolDown();
 }
 
 const triggerCoolDown = () => {
