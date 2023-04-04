@@ -15,7 +15,7 @@
             <ul class="py-2 pl-2">
                 <li v-for="score, index in player.scores" class="flex gap-3">
                     <span class="w-2">{{ index + 1 }}.</span>
-                    <span v-if="score" class="flex w-full">
+                    <span v-if="score != null" class="flex w-full">
                         <span>{{ formatDistance(player.distances[index]) }}</span>
                         <span class="ml-auto font-bold">{{ score }}</span>
                     </span>
