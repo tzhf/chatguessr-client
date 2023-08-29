@@ -76,10 +76,10 @@ const handleGuess = async () => {
         }
     })
     if (error.value) {
-        if (error.value.data.message === "BOT_DISCONNECTED") {
+        if (error.value.data && error.value.data.message === "BOT_DISCONNECTED") {
             toast.error("Streamer disconnected");
-        } else {
-            toast.error(`Something went wrong: ${error.value}`);
+	} else {
+            toast.error(`Something went wrong: ${error.value.message ?? error.value}`);
         }
     }
     else {
