@@ -34,7 +34,7 @@
                         </li>
                     </ol>
 
-                    <div class="card mt-5 p-3">
+                    <!-- <div class="card mt-5 p-3">
                         <h4 class="font-bold mb-2">Can't login via Facebook or Google ?</h4>
                         <small>
                             <p>
@@ -53,7 +53,7 @@
                                 new
                                 password.</p>
                         </small>
-                    </div>
+                    </div> -->
 
                     <div class="card mt-2 px-5">
                         <h4 class="font-bold mb-2">Windows Defender</h4>
