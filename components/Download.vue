@@ -12,13 +12,13 @@
 <script setup>
 // We could fetch latest release from github but i got some API quota limitations during testing (even tho that shouldn't happen in prod)
 const winDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.0/ChatGuessr-2.3.1.Setup.exe", "_blank");
+    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.1/ChatGuessr-2.3.1.Setup.exe", "_blank");
 }
 const macOSDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.0/ChatGuessr-darwin-x64-2.3.1.zip", "_blank");
+    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.1/ChatGuessr-darwin-x64-2.3.1.zip", "_blank");
 }
 const linuxDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.0/chatguessr_2.3.1_amd64.deb", "_blank");
+    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.1/chatguessr_2.3.1_amd64.deb", "_blank");
 }
 </script>
 <style>
