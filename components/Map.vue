@@ -31,18 +31,16 @@ onMounted(async () => {
     const { GeodesicLine } = await import("leaflet.geodesic");
 
     layers.value = {
-        Roadmap: L.tileLayer("https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&hl=en", {
+        Roadmap: L.tileLayer("https://www.google.com/maps/vt?pb=!1m7!8m6!1m3!1i{z}!2i{x}!3i{y}!2i9!3x1!2m2!1e0!2sm!3m3!2sen!3sus!5e18!4e0!5m4!1e0!8m2!1e1!1e1!6m6!1e12!2i2!11e0!39b0!44e0!50e0", {
             id: "Roadmap",
             minZoom: 2,
             maxZoom: 21,
-            subdomains: ["mt0", "mt1", "mt2", "mt3"],
             title: "1️⃣"
         } as TileLayerOptions),
-        Terrain: L.tileLayer("https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}&hl=en", {
+        Terrain: L.tileLayer("https://www.google.com/maps/vt?pb=!1m7!8m6!1m3!1i{z}!2i{x}!3i{y}!2i9!3x1!2m2!1e0!2sm!2m1!1e4!3m5!2sen!3sus!5e18!12m1!1e67!4e0!5m4!1e0!8m2!1e1!1e1!6m6!1e12!2i2!11e0!39b0!44e0!50e0", {
             id: "Terrain",
             minZoom: 2,
             maxZoom: 21,
-            subdomains: ["mt0", "mt1", "mt2", "mt3"],
             title: "2️⃣"
         } as TileLayerOptions),
         Hybrid: L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}&hl=en", {
