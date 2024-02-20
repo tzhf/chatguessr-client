@@ -5,20 +5,20 @@
         <button @click="macOSDownload" class="btn btn-bordered relative btn-sep icon-apple">macOS</button>
         <button @click="linuxDownload" class="btn btn-bordered relative btn-sep icon-linux">Linux
             <small>(.deb)</small></button>
-        <span class="text-xs font-bold">version 2.3.2</span>
+        <span class="text-xs font-bold">version 2.3.3</span>
         <span class="text-xs">automatic updates only work for Windows*</span>
     </section>
 </template>
 <script setup>
 // We could fetch latest release from github but i got some API quota limitations during testing (even tho that shouldn't happen in prod)
 const winDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.2/ChatGuessr-2.3.2.Setup.exe", "_blank");
+    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.3/ChatGuessr-2.3.3.Setup.exe", "_blank");
 }
 const macOSDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.2/ChatGuessr-darwin-x64-2.3.2.zip", "_blank");
+    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.3/ChatGuessr-darwin-x64-2.3.3.zip", "_blank");
 }
 const linuxDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.2/chatguessr_2.3.2_amd64.deb", "_blank");
+    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.3/chatguessr_2.3.3_amd64.deb", "_blank");
 }
 </script>
 <style>
