@@ -10,7 +10,7 @@ import "@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css";
 defineProps<{ avatar: string }>()
 
 const color = ref<hsl>({
-    hue: 166,
+    hue: Math.floor(Math.random() * 360),
     saturation: 100,
     luminosity: 60,
 })

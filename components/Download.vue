@@ -3,23 +3,34 @@
         <h2 class="text-xl">Download</h2>
         <button @click="winDownload" class="btn btn-bordered relative btn-sep icon-win">Windows</button>
         <button @click="macOSDownload" class="btn btn-bordered relative btn-sep icon-apple">macOS</button>
-        <button @click="linuxDownload" class="btn btn-bordered relative btn-sep icon-linux">Linux
-            <small>(.deb)</small></button>
-        <span class="text-xs font-bold">version 2.3.3</span>
+        <button @click="linuxDownload" class="btn btn-bordered relative btn-sep icon-linux">
+            Linux <small>(.deb)</small>
+        </button>
+        <span class="text-xs font-bold">version {{ currentVersion }}</span>
         <span class="text-xs">automatic updates only work for Windows*</span>
     </section>
 </template>
 <script setup>
-// We could fetch latest release from github but i got some API quota limitations during testing (even tho that shouldn't happen in prod)
+const currentVersion = ref("2.3.4");
+// We could fetch latest release from github but there are some API quota limitations
 const winDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.3/ChatGuessr-2.3.3.Setup.exe", "_blank");
-}
+    window.open(
+        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/ChatGuessr-${currentVersion.value}.Setup.exe`,
+        "_blank"
+    );
+};
 const macOSDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.3/ChatGuessr-darwin-x64-2.3.3.zip", "_blank");
-}
+    window.open(
+        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/ChatGuessr-darwin-x64-${currentVersion.value}.zip`,
+        "_blank"
+    );
+};
 const linuxDownload = () => {
-    window.open("https://github.com/tzhf/chatguessr/releases/download/v2.3.3/chatguessr_2.3.3_amd64.deb", "_blank");
-}
+    window.open(
+        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr_${currentVersion.value}_amd64.deb`,
+        "_blank"
+    );
+};
 </script>
 <style>
 .btn-sep:before {
@@ -34,14 +45,14 @@ const linuxDownload = () => {
 }
 
 .icon-win:before {
-    content: url("~/assets/icons/windows-icon.svg")
+    content: url("~/assets/icons/windows-icon.svg");
 }
 
 .icon-apple:before {
-    content: url("~/assets/icons/apple-icon.svg")
+    content: url("~/assets/icons/apple-icon.svg");
 }
 
 .icon-linux:before {
-    content: url("~/assets/icons/linux-icon.svg")
+    content: url("~/assets/icons/linux-icon.svg");
 }
 </style>
