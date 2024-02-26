@@ -102,7 +102,7 @@ const triggerCoolDown = () => {
 const handleTwitchLogin = () => {
     client.auth.signInWithOAuth({
         provider: "twitch",
-        options: { redirectTo: `${config.BASE_URL}/auth/redirect/${bot}` },
+        options: { redirectTo: `${config.public.BASE_URL}/auth/redirect/${bot}` },
     });
 };
 
