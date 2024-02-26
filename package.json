@@ -11,22 +11,22 @@
         "postinstall": "nuxt prepare"
     },
     "devDependencies": {
-        "@nuxtjs/tailwindcss": "^6.4.1",
-        "@types/leaflet": "^1.9.1",
-        "nuxt": "^3.2.0"
+        "@nuxtjs/tailwindcss": "^6.11.4",
+        "@types/leaflet": "^1.9.8",
+        "nuxt": "^3.10.3"
     },
     "dependencies": {
         "@radial-color-picker/vue-color-picker": "^5.0.1",
-        "@supabase/supabase-js": "^2.12.1",
-        "@twurple/api": "^6.0.9",
-        "@twurple/auth": "^6.0.9",
+        "@supabase/supabase-js": "^2.39.7",
+        "@twurple/api": "^6.2.1",
+        "@twurple/auth": "^6.2.1",
         "copy-to-clipboard": "^3.3.3",
         "human-readable-random-string": "^0.0.2",
-        "leaflet": "^1.9.3",
-        "leaflet.geodesic": "^2.6.1",
+        "leaflet": "^1.9.4",
+        "leaflet.geodesic": "^2.7.1",
         "vue-json-excel3": "^0.0.5",
-        "vue-tippy": "^6.0.0",
-        "vue3-colorpicker": "^2.1.2",
-        "vue3-toastify": "^0.1.1"
+        "vue-tippy": "^6.4.1",
+        "vue3-colorpicker": "^2.2.3",
+        "vue3-toastify": "^0.1.14"
     }
 }

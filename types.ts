@@ -52,10 +52,7 @@ interface Game {
 }
 
 interface PlayerResult {
-    username: string;
-    color: string;
-    flag: string;
-    streak: number;
+    player: Player;
     guesses: (LatLng | null)[];
     scores: (number | null)[];
     distances: (number | null)[];
@@ -64,6 +61,14 @@ interface PlayerResult {
     score: number;
     distance: number;
     rounds: number;
+}
+
+interface Player {
+    username: string;
+    avatar: string | null;
+    color: string;
+    flag: string;
+    streak: number;
 }
 
 interface TileLayerOptions extends L.TileLayerOptions {

@@ -11,5 +11,5 @@
     </div>
 </template>
 <script setup lang="ts">
-defineProps<{ subtitle?: string | string[] }>()
+defineProps<{ subtitle?: string | string[] }>();
 </script>
