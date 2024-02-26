@@ -140,7 +140,6 @@ onMounted(async () => {
 
     if (props.locations) {
         const locs = props.locations.map((location: Location, index: number) => {
-            // const icon = makeIcon("#de3e3e", index + 1);
             const icon = L.icon({
                 iconUrl: "../correct-location.webp",
                 iconSize: [30, 30],
@@ -174,22 +173,20 @@ onMounted(async () => {
         if (playerGuessesLayer) map.removeLayer(playerGuessesLayer);
         playerGuessesLayer = new L.LayerGroup().addTo(map);
 
-        // const icon = makeIcon(player.player.color);
-        const markerAvatar = L.icon({
+        const icon = L.icon({
             iconUrl: player.player.avatar ?? "../avatar-default.jpg",
-            iconSize: [30, 30],
-            iconAnchor: [15, 15],
-            popupAnchor: [0, -15],
+            iconSize: [28, 28],
+            iconAnchor: [14, 14],
+            popupAnchor: [0, -14],
         });
-        // guessMarker.value = L.marker([0, 0], { icon: markerAvatar });
 
         player.guesses.forEach((guess, index) => {
             if (!guess) return;
-            L.marker([guess.lat, guess.lng], { icon: markerAvatar }).addTo(playerGuessesLayer);
+            L.marker([guess.lat, guess.lng], { icon: icon }).addTo(playerGuessesLayer);
             new GeodesicLine([guess, props.locations[index]], {
                 color: player.player.color || "#fff",
                 weight: 3,
-                opacity: 0.7,
+                opacity: 1,
                 steps: 200,
             }).addTo(playerGuessesLayer);
         });
@@ -226,19 +223,19 @@ onMounted(async () => {
         }
     });
 
-    function makeIcon(color: string, index?: number) {
-        const svgTemplate = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="43"><path fill="${
-            color || "#fff"
-        }" fill-opacity=".8" stroke="#000" stroke-opacity=".8" d="M13.04,41.77c-0.11-1.29-0.35-3.2-0.99-5.42c-0.91-3.17-4.74-9.54-5.49-10.79c-3.64-6.1-5.46-9.21-5.45-12.07 c0.03-4.57,2.77-7.72,3.21-8.22c0.52-0.58,4.12-4.47,9.8-4.17c4.73,0.24,7.67,3.23,8.45,4.07c0.47,0.51,3.22,3.61,3.31,8.11 c0.06,3.01-1.89,6.26-5.78,12.77c-0.18,0.3-4.15,6.95-5.1,10.26c-0.64,2.24-0.89,4.17-1,5.48C13.68,41.78,13.36,41.78,13.04,41.77z"/>${
-            index ? '<text x="33%" y="47%" class="font-bold text-lg">' + index + "</text>" : ""
-        }</svg>`;
-        return L.divIcon({
-            className: "svg-icon",
-            html: svgTemplate,
-            iconSize: [28, 43],
-            iconAnchor: [14, 43],
-        });
-    }
+    // function makeIcon(color: string, index?: number) {
+    //     const svgTemplate = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="43"><path fill="${
+    //         color || "#fff"
+    //     }" fill-opacity=".8" stroke="#000" stroke-opacity=".8" d="M13.04,41.77c-0.11-1.29-0.35-3.2-0.99-5.42c-0.91-3.17-4.74-9.54-5.49-10.79c-3.64-6.1-5.46-9.21-5.45-12.07 c0.03-4.57,2.77-7.72,3.21-8.22c0.52-0.58,4.12-4.47,9.8-4.17c4.73,0.24,7.67,3.23,8.45,4.07c0.47,0.51,3.22,3.61,3.31,8.11 c0.06,3.01-1.89,6.26-5.78,12.77c-0.18,0.3-4.15,6.95-5.1,10.26c-0.64,2.24-0.89,4.17-1,5.48C13.68,41.78,13.36,41.78,13.04,41.77z"/>${
+    //         index ? '<text x="33%" y="47%" class="font-bold text-lg">' + index + "</text>" : ""
+    //     }</svg>`;
+    //     return L.divIcon({
+    //         className: "svg-icon",
+    //         html: svgTemplate,
+    //         iconSize: [28, 43],
+    //         iconAnchor: [14, 43],
+    //     });
+    // }
 });
 
 defineExpose({ coords, removeGuessMarker, drawPlayerGuesses });
@@ -293,6 +290,10 @@ defineExpose({ coords, removeGuessMarker, drawPlayerGuesses });
 .leaflet-marker-icon {
     border: 2px solid var(--border-color);
     border-radius: 50%;
+}
+.correct-location {
+    border: 2px solid var(--border-color);
+    z-index: 999 !important;
 }
 .correct-location-label {
     display: flex;

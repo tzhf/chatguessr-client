@@ -39,7 +39,7 @@
                 :locations="game.locations"
                 @vue:updated="drawPlayerGuesses(game.players[0])"
                 ref="map"
-                :style="{ '--border-color': '#42dfba' }"
+                :style="{ '--border-color': '#FFF' }"
             />
         </div>
     </main>
@@ -90,6 +90,7 @@ if (data) {
         }),
     };
     game.value = formated;
+    console.log("🚀 ~ formated:", formated);
 }
 
 error.value = _error;
