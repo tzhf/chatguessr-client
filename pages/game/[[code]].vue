@@ -90,7 +90,6 @@ if (data) {
         }),
     };
     game.value = formated;
-    console.log("🚀 ~ formated:", formated);
 }
 
 error.value = _error;

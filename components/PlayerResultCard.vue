@@ -1,20 +1,20 @@
 <template>
     <li class="m-d relative card bordered hover:scale-[0.99] active:scale-[0.98] cursor-pointer list-none">
-        <div class="flex items-center font-bold">
+        <div class="flex items-center justify-between font-bold">
             <span class="w-8">{{ index == 0 ? "🥇" : index == 1 ? "🥈" : index == 2 ? "🥉" : index + 1 + "." }}</span>
-            <span class="flex content-center items-center gap-2">
-                <span
-                    class="w-8 h-8 bg-contain rounded-full border border-primary"
-                    :style="{
-                        backgroundImage: `url(${player.player.avatar ?? '/avatar-default.jpg'})`,
-                    }"
-                ></span>
-                <span v-if="player.player.flag" :class="'flag-icon flag-icon-' + player.player.flag"></span>
-                <span :style="`color:${player.player.color}`" class="max-w-[22ch] overflow-hidden text-ellipsis">{{
-                    player.player.username
-                }}</span>
-            </span>
-            <span class="ml-auto">{{ player.totalScore }} [{{ player.guesses.filter(Boolean).length }}]</span>
+            <span
+                class="w-7 h-7 bg-contain rounded-full border border-primary mr-2"
+                :style="{
+                    backgroundImage: `url(${player.player.avatar ?? '/avatar-default.jpg'})`,
+                }"
+            ></span>
+            <span v-if="player.player.flag" :class="'mr-2 flag-icon flag-icon-' + player.player.flag"></span>
+            <span
+                class="flex-1 whitespace-nowrap overflow-hidden text-ellipsis mr-2"
+                :style="`color:${player.player.color}`"
+                >{{ player.player.username }}</span
+            >
+            <span>{{ player.totalScore }} [{{ player.guesses.filter(Boolean).length }}]</span>
         </div>
         <input type="checkbox" class="appearance-none w-full h-full absolute left-0 top-0 cursor-pointer" />
         <div class="content text-sm h-auto max-h-0 overflow-hidden">
@@ -43,12 +43,5 @@ const formatDistance = (distance: number) =>
 
 .content {
     transition: all 300ms ease-in-out 0ms;
-}
-.avatar {
-    background-size: contain;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    outline: 1px solid var(--primary);
 }
 </style>
