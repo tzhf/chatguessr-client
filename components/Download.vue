@@ -13,13 +13,13 @@
 const currentVersion = ref("3.0.0");
 const winDownload = () => {
     window.open(
-        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/ChatGuessr-${currentVersion.value}.Setup.exe`,
+        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-${currentVersion.value}-Setup.exe`,
         "_blank"
     );
 };
 const macOSDownload = () => {
     window.open(
-        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/ChatGuessr-darwin-x64-${currentVersion.value}.zip`,
+        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-darwin-x64-${currentVersion.value}.zip`,
         "_blank"
     );
 };
