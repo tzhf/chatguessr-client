@@ -3,16 +3,14 @@
         <h2 class="text-xl">Download</h2>
         <button @click="winDownload" class="btn btn-bordered relative btn-sep icon-win">Windows</button>
         <button @click="macOSDownload" class="btn btn-bordered relative btn-sep icon-apple">macOS</button>
-        <button @click="linuxDownload" class="btn btn-bordered relative btn-sep icon-linux">
-            Linux <small>(.deb)</small>
-        </button>
+        <button @click="linuxDownload" class="btn btn-bordered relative btn-sep icon-linux">Linux <small>(.deb)</small></button>
         <span class="text-xs font-bold">version {{ currentVersion }}</span>
         <span class="text-xs">automatic updates only work for Windows*</span>
     </section>
 </template>
 <script setup>
-const currentVersion = ref("2.3.4");
 // We could fetch latest release from github but there are some API quota limitations
+const currentVersion = ref("3.0.0");
 const winDownload = () => {
     window.open(
         `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/ChatGuessr-${currentVersion.value}.Setup.exe`,
