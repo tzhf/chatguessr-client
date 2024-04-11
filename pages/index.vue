@@ -43,7 +43,7 @@
                             </p>
                             <p>
                                 You can safely ignore this message and continue with your installation
-                                <span class="cursor-help" @click="imgVisible = true">💡</span>
+                                <span class="cursor-help" @click="isModalVisible = true">💡</span>
                             </p>
                         </small>
                     </div>
@@ -100,57 +100,12 @@
 
         <Streams />
     </main>
-    <transition name="img__modal">
-        <div class="modal-mask" v-show="imgVisible">
-            <div class="modal-wrapper">
-                <div class="flex justify-center">
-                    <img ref="target" src="https://chatguessr.com/windefender.png" alt="Windows Defender" />
-                </div>
-            </div>
-        </div>
-    </transition>
+    <UiModal v-show="isModalVisible" @close="isModalVisible = false">
+        <img src="https://chatguessr.com/windefender.png" alt="Windows Defender" />
+    </UiModal>
 </template>
 <script setup>
-import { onClickOutside } from "@vueuse/core";
-
 useHead({ title: "ChatGuessr" });
-
-const target = ref(null);
-const imgVisible = ref(false);
-onClickOutside(target, () => (imgVisible.value = false));
+const isModalVisible = ref(false);
 </script>
-<style>
-.modal-mask {
-    position: fixed;
-    display: table;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    transition: opacity 0.3s ease;
-}
-
-.modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-}
-/* MODAL ANIMATION */
-.img__modal-enter-active {
-    animation: bounce-in 0.3s;
-}
-.img__modal-leave-active {
-    animation: bounce-in 0.3s reverse;
-}
-@keyframes bounce-in {
-    0% {
-        transform: scale3d(0, 0, 0);
-    }
-    50% {
-        transform: scale3d(1.2, 1.2, 1.2);
-    }
-    100% {
-        transform: scale3d(1, 1, 1);
-    }
-}
-</style>
+<style></style>
