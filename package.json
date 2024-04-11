@@ -20,6 +20,7 @@
         "@supabase/supabase-js": "^2.39.7",
         "@twurple/api": "^6.2.1",
         "@twurple/auth": "^6.2.1",
+        "@vueuse/core": "^10.9.0",
         "copy-to-clipboard": "^3.3.3",
         "human-readable-random-string": "^0.0.2",
         "leaflet": "^1.9.4",

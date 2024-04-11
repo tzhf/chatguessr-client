@@ -17,8 +17,8 @@
                         <li>
                             Log in using your Twitch <strong>bot account</strong>.<br />
                             <small
-                                >Using a bot account is recommended for security and to prevent your main account's
-                                whispers from filling up</small
+                                >Using a bot account is recommended for security and to prevent your main account's whispers from
+                                filling up</small
                             >
                         </li>
                         <li>Open the settings by clicking ⚙️</li>
@@ -27,10 +27,8 @@
                         <li>
                             Click <strong>Save</strong><br />
                             <small>
-                                ...The bot should now be talking in your chat. Your chatguessr link will be generated.
-                                (e.g.:
-                                <a href="https://chatguessr.com/map/yourBot" target="_blank"
-                                    >chatguessr.com/map/&lt;yourBot&gt;</a
+                                ...The bot should now be talking in your chat. Your chatguessr link will be generated. (e.g.:
+                                <a href="https://chatguessr.com/map/yourBot" target="_blank">chatguessr.com/map/&lt;yourBot&gt;</a
                                 >)
                             </small>
                         </li>
@@ -43,9 +41,11 @@
                                 On install you may get a message stating: "Windows Defender SmartScreen prevented an
                                 unrecognizable app from starting. Running this app might put your PC at risk."
                             </p>
-                            <p class="mb-2">You can safely ignore this message and continue with your installation :</p>
+                            <p>
+                                You can safely ignore this message and continue with your installation
+                                <span class="cursor-help" @click="imgVisible = true">💡</span>
+                            </p>
                         </small>
-                        <img src="https://chatguessr.com/windefender.png" alt="Windows Defender" />
                     </div>
                 </div>
             </div>
@@ -81,6 +81,7 @@
                     <h4 class="font-bold">Commands :</h4>
                     <p><span class="badge bg-primary">!cg</span> : Get the map link</p>
                     <p><span class="badge bg-primary">!me</span> : Get your stats</p>
+                    <p><span class="badge bg-orange-400">!clear</span> : Clear your stats</p>
                     <p><span class="badge bg-primary">!best</span> : Get the best stats of the channel</p>
                     <p>
                         <span class="badge bg-primary">!flags</span> : Get the link of available
@@ -88,14 +89,68 @@
                     </p>
                     <p><span class="badge bg-primary">!flag &lt;country&gt; | random | none</span> : Set a flag</p>
                     <p><span class="badge bg-primary">!randomplonk</span> : Guess random coordinates</p>
-                    <p><span class="badge bg-orange-400">!clear</span> : Clear your stats</p>
+                    <p><span class="badge bg-primary">!map</span> : Get current map description</p>
+                    <p>
+                        <span class="badge bg-primary">!lastloc (1-5)</span> : Get last round location (up to 5 from current
+                        round)
+                    </p>
                 </div>
             </div>
         </section>
 
         <Streams />
     </main>
+    <transition name="img__modal">
+        <div class="modal-mask" v-show="imgVisible">
+            <div class="modal-wrapper">
+                <div class="flex justify-center">
+                    <img ref="target" src="https://chatguessr.com/windefender.png" alt="Windows Defender" />
+                </div>
+            </div>
+        </div>
+    </transition>
 </template>
 <script setup>
+import { onClickOutside } from "@vueuse/core";
+
 useHead({ title: "ChatGuessr" });
+
+const target = ref(null);
+const imgVisible = ref(false);
+onClickOutside(target, () => (imgVisible.value = false));
 </script>
+<style>
+.modal-mask {
+    position: fixed;
+    display: table;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+/* MODAL ANIMATION */
+.img__modal-enter-active {
+    animation: bounce-in 0.3s;
+}
+.img__modal-leave-active {
+    animation: bounce-in 0.3s reverse;
+}
+@keyframes bounce-in {
+    0% {
+        transform: scale3d(0, 0, 0);
+    }
+    50% {
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+</style>
