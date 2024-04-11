@@ -10,7 +10,7 @@
 </template>
 <script setup>
 // We could fetch latest release from github but there are some API quota limitations
-const currentVersion = ref("3.0.0");
+const currentVersion = ref("3.0.1");
 const winDownload = () => {
     window.open(
         `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-${currentVersion.value}-Setup.exe`,
