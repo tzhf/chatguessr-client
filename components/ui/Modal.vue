@@ -1,10 +1,8 @@
 <template>
     <transition name="modal">
         <div class="modal-mask">
-            <div class="modal-wrapper">
-                <div class="flex justify-center" ref="target">
-                    <slot />
-                </div>
+            <div class="cursor-default" ref="target">
+                <slot />
             </div>
         </div>
     </transition>
@@ -12,25 +10,23 @@
 <script setup>
 import { onClickOutside } from "@vueuse/core";
 
-const emit = defineEmits(["close"]);
-
 const target = ref(null);
+const emit = defineEmits(["close"]);
 onClickOutside(target, () => emit("close"));
 </script>
 <style scoped>
 .modal-mask {
     position: fixed;
-    display: table;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     transition: opacity 0.3s ease;
-}
-.modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
+    cursor: pointer;
 }
 
 .modal-enter-active {
