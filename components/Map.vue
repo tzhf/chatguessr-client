@@ -66,21 +66,18 @@ onMounted(async () => {
             subdomains: ["mt0", "mt1", "mt2", "mt3"],
             title: "4️⃣",
         } as TileLayerOptions),
-        OpenTopoMap: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-            id: "OpenTopoMap",
+        OpenStreetMap: L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            id: "OpenStreetMap",
             minZoom: 2,
             maxZoom: 19,
             title: "5️⃣",
         } as TileLayerOptions),
-        EsriTopographic: L.tileLayer(
-            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
-            {
-                id: "EsriTopographic",
-                minZoom: 2,
-                maxZoom: 19,
-                title: "6️⃣",
-            } as TileLayerOptions
-        ),
+        OpenTopoMap: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+            id: "OpenTopoMap",
+            minZoom: 2,
+            maxZoom: 19,
+            title: "6️⃣",
+        } as TileLayerOptions),
     };
 
     const map = L.map("map", {
@@ -94,8 +91,7 @@ onMounted(async () => {
     L.control.zoom({ position: "bottomleft" }).addTo(map);
 
     const storedLayer = localStorage.getItem("mapLayer");
-    currentLayer.value =
-        storedLayer && storedLayer in layers.value ? layers.value[storedLayer] : layers.value["Roadmap"];
+    currentLayer.value = storedLayer && storedLayer in layers.value ? layers.value[storedLayer] : layers.value["Roadmap"];
     currentLayer.value.addTo(map);
 
     if (props.bot) {
@@ -215,10 +211,10 @@ onMounted(async () => {
                 switchLayer.value(layers.value["Satellite"]);
                 break;
             case "Digit5" || "Numpad5":
-                switchLayer.value(layers.value["OpenTopoMap"]);
+                switchLayer.value(layers.value["OpenStreetMap"]);
                 break;
             case "Digit6" || "Numpad6":
-                switchLayer.value(layers.value["EsriTopographic"]);
+                switchLayer.value(layers.value["OpenTopoMap"]);
                 break;
         }
     });
