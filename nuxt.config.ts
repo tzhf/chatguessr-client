@@ -21,10 +21,10 @@ export default defineNuxtConfig({
             charset: "utf-8",
             viewport: "width=device-width, initial-scale=1",
             meta: [
-                { name: "description", content: "The original GeoGuessr Twitch Chatbot." },
+                { name: "description", content: "A Twitch chatbot for GeoGuessr." },
                 { hid: "og-type", property: "og:type", content: "website" },
                 { hid: "og-title", property: "og:title", content: "ChatGuessr" },
-                { hid: "og-desc", property: "og:description", content: "The original GeoGuessr Twitch Chatbot." },
+                { hid: "og-desc", property: "og:description", content: "A Twitch chatbot for GeoGuessr." },
                 { hid: "og-image", property: "og:image", content: "https://chatguessr.com/cg-media.png" },
                 { hid: "og-url", property: "og:url", content: "https://chatguessr.com" },
                 { hid: "t-type", name: "twitter:card", content: "summary_large_image" },
