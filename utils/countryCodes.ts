@@ -207,6 +207,7 @@ export const countryCodes = [
     { code: "ru", names: "Russia" },
     { code: "rw", names: "Rwanda" },
     { code: "sa", names: "Saudi Arabia" },
+    { code: "sami", names: "Sami" },
     { code: "sb", names: "Solomon Islands" },
     { code: "sc", names: "Seychelles" },
     { code: "sd", names: "Sudan" },

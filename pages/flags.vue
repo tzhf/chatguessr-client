@@ -3,11 +3,9 @@
         <Header />
         <section>
             <h2 class="text-3xl font-bold text-center">Available flags</h2>
-            <p class="text-center mb-5"><span class="badge bg-primary text-center">!flag &lt;country code or country
-                    name&gt; |
-                    random |
-                    none</span></p>
-            <p class="font-bold text-center">Click a flag to copy the command.</p>
+            <p class="text-center mb-5">
+                <span class="badge bg-primary text-center">!flag &lt;country code or country name&gt; | random | none</span>
+            </p>
             <div class="grid grid-cols-1 md:grid-cols-[repeat(4,_1fr)] gap-2">
                 <Flag v-for="country in countryCodes" :flag="country" />
             </div>
@@ -31,7 +29,7 @@ useHead({
         { hid: "og-title", property: "og:title", content: "ChatGuessr - Flags" },
         { hid: "og-desc", property: "og:description", content: "Available ChatGuessr flags." },
     ],
-})
+});
 </script>
 <style>
 @import "@/assets/css/flag-icon.min.css";
