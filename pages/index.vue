@@ -80,9 +80,12 @@
                 <div class="card rounded-md p-3">
                     <h4 class="font-bold">Commands :</h4>
                     <p><span class="badge bg-primary">!cg</span> : Get the map link</p>
-                    <p><span class="badge bg-primary">!me</span> : Get your stats</p>
+                    <p>
+                        <span class="badge bg-primary">!best &lt;day|week|month|year&gt;</span> : Get the best stats of the
+                        channel
+                    </p>
+                    <p><span class="badge bg-primary">!me &lt;day|week|month|year&gt;</span> : Get your stats</p>
                     <p><span class="badge bg-orange-400">!clear</span> : Clear your stats</p>
-                    <p><span class="badge bg-primary">!best</span> : Get the best stats of the channel</p>
                     <p>
                         <span class="badge bg-primary">!flags</span> : Get the link of available
                         <nuxt-link to="/flags">flags</nuxt-link>
@@ -91,7 +94,7 @@
                     <p><span class="badge bg-primary">!randomplonk</span> : Guess random coordinates</p>
                     <p><span class="badge bg-primary">!map</span> : Get current map description</p>
                     <p>
-                        <span class="badge bg-primary">!lastloc (1-5)</span> : Get last round location (up to 5 from current
+                        <span class="badge bg-primary">!lastloc &lt;1-5&gt;</span> : Get last round location (up to 5 from current
                         round)
                     </p>
                 </div>
