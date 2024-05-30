@@ -19,7 +19,7 @@ const winDownload = () => {
 };
 const macOSDownload = () => {
     window.open(
-        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-darwin-x64-${currentVersion.value}.zip`,
+        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-darwin-arm64-${currentVersion.value}.zip`,
         "_blank"
     );
 };

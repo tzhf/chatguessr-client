@@ -173,7 +173,7 @@ export const countryCodes = [
     { code: "myswk", names: "Sarawak" },
     { code: "mz", names: "Mozambique" },
     { code: "na", names: "Namibia" },
-    { code: "nc", names: "New Caledonia" },
+    { code: "nc", names: "Kanaky, New Caledonia" },
     { code: "ne", names: "Niger" },
     { code: "nf", names: "Norfolk Island" },
     { code: "ng", names: "Nigeria" },
