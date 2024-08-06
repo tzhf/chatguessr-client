@@ -88,7 +88,7 @@ hr {
 }
 
 .card {
-    @apply bg-zinc-400 bg-opacity-10 p-2 rounded-lg;
+    @apply bg-zinc-400 bg-opacity-10 p-2 rounded-lg border border-gray-700;
 }
 
 .badge {
