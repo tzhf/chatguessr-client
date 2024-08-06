@@ -111,7 +111,7 @@ export const countryCodes = [
     { code: "hu", names: "Hungary" },
     { code: "id", names: "Indonesia" },
     { code: "ie", names: "Ireland" },
-    { code: "il", names: "Israel" },
+    // { code: "il", names: "Israel" },
     { code: "im", names: "Isle of Man" },
     { code: "in", names: "India" },
     { code: "io", names: "British Indian Ocean Territory" },

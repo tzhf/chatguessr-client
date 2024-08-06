@@ -10,29 +10,29 @@
 </template>
 <script setup>
 // We could fetch latest release from github but there are some API quota limitations
-const currentVersion = ref("3.0.3");
+const currentVersion = ref('3.0.4')
 const winDownload = () => {
     window.open(
-        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-${currentVersion.value}-Setup.exe`,
-        "_blank"
-    );
-};
+        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-${currentVersion.value}.Setup.exe`,
+        '_blank'
+    )
+}
 const macOSDownload = () => {
     window.open(
-        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-darwin-arm64-${currentVersion.value}.zip`,
-        "_blank"
-    );
-};
+        `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr-darwin-x64-${currentVersion.value}.zip`,
+        '_blank'
+    )
+}
 const linuxDownload = () => {
     window.open(
         `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion.value}/chatguessr_${currentVersion.value}_amd64.deb`,
-        "_blank"
-    );
-};
+        '_blank'
+    )
+}
 </script>
 <style>
 .btn-sep:before {
-    font-family: "FontAwesome";
+    font-family: 'FontAwesome';
     background: #42dfba;
     position: absolute;
     height: 100%;
@@ -43,14 +43,14 @@ const linuxDownload = () => {
 }
 
 .icon-win:before {
-    content: url("~/assets/icons/windows-icon.svg");
+    content: url('~/assets/icons/windows-icon.svg');
 }
 
 .icon-apple:before {
-    content: url("~/assets/icons/apple-icon.svg");
+    content: url('~/assets/icons/apple-icon.svg');
 }
 
 .icon-linux:before {
-    content: url("~/assets/icons/linux-icon.svg");
+    content: url('~/assets/icons/linux-icon.svg');
 }
 </style>
