@@ -1,5 +1,3 @@
 <template>
-    <UiNotif>
-        <UiSpinner width="30" class="mr-3" />Loading...
-    </UiNotif>
+  <UiNotif><UiSpinner width="20" />Loading...</UiNotif>
 </template>

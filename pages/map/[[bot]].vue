@@ -1,119 +1,186 @@
-<template>
-    <div class="w-screen h-full select-none" :style="{ '--border-color': color?.hexColor }">
-        <div class="w-full absolute h-20 flex flex-wrap items-center gap-2 px-3 pointer-events-none z-[2]">
-            <UiLogo :subtitle="bot" class="pointer-events-auto" />
-            <div class="ml-auto pointer-events-auto">
-                <div v-if="user" class="flex items-center gap-1">
-                    <UiColorPicker :avatar="user.avatar_url" ref="color" />
-                    <span class="hidden sm:block text-xl font-bold mr-2 text-shadow">{{ user.slug }}</span>
-                    <button class="btn btn-twitch" @click="handleTwitchLogout">Logout</button>
-                </div>
-                <button v-else class="btn btn-twitch inline-flex items-center gap-2" @click="handleTwitchLogin">
-                    <img src="~/assets/icons/twitch-icon.svg" /> Login
-                </button>
-            </div>
-        </div>
-
-        <Map :user="user" :bot="bot" ref="map" />
-
-        <div
-            v-if="bot && user && map?.coords"
-            class="flex absolute bottom-0 p-3 w-full sm:w-[40%] left-1/2 -translate-x-1/2 z-[1]"
-        >
-            <button
-                :disabled="guessDisabled"
-                @click="handleGuess"
-                class="cooldown relative w-full overflow-hidden bg-primary text-black p-3 text-xl font-bold rounded-lg shadow-lg disabled:bg-black disabled:bg-opacity-40 disabled:cursor-not-allowed"
-                title="(SPACE)"
-            >
-                GUESS
-            </button>
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
-import { CGIcon } from "@/utils/vue3-toastify-CG-icon";
-const config = useRuntimeConfig();
-const route = useRoute();
-const bot = (route.params.bot || (route.query.bot as string)) ?? undefined;
+const client = useSupabase()
+const getUser = await client.auth.getUser()
 
-definePageMeta({ layout: false });
-useHead({ title: `ChatGuessr - Map${bot ? " - " + bot : ""}` });
+const config = useRuntimeConfig()
+const route = useRoute()
+const bot = (route.params.bot || (route.query.bot as string)) ?? undefined
 
-const client = useSupabase();
-const getUser = await client.auth.getUser();
-const user = ref();
+const user = ref()
+const map = ref()
+const guessDisabled = ref()
+const color = ref()
 
-const map = ref();
-const color = ref();
-const guessDisabled = ref();
+const toast = useToast()
 
-const toast = useNuxtApp().$toast;
+const { space } = useMagicKeys()
+watch(space, (v) => {
+  if (v) handleGuess()
+})
 
 onMounted(async () => {
-    user.value = getUser.data.user?.user_metadata;
-    if (!bot) {
-        toast.error("Please fill your bot in the url parameters", { autoClose: false });
-    }
+  user.value = getUser.data.user?.user_metadata
 
-    document.addEventListener("keyup", (e) => {
-        if (e.key === " " || e.code === "Space" || e.keyCode === 32) {
-            e.preventDefault();
-            handleGuess();
-        }
-    });
-});
+  if (!bot) {
+    toast.add({
+      title: 'Please fill your bot in the url parameters',
+      icon: 'i-heroicons:shield-exclamation',
+      ui: {
+        icon: {
+          color: 'text-red-500',
+        },
+      },
+      timeout: 0,
+    })
+  }
+})
+
+onUnmounted(() => {
+  toast.clear()
+})
 
 const handleGuess = async () => {
-    if (!user.value || !map.value?.coords || guessDisabled.value) return;
+  if (!user.value || !map.value?.coords || guessDisabled.value) return
 
-    triggerCoolDown();
+  triggerCoolDown()
 
-    const session = await client.auth.getSession();
+  const session = await client.auth.getSession()
 
-    const data = await $fetch(`${config.public.SOCKET_URL}/guess`, {
-        method: "POST",
-        body: {
-            access_token: session?.data?.session?.access_token,
-            bot: bot,
-            guess: `!g ${map.value.coords.lat}, ${map.value.coords.lng}`,
-            color: color.value.hexColor,
+  const data = await $fetch(`${config.public.SOCKET_URL}/guess`, {
+    method: 'POST',
+    body: {
+      access_token: session?.data?.session?.access_token,
+      bot: bot,
+      guess: `!g ${map.value.coords.lat}, ${map.value.coords.lng}`,
+      color: color.value.hexColor,
+    },
+  }).catch((error) => {
+    if (error.data && error.data.message === 'BOT_DISCONNECTED') {
+      toast.add({
+        title: 'Streamer disconnected',
+        icon: 'i-heroicons:shield-exclamation',
+        ui: {
+          icon: {
+            color: 'text-red-500',
+          },
         },
-    }).catch((error) => {
-        if (error.data && error.data.message === "BOT_DISCONNECTED") {
-            toast.error("Streamer disconnected");
-        } else {
-            toast.error(`Something went wrong: ${error.message ?? error}`);
-        }
-    });
-    if (data) {
-        toast.success(`Guess successfully sent to <b>${bot}</b>`, { dangerouslyHTMLString: true, icon: CGIcon });
+      })
+    } else {
+      toast.add({
+        title: `Something went wrong: ${error.message ?? error}`,
+        icon: 'i-heroicons:shield-exclamation',
+        ui: {
+          icon: {
+            color: 'text-red-500',
+          },
+        },
+      })
     }
-};
+  })
+
+  if (data) {
+    toast.add({
+      title: `Guess successfully sent to <b>${bot}</b> !`,
+      icon: 'my-icons:chatguessr',
+      ui: {
+        icon: {
+          base: 'spinner',
+        },
+      },
+    })
+  }
+}
 
 const triggerCoolDown = () => {
-    guessDisabled.value = true;
-    setTimeout(() => {
-        guessDisabled.value = false;
-    }, 5000);
-};
+  guessDisabled.value = true
+  setTimeout(() => {
+    guessDisabled.value = false
+  }, 5000)
+}
 
 const handleTwitchLogin = () => {
-    client.auth.signInWithOAuth({
-        provider: "twitch",
-        options: { redirectTo: `${config.public.BASE_URL}/auth/redirect/${bot}` },
-    });
-};
+  client.auth.signInWithOAuth({
+    provider: 'twitch',
+    options: { redirectTo: `${config.public.BASE_URL}/auth/redirect/${bot}` },
+  })
+}
 
 const handleTwitchLogout = async () => {
-    const { error } = await client.auth.signOut();
-    if (error) {
-        toast.error("Something went wrong");
-    } else {
-        user.value = null;
-        map.value.removeGuessMarker();
-        toast.success("Successfully logged out");
-    }
-};
+  const { error } = await client.auth.signOut()
+  if (error) {
+    toast.add({ title: 'Something went wrong' })
+  } else {
+    user.value = null
+    map.value.removeGuessMarker()
+    toast.add({ title: 'Successfully logged out' })
+  }
+}
+
+definePageMeta({ layout: false })
+useSeoMeta({
+  title: bot ? bot + ' - Map' : 'Map',
+  ogTitle: 'Map | ChatGuessr',
+  description: 'ChatGuessr Map',
+  ogDescription: 'ChatGuessr Map',
+  twitterTitle: 'Map | ChatGuessr',
+})
 </script>
+
+<template>
+  <div class="h-screen select-none" :style="{ '--border-color': color?.hexColor }">
+    <div class="w-full absolute h-[4.4rem] flex flex-wrap items-center px-3 pointer-events-none z-[10]">
+      <UiLogo :subtitle="bot" class="pt-1 pointer-events-auto" />
+
+      <div class="ml-auto pointer-events-auto">
+        <div v-if="user" class="flex items-center gap-1">
+          <UiColorPicker :avatar="user.avatar_url" ref="color" />
+          <span class="hidden sm:block text-xl font-bold mr-3 text-shadow">{{ user.slug }}</span>
+          <button class="btn-twitch" @click="handleTwitchLogout">Logout</button>
+        </div>
+        <button v-else class="btn-twitch" @click="handleTwitchLogin"><UIcon name="my-icons:twitch" size="20" />Login</button>
+      </div>
+    </div>
+
+    <Map :user="user" :bot="bot" ref="map" />
+
+    <div
+      v-if="bot && user && map?.coords"
+      class="absolute bottom-3 px-3 w-full sm:w-[40%] max-w-[40rem] left-1/2 -translate-x-1/2 z-[1]"
+    >
+      <button :disabled="guessDisabled" @click="handleGuess" class="btn-guess" title="(SPACE)">
+        <span>GUESS</span>
+      </button>
+    </div>
+
+    <UNotifications :ui="{ position: 'bottom-16' }">
+      <template #title="{ title }">
+        <span v-html="title" />
+      </template>
+    </UNotifications>
+  </div>
+</template>
+
+<style scoped>
+.btn-twitch {
+  @apply flex items-center gap-2 rounded-lg px-3 h-10 bg-[#8c68cf] border border-white/10 will-change-transform scale-[0.98] transition-transform;
+}
+.btn-twitch:hover {
+  transform: scale(1);
+}
+.btn-twitch:active {
+  transform: scale(0.96);
+}
+
+.btn-guess {
+  @apply w-full text-black border border-white/30 bg-primary p-3 text-lg font-bold rounded-xl shadow-xl disabled:bg-black/40 disabled:cursor-not-allowed scale-[0.98] will-change-transform transition-transform;
+}
+.btn-guess:hover:not(:disabled) {
+  transform: scale(1);
+}
+.btn-guess:active:not(:disabled) {
+  transform: scale(0.96);
+}
+.btn-guess span {
+  text-shadow: 0 0.1rem 0.1rem white;
+}
+</style>

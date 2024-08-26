@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('~/assets/fonts/Comfortaa.ttf') format('truetype');
+  font-style: normal;
+  descent-override: 15%;
+}
+html {
+  font-size: 14px;
+  font-family: 'Comfortaa', sans-serif;
+  background-color: rgb(0, 0, 0);
+  color:white;
+}
+a {
+  @apply text-primary hover:text-primary-300;
+}
+html,
+.moz-scroller {
+    scrollbar-color: rgb(226, 226, 226) rgb(53, 53, 53);
+    scrollbar-width: thin;
+}
+::-webkit-scrollbar {
+    width: 0.7rem;
+    background-color: rgb(87, 87, 87);
+}
+::-webkit-scrollbar-thumb {
+    @apply bg-primary;
+}
+
+.text-shadow {
+  text-shadow: 0 0 3px #000;
+}
+
+.border-top {
+  border-top: 0.3rem solid;
+  border-image-source: linear-gradient(
+    to right,
+    #a159ff,
+    #9966ff,
+    #9272fe,
+    #8d7cfb,
+    #8a85f8,
+    #6597ff,
+    #3ea7ff,
+    #18b4ff,
+    #00caff,
+    #00defc,
+    #00f0ec,
+    #59f3b3
+  );
+  border-image-slice: 1;
+}
+
+.spinner {
+  animation: spin 10s infinite ease-in-out;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.2s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}

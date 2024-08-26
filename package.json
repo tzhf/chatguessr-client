@@ -1,33 +1,30 @@
 {
-    "name": "chatguessr-client",
-    "description": "ChatGuessr client",
-    "author": "T.ZHF",
-    "private": true,
-    "scripts": {
-        "build": "nuxt build",
-        "dev": "nuxt dev",
-        "generate": "nuxt generate",
-        "preview": "nuxt preview",
-        "postinstall": "nuxt prepare"
-    },
-    "devDependencies": {
-        "@nuxtjs/tailwindcss": "^6.11.4",
-        "@types/leaflet": "^1.9.8",
-        "nuxt": "^3.10.3"
-    },
-    "dependencies": {
-        "@radial-color-picker/vue-color-picker": "^5.0.1",
-        "@supabase/supabase-js": "^2.39.7",
-        "@twurple/api": "^6.2.1",
-        "@twurple/auth": "^6.2.1",
-        "@vueuse/core": "^10.9.0",
-        "copy-to-clipboard": "^3.3.3",
-        "human-readable-random-string": "^0.0.2",
-        "leaflet": "^1.9.4",
-        "leaflet.geodesic": "^2.7.1",
-        "vue-json-excel3": "^0.0.5",
-        "vue-tippy": "^6.4.1",
-        "vue3-colorpicker": "^2.2.3",
-        "vue3-toastify": "^0.1.14"
-    }
+  "name": "chatguessr-client",
+  "description": "ChatGuessr client",
+  "author": "T.ZHF",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^2.18.4",
+    "@supabase/supabase-js": "^2.45.2",
+    "@twurple/api": "^7.1.0",
+    "@twurple/auth": "^7.1.0",
+    "human-readable-random-string": "^0.0.2",
+    "leaflet": "^1.9.4",
+    "leaflet.geodesic": "^2.7.1",
+    "nuxt": "^3.12.4",
+    "vue": "latest",
+    "vue-json-excel3": "^1.0.29"
+  },
+  "devDependencies": {
+    "@radial-color-picker/vue-color-picker": "^6.0.0",
+    "@types/leaflet": "^1.9.12",
+    "@vueuse/nuxt": "^11.0.1"
+  }
 }

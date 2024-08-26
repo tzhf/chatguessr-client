@@ -1,20 +1,23 @@
-<template>
-    <div class="card w-full">
-        <div class="text-center mb-2">
-            <p class="text-xl font-bold whitespace-nowrap overflow-hidden text-ellipsis">{{ stream.title }}</p>
-            <a class="underline" :href="`https://www.twitch.tv/${stream.broadcaster_login}`" target="_blank">{{
-                stream.display_name }}</a>
-        </div>
-        <div class="aspect-video">
-            <iframe
-                :src="`https://player.twitch.tv/?channel=${stream.broadcaster_login}&parent=chatguessr.com&muted=true&autoplay=false`"
-                width="100%" height="100%" allowfullscreen="true"></iframe>
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
-const config = useRuntimeConfig();
-
 defineProps<{ stream: Stream }>()
 </script>
+
+<template>
+  <div class="bg-black">
+    <div class="aspect-video">
+      <iframe
+        :src="`https://player.twitch.tv/?channel=${stream.userName}&parent=chatguessr.com&muted=true&autoplay=false`"
+        width="100%"
+        height="100%"
+        allowfullscreen="true"
+      ></iframe>
+    </div>
+    <div class="flex items-center gap-2 px-2 py-4">
+      <img :src="stream.profilePictureUrl" :alt="stream.title" class="rounded-full w-8 h-8" />
+      <div class="flex flex-col truncate">
+        <span class="text-md font-bold truncate">{{ stream.title }}</span>
+        <a :href="`https://www.twitch.tv/${stream.userName}`" target="_blank" class="text-sm/4">{{ stream.userDisplayName }}</a>
+      </div>
+    </div>
+  </div>
+</template>
