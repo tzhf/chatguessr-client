@@ -11,7 +11,7 @@
 
       <section class="flex flex-col items-center gap-2">
         <h4 class="font-bold">Support us</h4>
-        <p class="text-sm">Any tip is greatly appreciated and help us to imprive maintain the application.</p>
+        <p class="text-sm">Any tip is greatly appreciated and help us to improve and maintain the application.</p>
         <UButton block color="orange" to="https://paypal.me/chatguessr" target="_blank" class="max-w-20">Donate</UButton>
       </section>
 

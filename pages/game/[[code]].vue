@@ -1,16 +1,16 @@
 <template>
   <main class="absolute top-0 bottom-0 w-full border-top mt-2">
     <div v-if="pending" class="flex flex-col h-full">
-      <UiHeading />
+      <Heading />
       <div class="flex-auto flex items-center">
         <UiLoader v-if="pending" />
       </div>
-      <UiFooter />
+      <Footer />
     </div>
 
     <div v-else-if="game" class="h-full flex flex-col md:flex-row">
       <div class="md:min-w-[26rem] flex flex-col bg-neutral-950 border-r border-neutral-500/50">
-        <UiHeading class="mb-6" />
+        <Heading class="mb-6" />
         <div class="text-center my-3 px-2 whitespace-nowrap">
           <h2 class="text-xl font-bold">GAME SUMMARY ({{ game.players.length }})</h2>
           <h3 class="text-xl overflow-hidden text-ellipsis">{{ game.map }}</h3>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="md:overflow-x-hidden moz-scroller px-2 msb-2">
-          <ul class="flex flex-col gap-[3px]">
+          <ul class="flex flex-col gap-1">
             <PlayerResultCard
               v-for="(player, index) in game.players"
               :player="player"

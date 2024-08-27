@@ -1,6 +1,6 @@
 <template>
   <li
-    class="m-d relative bg-zinc-400 bg-opacity-10 rounded-lg border border-gray-700/60 p-2 hover:scale-[0.99] active:scale-[0.98] transition-transform cursor-pointer list-none"
+    class="m-d relative bg-zinc-400 bg-opacity-10 rounded-lg border border-gray-700/60 p-2 scale-[0.98] hover:scale-[1] active:scale-[0.98] will-change-transform transition-transform cursor-pointer list-none"
   >
     <div class="flex items-center justify-between font-bold">
       <span class="w-8">{{ index == 0 ? '🥇' : index == 1 ? '🥈' : index == 2 ? '🥉' : index + 1 + '.' }}</span>
