@@ -1,5 +1,5 @@
 <script setup>
-const currentVersion = '3.0.4'
+const currentVersion = '3.0.5'
 const windowsLink = `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion}/chatguessr-${currentVersion}.Setup.exe`
 const macOSLink = `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion}/chatguessr-darwin-x64-${currentVersion}.zip`
 const linuxLink = `https://github.com/tzhf/chatguessr/releases/download/v${currentVersion}/chatguessr_${currentVersion}_amd64.deb`
