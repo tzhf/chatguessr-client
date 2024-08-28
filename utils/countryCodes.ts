@@ -59,6 +59,7 @@ export const countryCodes = [
     { code: "de", names: "Germany" },
     { code: "dj", names: "Djibouti" },
     { code: "dk", names: "Denmark" },
+    { code: "dkborn", names: "Bornholm" },
     { code: "dm", names: "Dominica" },
     { code: "do", names: "Dominican Republic" },
     { code: "dz", names: "Algeria" },
