@@ -14,10 +14,10 @@ useSeoMeta({
   <section>
     <h2 class="text-xl font-bold mb-2">How to set up ChatGuessr :</h2>
     <UiCard class="mb-12">
-      <ol class="list-decimal ml-4 mb-6">
+      <ol class="list-decimal flex flex-col gap-1 ml-6 mb-6">
         <li>Download &amp; install ChatGuessr</li>
         <li>
-          Log in using with your Twitch channel or a <strong>bot account</strong>.<br />
+          Log in using with your Twitch channel or a <strong>bot account</strong><br />
           <span class="text-sm text-gray-400"
             >You can log in with your main account, however a bot account is recommended for security and to prevent your main
             account's whispers from filling up.</span
@@ -66,17 +66,18 @@ useSeoMeta({
             <UBadge class="w-fit">/Library/Application Support/chatguessr</UBadge>
           </div>
         </li>
-        <li>Create a "flags" folder.</li>
+        <li>Create a "flags" folder</li>
         <li>
-          <span>Copy your custom images and paste them into the "flags" folder you just created.</span><br />
+          <span>Copy your custom images and paste them into the "flags" folder you just created</span><br />
           <span class="text-sm text-gray-400">Supported formats (.svg, .png, .jpg, .jpeg, .webp, .gif, .apng)</span>
         </li>
         <li>
-          <span>Rename the image corresponding to the wanted Twitch command.</span><br />
+          <span>Rename the image corresponding to the wanted Twitch command</span><br />
           <span class="text-sm text-gray-400"
             >For example, the command for "myflag.png" will be <UBadge>!flag myflag</UBadge></span
           >
         </li>
+        <li>Restart ChatGuessr for the changes to take effect</li>
       </ol>
     </UiCard>
 
