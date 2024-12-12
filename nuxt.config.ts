@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // The private keys which are only available server-side
     TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
-    TWITCH_OAUTH: process.env.TWITCH_OAUTH,
+    TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET,
     SUPABASE_URL: process.env.SUPABASE_URL,
     SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
     // Keys within public are also exposed client-side
