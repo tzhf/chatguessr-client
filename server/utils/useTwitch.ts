@@ -28,11 +28,10 @@ export default function useTwitch() {
     const response = await $fetch<TwitchAccessTokenResponse>(`${url}?${params.toString()}`, {
       method: 'POST',
     })
-
     return response.access_token
   }
 
-  // Function to fetch data from the Twitch API with correct typing
+  // Function to fetch data from the Twitch API
   const fetchFromTwitch = async <T>(
     endpoint: string,
     params: Record<string, string | number> = {}
@@ -40,7 +39,6 @@ export default function useTwitch() {
     const accessToken = await getAccessToken()
     const urlParams = new URLSearchParams(params as Record<string, string>)
 
-    // Ensure that $fetch is aware of the response type T
     const response = await $fetch<TwitchAPIResponse<T>>(`${baseUrl}/${endpoint}?${urlParams.toString()}`, {
       headers: {
         'Client-ID': clientId,
@@ -52,8 +50,5 @@ export default function useTwitch() {
   }
 
   // Public API
-  return {
-    getAccessToken,
-    fetchFromTwitch,
-  }
+  return { fetchFromTwitch }
 }

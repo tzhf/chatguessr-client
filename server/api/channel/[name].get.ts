@@ -1,5 +1,3 @@
-// Define types for the Twitch response
-
 interface TwitchUser {
   id: string
   login: string
