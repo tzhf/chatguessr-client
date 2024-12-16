@@ -4,7 +4,7 @@ const getUser = await client.auth.getUser()
 
 const config = useRuntimeConfig()
 const route = useRoute()
-const bot = (route.params.bot || (route.query.bot as string)) ?? undefined
+const bot = (route.params.bot || (route.query.bot as string)) ?? ''
 
 const user = ref()
 const map = ref()
@@ -101,7 +101,7 @@ const triggerCoolDown = () => {
 const handleTwitchLogin = () => {
   client.auth.signInWithOAuth({
     provider: 'twitch',
-    options: { redirectTo: `${config.public.BASE_URL}/auth/redirect/${bot}` },
+    options: { redirectTo: `${config.public.BASE_URL}/map/${bot}` },
   })
 }
 
