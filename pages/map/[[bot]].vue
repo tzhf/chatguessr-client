@@ -128,7 +128,7 @@ useSeoMeta({
 
 <template>
   <div class="h-screen select-none" :style="{ '--border-color': color?.hexColor }">
-    <div class="w-full absolute h-[4.4rem] flex flex-wrap items-center px-3 pointer-events-none z-[10]">
+    <div class="w-full absolute h-[4.4rem] flex flex-wrap items-center px-3 pointer-events-none z-10">
       <UiLogo :subtitle="bot" class="pt-1 pointer-events-auto" />
 
       <div class="ml-auto pointer-events-auto">
@@ -137,7 +137,9 @@ useSeoMeta({
           <span class="hidden sm:block text-xl font-bold mr-3 text-shadow">{{ user.slug }}</span>
           <button class="btn-twitch" @click="handleTwitchLogout">Logout</button>
         </div>
-        <button v-else class="btn-twitch" @click="handleTwitchLogin"><UIcon name="my-icons:twitch" size="20" />Login</button>
+        <button v-else class="btn-twitch" @click="handleTwitchLogin">
+          <UIcon name="my-icons:twitch" size="20" />Login
+        </button>
       </div>
     </div>
 
