@@ -9,9 +9,12 @@ const { data: streams, status, error } = await useLazyFetch('/api/streams')
     </h3>
     <UiLoader v-if="status === 'pending'" />
     <UiNotif v-else-if="error">
-      <UIcon name="my-icons:cactus" size="20" /> Server unreachable <UIcon name="my-icons:cactus" size="20" />
+      <Icon name="my-icons:cactus" size="20" /> Server unreachable
+      <Icon name="my-icons:cactus" size="20" />
     </UiNotif>
-    <UiNotif v-else-if="!streams?.length">🌵 No stream found 🌵</UiNotif>
+    <UiNotif v-else-if="!streams?.length">
+      <Icon name="my-icons:cactus" />No stream found<Icon name="my-icons:cactus" />
+    </UiNotif>
     <div
       v-else
       class="grid grid-cols-[repeat(auto-fit,_minmax(100%,_1fr))] md:grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))] gap-2"

@@ -11,14 +11,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.18.4",
+    "@nuxt/icon": "^1.12.0",
+    "@nuxtjs/tailwindcss": "^6.13.2",
     "@supabase/supabase-js": "^2.47.7",
     "human-readable-random-string": "^0.0.2",
     "leaflet": "^1.9.4",
     "leaflet.geodesic": "^2.7.1",
-    "nuxt": "^3.12.4",
+    "nuxt": "^3.16.2",
     "vue": "latest",
-    "vue-json-excel3": "^1.0.29"
+    "vue-json-excel3": "^1.0.29",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "@radial-color-picker/vue-color-picker": "^6.0.0",

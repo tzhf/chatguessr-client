@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useToast } from 'vue-toastification'
+import ToastContent from '../../components/ui/ToastContent.vue'
+
 const client = useSupabase()
 const getUser = await client.auth.getUser()
 
@@ -19,23 +22,28 @@ watch(space, (v) => {
 })
 
 onMounted(async () => {
+  document.body.classList.add('page-with-custom-toast')
+
   user.value = getUser.data.user?.user_metadata
 
   if (!bot) {
-    toast.add({
-      title: 'Please fill your bot in the url parameters',
-      icon: 'i-heroicons:shield-exclamation',
-      ui: {
-        icon: {
-          color: 'text-red-500',
-        },
-      },
-      timeout: 0,
-    })
+    toast(
+      h(ToastContent, {
+        content: 'Please fill your bot in the url parameters',
+        icon: 'heroicons:exclamation-circle',
+        iconClass: 'text-red-500',
+      }),
+      {
+        closeOnClick: false,
+        draggable: false,
+        timeout: false,
+      }
+    )
   }
 })
 
 onUnmounted(() => {
+  document.body.classList.remove('page-with-custom-toast')
   toast.clear()
 })
 
@@ -56,38 +64,32 @@ const handleGuess = async () => {
     },
   }).catch((error) => {
     if (error.data && error.data.message === 'BOT_DISCONNECTED') {
-      toast.add({
-        title: 'Streamer disconnected',
-        icon: 'i-heroicons:shield-exclamation',
-        ui: {
-          icon: {
-            color: 'text-red-500',
-          },
-        },
-      })
+      toast(
+        h(ToastContent, {
+          content: 'Streamer disconnected',
+          icon: 'heroicons:exclamation-circle',
+          iconClass: 'text-red-500',
+        })
+      )
     } else {
-      toast.add({
-        title: `Something went wrong: ${error.message ?? error}`,
-        icon: 'i-heroicons:shield-exclamation',
-        ui: {
-          icon: {
-            color: 'text-red-500',
-          },
-        },
-      })
+      toast(
+        h(ToastContent, {
+          content: `Something went wrong: ${error.message ?? error}`,
+          icon: 'heroicons:exclamation-circle',
+          iconClass: 'text-red-500',
+        })
+      )
     }
   })
 
   if (data) {
-    toast.add({
-      title: `Guess successfully sent to <b>${bot}</b> !`,
-      icon: 'my-icons:chatguessr',
-      ui: {
-        icon: {
-          base: 'spinner',
-        },
-      },
-    })
+    toast(
+      h(ToastContent, {
+        content: `Guess successfully sent to <b>${bot}</b> !`,
+        icon: 'my-icons:chatguessr',
+        iconClass: 'spinner',
+      })
+    )
   }
 }
 
@@ -98,21 +100,33 @@ const triggerCoolDown = () => {
   }, 5000)
 }
 
-const handleTwitchLogin = () => {
+const handleTwitchSignIn = () => {
   client.auth.signInWithOAuth({
     provider: 'twitch',
     options: { redirectTo: `${config.public.BASE_URL}/map/${bot}` },
   })
 }
 
-const handleTwitchLogout = async () => {
+const handleTwitchSignOut = async () => {
   const { error } = await client.auth.signOut()
   if (error) {
-    toast.add({ title: 'Something went wrong' })
+    toast(
+      h(ToastContent, {
+        content: 'Something went wrong',
+        icon: 'heroicons:exclamation-circle',
+        iconClass: 'text-red-500',
+      })
+    )
   } else {
     user.value = null
     map.value.removeGuessMarker()
-    toast.add({ title: 'Successfully logged out' })
+    toast(
+      h(ToastContent, {
+        content: 'Successfully logged out',
+        icon: 'heroicons:shield-check',
+        iconClass: 'text-primary',
+      })
+    )
   }
 }
 
@@ -128,16 +142,28 @@ useSeoMeta({
 
 <template>
   <div class="h-screen select-none" :style="{ '--border-color': color?.hexColor }">
-    <div class="w-full absolute h-[4.4rem] flex flex-wrap items-center px-3 pointer-events-none z-[10]">
-      <UiLogo :subtitle="bot" class="pt-1 pointer-events-auto" />
+    <div class="w-full absolute h-[4.4rem] flex flex-wrap items-center px-3 pointer-events-none z-10">
+      <UiLogo :subtitle="bot" class="pointer-events-auto" />
 
       <div class="ml-auto pointer-events-auto">
         <div v-if="user" class="flex items-center gap-1">
           <UiColorPicker :avatar="user.avatar_url" ref="color" />
           <span class="hidden sm:block text-xl font-bold mr-3 text-shadow">{{ user.slug }}</span>
-          <button class="btn-twitch" @click="handleTwitchLogout">Logout</button>
+          <UiButton
+            title="Sign out"
+            icon="heroicons:arrow-right-start-on-rectangle-20-solid"
+            class="bg-red-400 border-none"
+            @click="handleTwitchSignOut()"
+          ></UiButton>
         </div>
-        <button v-else class="btn-twitch" @click="handleTwitchLogin"><UIcon name="my-icons:twitch" size="20" />Login</button>
+        <UiButton
+          v-else
+          title="Sign In with Twitch"
+          icon="my-icons:twitch"
+          class="bg-twitch-purple border-none"
+          @click="handleTwitchSignIn()"
+          >Sign In</UiButton
+        >
       </div>
     </div>
 
@@ -145,37 +171,32 @@ useSeoMeta({
 
     <div
       v-if="bot && user && map?.coords"
-      class="absolute bottom-3 px-3 w-full sm:w-[40%] max-w-[40rem] left-1/2 -translate-x-1/2 z-[1]"
+      class="absolute bottom-3 px-3 w-full sm:w-[50%] sm:max-w-[28rem] left-1/2 -translate-x-1/2 z-10"
     >
       <button :disabled="guessDisabled" @click="handleGuess" class="btn-guess" title="(SPACE)">
         <span>GUESS</span>
       </button>
     </div>
-
-    <UNotifications :ui="{ position: 'bottom-16' }">
-      <template #title="{ title }">
-        <span v-html="title" />
-      </template>
-    </UNotifications>
   </div>
 </template>
 
-<style scoped>
-.btn-twitch {
-  @apply flex items-center gap-2 rounded-lg px-3 h-10 bg-[#8c68cf] border border-white/10 will-change-transform scale-[0.98] transition-transform;
+<style>
+.page-with-custom-toast .Vue-Toastification__toast--default {
+  bottom: 2.5rem;
 }
-.btn-twitch:hover {
-  transform: scale(1);
+@media only screen and (max-width: 600px) {
+  .Vue-Toastification__container.bottom-center {
+    bottom: 1.5em;
+  }
 }
-.btn-twitch:active {
-  transform: scale(0.96);
-}
+</style>
 
+<style scoped>
 .btn-guess {
-  @apply w-full text-black border border-white/30 bg-primary p-3 text-lg font-bold rounded-xl shadow-xl disabled:bg-black/40 disabled:cursor-not-allowed scale-[0.98] will-change-transform transition-transform;
+  @apply w-full text-black border border-white/30 bg-primary p-3 text-xl font-bold rounded-xl shadow-xl disabled:bg-black/40 disabled:cursor-not-allowed will-change-transform transition-transform;
 }
 .btn-guess:hover:not(:disabled) {
-  transform: scale(1);
+  transform: scale(0.98);
 }
 .btn-guess:active:not(:disabled) {
   transform: scale(0.96);

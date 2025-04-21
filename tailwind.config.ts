@@ -9,7 +9,8 @@ export default <Partial<Config>>{
         video: '16 / 9',
       },
       colors: {
-        shamrock: {
+        primary: {
+          DEFAULT: '#42dfba',
           '50': '#ebfef7',
           '100': '#cffceb',
           '200': '#a3f7db',
@@ -27,6 +28,7 @@ export default <Partial<Config>>{
           '900': '#1d1d21',
           '950': '#18181B',
         },
+        'twitch-purple': '#8c68cf',
       },
     },
   },

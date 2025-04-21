@@ -1,13 +1,14 @@
 <template>
-  <header class="-ml-0.5 -mt-0.5">
-    <NuxtLink to="/" class="block w-min">
-      <h1 class="heading z-50 text-white">
+  <header class="-ml-0.5 mt-0.5 z-10">
+    <NuxtLink to="/">
+      <h1 class="heading text-white">
         <div><span class="font-bold text-primary">C</span>hat</div>
         <div><span class="font-bold text-primary">G</span>uessr</div>
       </h1>
     </NuxtLink>
     <p class="text-sm pl-5">
-      A Twitch chatbot for <a class="text-primary" href="https://www.geoguessr.com" target="_blank">GeoGuessr</a>.
+      A Twitch chatbot for
+      <a class="text-primary" href="https://www.geoguessr.com" target="_blank">GeoGuessr</a>.
     </p>
   </header>
 </template>

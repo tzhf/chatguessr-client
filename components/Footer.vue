@@ -5,23 +5,31 @@
       <section class="flex flex-col items-center gap-2">
         <h4 class="font-bold">Follow us on X</h4>
         <a href="https://x.com/chatguessr" target="_blank">
-          <UIcon name="my-icons:x" size="20px" />
+          <Icon name="my-icons:x" size="1.5rem" />
         </a>
       </section>
 
       <section class="flex flex-col items-center gap-2">
         <h4 class="font-bold">Support us</h4>
-        <p class="text-sm">Any tip is greatly appreciated and help us to improve and maintain the application.</p>
-        <UButton block color="orange" to="https://paypal.me/chatguessr" target="_blank" class="max-w-20">Donate</UButton>
+        <p class="text-sm">
+          Any tip is greatly appreciated and help us to improve and maintain the application.
+        </p>
+        <UiButton
+          to="https://paypal.me/chatguessr"
+          target="_blank"
+          class="!text-orange-400 border-orange-400"
+          >Donate</UiButton
+        >
       </section>
 
       <section class="flex flex-col items-center gap-2">
         <h4 class="font-bold">Developer ?</h4>
         <p class="text-sm">
-          ChatGuessr is open-source, feel free to suggest new features and submit your pull requests to our Github repository.
+          ChatGuessr is open-source, feel free to suggest new features and submit your pull requests to
+          our Github repository.
         </p>
         <a href="https://github.com/tzhf/chatguessr" target="_blank">
-          <UIcon name="my-icons:github" size="25px" />
+          <Icon name="my-icons:github" size="1.5rem" />
         </a>
       </section>
 

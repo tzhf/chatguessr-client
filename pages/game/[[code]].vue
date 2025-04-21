@@ -16,14 +16,14 @@
           <h3 class="text-xl overflow-hidden text-ellipsis">{{ game.map }}</h3>
           <a :href="`https://www.twitch.tv/${game.streamer}`" target="_blank">{{ game.streamer }}</a>
           <div class="flex justify-center gap-1 mt-1 text-sm">
-            <UBadge v-if="game.mode.noMove" variant="solid" class="font-bold">No Move</UBadge>
-            <UBadge v-if="game.mode.noPan" variant="solid" class="font-bold">No Pan</UBadge>
-            <UBadge v-if="game.mode.noZoom" variant="solid" class="font-bold">No Zoom</UBadge>
+            <UiBadge v-if="game.mode.noMove" class="font-bold">No Move</UiBadge>
+            <UiBadge v-if="game.mode.noPan" class="font-bold">No Pan</UiBadge>
+            <UiBadge v-if="game.mode.noZoom" class="font-bold">No Zoom</UiBadge>
           </div>
         </div>
 
         <div class="md:overflow-x-hidden moz-scroller px-2 msb-2">
-          <ul class="flex flex-col gap-1">
+          <ul class="flex flex-col gap-1.5">
             <PlayerResultCard
               v-for="(player, index) in game.players"
               :player="player"

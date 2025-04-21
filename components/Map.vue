@@ -74,7 +74,8 @@ onMounted(async () => {
   map.zoomControl.setPosition('bottomleft')
 
   const storedLayer = localStorage.getItem('mapLayer')
-  currentLayer.value = storedLayer && storedLayer in layers.value ? layers.value[storedLayer] : layers.value['Roadmap']
+  currentLayer.value =
+    storedLayer && storedLayer in layers.value ? layers.value[storedLayer] : layers.value['Roadmap']
   currentLayer.value.addTo(map)
 
   if (props.bot) {
@@ -219,7 +220,10 @@ defineExpose({ coords, removeGuessMarker, drawPlayerGuesses })
       <button
         v-for="layer in layers"
         @click="switchLayer(layer)"
-        :class="['layer__button', currentLayer?.options.id === layer.options.id ? 'bg-primary text-black' : 'bg-black']"
+        :class="[
+          'layer__button',
+          currentLayer?.options.id === layer.options.id ? 'bg-primary text-black' : 'bg-black',
+        ]"
         :title="layer.options.title"
       >
         {{ layer.options.id }}
@@ -230,7 +234,7 @@ defineExpose({ coords, removeGuessMarker, drawPlayerGuesses })
 
 <style>
 .layer__button {
-  @apply p-2 rounded-md font-bold text-sm max-sm:text-xs max-sm:p-1.5 hover:brightness-105 active:brightness-110 bg-opacity-70 hover:bg-opacity-80 shadow-lg outline-none transition duration-200;
+  @apply p-2 rounded-md font-bold text-sm max-sm:text-xs max-sm:p-1.5 hover:brightness-105 active:brightness-110 bg-opacity-80 hover:bg-opacity-90 shadow-lg outline-none transition duration-200;
 }
 
 #map:focus-visible {

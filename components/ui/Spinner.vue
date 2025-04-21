@@ -1,7 +1,7 @@
 <script setup lang="ts">
-defineProps<{ width: string }>()
+defineProps<{ size: string }>()
 </script>
 
 <template>
-  <UIcon name="my-icons:chatguessr" class="spinner" :size="width" />
+  <Icon name="my-icons:chatguessr" class="spinner" :size="size" />
 </template>

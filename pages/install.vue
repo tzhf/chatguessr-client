@@ -19,13 +19,14 @@ useSeoMeta({
         <li>
           Log in using with your Twitch channel or a <strong>bot account</strong><br />
           <span class="text-sm text-gray-400"
-            >You can log in with your main account, however a bot account is recommended for security and to prevent your main
-            account's whispers from filling up.</span
+            >You can log in with your main account, however a bot account is recommended for security and
+            to prevent your main account's whispers from filling up.</span
           >
         </li>
         <li>
           <span class="flex items-center gap-1">
-            Open the settings <UIcon name="i-heroicons:cog-6-tooth" class="w-5 h-5" /> on the top right menu
+            Open the settings <Icon name="i-heroicons:cog-6-tooth" class="w-5 h-5" /> on the top right
+            menu
           </span>
         </li>
         <li>Go to <strong>Twitch connect</strong></li>
@@ -41,8 +42,8 @@ useSeoMeta({
         <h3 class="font-bold mb-1">Issues with Windows Defender</h3>
         <UiCard class="text-sm text-gray-400">
           <p>
-            On install you may get a message stating: "Windows Defender SmartScreen prevented an unrecognizable app from starting.
-            Running this app might put your PC at risk."
+            On install you may get a message stating: "Windows Defender SmartScreen prevented an
+            unrecognizable app from starting. Running this app might put your PC at risk."
           </p>
           <p>
             You can safely ignore this message and continue with your installation
@@ -59,22 +60,25 @@ useSeoMeta({
           Navigate to the following path :
           <div class="flex flex-col sm:flex-row gap-1 mb-1">
             <span class="w-20 text-sm text-gray-400">Windows :</span>
-            <UBadge class="w-fit">C:\Users\&lt;username&gt;\AppData\Roaming\chatguessr</UBadge>
+            <UiBadge class="w-fit">C:\Users\&lt;username&gt;\AppData\Roaming\chatguessr</UiBadge>
           </div>
           <div class="flex flex-col sm:flex-row gap-1">
             <span class="w-20 text-sm text-gray-400">MacOS :</span>
-            <UBadge class="w-fit">/Library/Application Support/chatguessr</UBadge>
+            <UiBadge class="w-fit">/Library/Application Support/chatguessr</UiBadge>
           </div>
         </li>
         <li>Create a "flags" folder</li>
         <li>
-          <span>Copy your custom images and paste them into the "flags" folder you just created</span><br />
-          <span class="text-sm text-gray-400">Supported formats (.svg, .png, .jpg, .jpeg, .webp, .gif, .apng)</span>
+          <span>Copy your custom images and paste them into the "flags" folder you just created</span
+          ><br />
+          <span class="text-sm text-gray-400"
+            >Supported formats (.svg, .png, .jpg, .jpeg, .webp, .gif, .apng)</span
+          >
         </li>
         <li>
           <span>Rename the image corresponding to the wanted Twitch command</span><br />
           <span class="text-sm text-gray-400"
-            >For example, the command for "myflag.png" will be <UBadge>!flag myflag</UBadge></span
+            >For example, the command for "myflag.png" will be <UiBadge>!flag myflag</UiBadge></span
           >
         </li>
         <li>Restart ChatGuessr for the changes to take effect</li>

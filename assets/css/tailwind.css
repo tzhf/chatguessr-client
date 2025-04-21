@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Comfortaa';
   src: url('~/assets/fonts/Comfortaa.ttf') format('truetype');
@@ -10,20 +14,9 @@ html {
   background-color: rgb(0, 0, 0);
   color:white;
 }
+
 a {
   @apply text-primary hover:text-primary-300;
-}
-html,
-.moz-scroller {
-    scrollbar-color: rgb(226, 226, 226) rgb(53, 53, 53);
-    scrollbar-width: thin;
-}
-::-webkit-scrollbar {
-    width: 0.7rem;
-    background-color: rgb(87, 87, 87);
-}
-::-webkit-scrollbar-thumb {
-    @apply bg-primary;
 }
 
 .text-shadow {
@@ -31,7 +24,7 @@ html,
 }
 
 .border-top {
-  border-top: 0.3rem solid;
+  border-top: 4px solid;
   border-image-source: linear-gradient(
     to right,
     #a159ff,
@@ -74,4 +67,15 @@ html,
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
+}
+
+/* Vue Toastification */
+.Vue-Toastification__toast--default.custom-toast {
+  @apply h-16 p-2 font-['Comfortaa'] text-sm bg-black/80 border border-neutral-800 cursor-pointer;
+}
+.custom-toast-body {
+  @apply flex items-center justify-center;
+}
+.custom-toast .Vue-Toastification__progress-bar {
+  @apply bg-primary;
 }

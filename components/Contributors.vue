@@ -17,7 +17,7 @@ const {
     <h3 class="text-lg font-bold mb-2">Contributors</h3>
     <UiLoader v-if="status === 'pending'" />
     <UiNotif v-else-if="error">
-      <UIcon name="my-icons:cactus" size="20" /> Server unreachable <UIcon name="my-icons:cactus" size="20" />
+      <Icon name="my-icons:cactus" />Server unreachable<Icon name="my-icons:cactus" />
     </UiNotif>
     <div v-else class="flex justify-center flex-wrap gap-1">
       <div v-for="contributor in contributors" class="hover:scale-[0.98] active:scale-[0.96]">
