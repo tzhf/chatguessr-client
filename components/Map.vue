@@ -126,9 +126,9 @@ onMounted(async () => {
     const locs = props.locations.map((location: Location, index: number) => {
       const icon = L.icon({
         iconUrl: '../correct-location.webp',
-        iconSize: [30, 30],
-        iconAnchor: [15, 15],
-        popupAnchor: [0, -15],
+        iconSize: [34, 34],
+        iconAnchor: [16, 16],
+        popupAnchor: [0, -16],
         className: 'correct-location',
       })
       const marker = L.marker([location.lat, location.lng], { icon: icon })
@@ -159,9 +159,9 @@ onMounted(async () => {
 
     const icon = L.icon({
       iconUrl: player.player.avatar ?? '../avatar-default.jpg',
-      iconSize: [28, 28],
-      iconAnchor: [14, 14],
-      popupAnchor: [0, -14],
+      iconSize: [34, 34],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16],
     })
 
     player.guesses.forEach((guess, index) => {
@@ -169,10 +169,10 @@ onMounted(async () => {
 
       L.marker([guess.lat, guess.lng], { icon: icon }).addTo(playerGuessesLayer)
       new GeodesicLine([guess, props.locations[index]], {
-        color: player.player.color || '#fff',
-        weight: 3,
-        opacity: 1,
-        steps: 200,
+        color: '#000',
+        weight: 2,
+        dashArray: '4, 8',
+        steps: 400,
       }).addTo(playerGuessesLayer)
     })
   }
@@ -286,9 +286,10 @@ defineExpose({ coords, removeGuessMarker, drawPlayerGuesses })
 .leaflet-marker-icon {
   border: 2px solid var(--border-color);
   border-radius: 50%;
+  box-shadow: 0 0.375rem 0.625rem #1a1a1a47;
 }
 .correct-location {
-  border: 2px solid var(--border-color);
+  border: 3px solid #fff;
   z-index: 999 !important;
 }
 .correct-location-label {
@@ -297,8 +298,8 @@ defineExpose({ coords, removeGuessMarker, drawPlayerGuesses })
   align-items: center;
   justify-content: center;
   padding: 2px;
-  top: 10px;
-  left: 10px;
+  top: 14px;
+  left: 14px;
   border-radius: 50%;
   width: 15px;
   height: 15px;
