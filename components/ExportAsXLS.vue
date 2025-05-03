@@ -14,7 +14,7 @@ const players = game.players.map((player) => {
 
 <template>
   <ClientOnly>
-    <div class="py-3 flex gap-1 justify-center border-t border-neutral-500/50">
+    <div class="py-3 flex gap-1 justify-center border-t border-neutral-500/50 mt-auto">
       Export as
       <download-excel
         :data="players"
