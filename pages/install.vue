@@ -53,38 +53,6 @@ useSeoMeta({
       </div>
     </UiCard>
 
-    <h2 class="text-xl font-bold mb-2">How to add custom flags :</h2>
-    <UiCard>
-      <ol class="list-decimal ml-6 flex flex-col gap-1">
-        <li>
-          Navigate to the following path :
-          <div class="flex flex-col sm:flex-row gap-1 mb-1">
-            <span class="w-20 text-sm text-gray-400">Windows :</span>
-            <UiBadge class="w-fit">C:\Users\&lt;username&gt;\AppData\Roaming\chatguessr</UiBadge>
-          </div>
-          <div class="flex flex-col sm:flex-row gap-1">
-            <span class="w-20 text-sm text-gray-400">MacOS :</span>
-            <UiBadge class="w-fit">/Library/Application Support/chatguessr</UiBadge>
-          </div>
-        </li>
-        <li>Create a "flags" folder</li>
-        <li>
-          <span>Copy your custom images and paste them into the "flags" folder you just created</span
-          ><br />
-          <span class="text-sm text-gray-400"
-            >Supported formats (.svg, .png, .jpg, .jpeg, .webp, .gif, .apng)</span
-          >
-        </li>
-        <li>
-          <span>Rename the image corresponding to the wanted Twitch command</span><br />
-          <span class="text-sm text-gray-400"
-            >For example, the command for "myflag.png" will be <UiBadge>!flag myflag</UiBadge></span
-          >
-        </li>
-        <li>Restart ChatGuessr for the changes to take effect</li>
-      </ol>
-    </UiCard>
-
     <UiModal v-show="isModalOpen" @close="isModalOpen = false">
       <img src="~/assets/windefender.png" alt="Windows Defender" />
     </UiModal>
