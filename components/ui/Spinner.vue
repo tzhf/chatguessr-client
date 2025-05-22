@@ -3,5 +3,5 @@ defineProps<{ size: string }>()
 </script>
 
 <template>
-  <Icon name="my-icons:chatguessr" class="spinner_" :size="size" />
+  <Icon name="my-icons:chatguessr" class="spinner" :size="size" />
 </template>
