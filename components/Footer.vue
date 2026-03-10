@@ -15,7 +15,7 @@
           Any tip is greatly appreciated and help us to improve and maintain the application.
         </p>
         <UiButton
-          to="https://paypal.me/chatguessr"
+          to="https://paypal.me/chatguessrdonation"
           target="_blank"
           class="!text-orange-400 border-orange-400"
           >Donate</UiButton

@@ -64,7 +64,7 @@ const items: {
       label: 'Support us',
       icon: 'my-icons:paypal',
       labelClass: 'text-orange-500',
-      to: 'https://paypal.me/chatguessr',
+      to: 'https://paypal.me/chatguessrdonation',
       target: '_blank',
     },
     {
